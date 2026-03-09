@@ -1,0 +1,119 @@
+// =============================================================================
+// CHECKBOX COMPONENT
+// =============================================================================
+
+.ea-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-family-sans);
+  color: var(--color-text-primary);
+
+  // ---------------------------------------------------------------------------
+  // Sizes
+  // ---------------------------------------------------------------------------
+  &--sm {
+    .ea-checkbox__box {
+      width: 1rem;
+      height: 1rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .ea-checkbox__label {
+      font-size: var(--font-size-sm);
+      line-height: 1rem;
+    }
+  }
+
+  &--md {
+    .ea-checkbox__box {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .ea-checkbox__label {
+      font-size: var(--font-size-sm);
+      line-height: 1.25rem;
+    }
+  }
+
+  &--lg {
+    .ea-checkbox__box {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .ea-checkbox__label {
+      font-size: var(--font-size-md);
+      line-height: 1.5rem;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // States
+  // ---------------------------------------------------------------------------
+  &--disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  &--checked,
+  &--indeterminate {
+    .ea-checkbox__box {
+      background-color: var(--color-brand-default);
+      border-color: var(--color-brand-default);
+      color: var(--color-text-inverse);
+    }
+  }
+
+  &:hover:not(.ea-checkbox--disabled) {
+    .ea-checkbox__box {
+      border-color: var(--color-brand-default);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Inner elements
+  // ---------------------------------------------------------------------------
+  &__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+
+    &:focus-visible + .ea-checkbox__box {
+      box-shadow: var(--shadow-focus-ring);
+    }
+  }
+
+  &__box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    background-color: var(--color-bg-base);
+    border: var(--border-width-thin) solid var(--color-border-strong);
+    transition: var(--transition-colors), var(--transition-shadow);
+
+    svg {
+      position: absolute;
+      width: 65%;
+      height: 65%;
+    }
+  }
+
+  &__label {
+    font-weight: var(--font-weight-regular);
+  }
+}

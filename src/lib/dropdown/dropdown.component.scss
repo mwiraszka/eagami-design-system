@@ -1,0 +1,181 @@
+// =============================================================================
+// DROPDOWN COMPONENT
+// =============================================================================
+
+.ea-dropdown-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5);
+
+  &__label {
+    font-size: var(--text-label-md-size);
+    font-weight: var(--text-label-md-weight);
+    line-height: var(--text-label-md-lh);
+    color: var(--color-text-primary);
+
+    &--required::after {
+      content: ' *';
+      color: var(--color-error-default);
+    }
+  }
+
+  &__message {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-helper-size);
+    font-weight: var(--text-helper-weight);
+    line-height: var(--text-helper-lh);
+
+    &--hint {
+      color: var(--color-text-secondary);
+    }
+
+    &--error {
+      color: var(--color-error-default);
+    }
+  }
+}
+
+.ea-dropdown {
+  position: relative;
+
+  // ---------------------------------------------------------------------------
+  // Trigger button
+  // ---------------------------------------------------------------------------
+  &__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    width: 100%;
+    background-color: var(--color-bg-base);
+    border: var(--border-width-thin) solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    font-family: var(--font-family-sans);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: var(--transition-colors), var(--transition-shadow);
+    text-align: left;
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-focus-ring);
+    }
+
+    // Sizes
+    &--sm {
+      padding: var(--space-1-5) var(--space-2);
+      font-size: var(--font-size-sm);
+      min-height: 2rem;
+    }
+
+    &--md {
+      padding: var(--space-2) var(--space-3);
+      font-size: var(--font-size-sm);
+      min-height: 2.5rem;
+    }
+
+    &--lg {
+      padding: var(--space-2-5) var(--space-4);
+      font-size: var(--font-size-md);
+      min-height: 3rem;
+    }
+
+    // States
+    &--open {
+      border-color: var(--color-border-focus);
+      box-shadow: var(--shadow-focus-ring);
+    }
+
+    &--error {
+      border-color: var(--color-error-default);
+
+      &.ea-dropdown__trigger--open {
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.35);
+      }
+    }
+
+    &--disabled {
+      background-color: var(--color-bg-muted);
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Value / placeholder
+  // ---------------------------------------------------------------------------
+  &__value {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &--placeholder {
+      color: var(--color-text-tertiary);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Chevron
+  // ---------------------------------------------------------------------------
+  &__chevron {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    color: var(--color-text-secondary);
+    transition: var(--transition-transform);
+
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Dropdown menu
+  // ---------------------------------------------------------------------------
+  &__menu {
+    position: absolute;
+    top: calc(100% + var(--space-1));
+    left: 0;
+    right: 0;
+    z-index: var(--z-index-dropdown);
+    max-height: 15rem;
+    overflow-y: auto;
+    background-color: var(--color-bg-base);
+    border: var(--border-width-thin) solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-1) 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Options
+  // ---------------------------------------------------------------------------
+  &__option {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-sm);
+    font-family: var(--font-family-sans);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: var(--transition-colors);
+
+    &--focused {
+      background-color: var(--color-bg-muted);
+    }
+
+    &--selected {
+      color: var(--color-brand-default);
+      font-weight: var(--font-weight-medium);
+    }
+
+    &--disabled {
+      color: var(--color-text-disabled);
+      cursor: not-allowed;
+    }
+  }
+}

@@ -1,0 +1,271 @@
+<header class="sandbox-header">
+  <img
+    src="assets/logo.svg"
+    alt="eagami logo"
+    class="sandbox-logo" />
+  <div class="sandbox-header-text">
+    <h1>eagami design system</h1>
+    <p class="sandbox-tagline">elegant web design.</p>
+  </div>
+</header>
+
+<!-- ─── Button ─────────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Button — variants</h2>
+  <div class="sandbox-row">
+    <ea-button>Primary</ea-button>
+    <ea-button variant="secondary">Secondary</ea-button>
+    <ea-button variant="ghost">Ghost</ea-button>
+    <ea-button variant="danger">Danger</ea-button>
+  </div>
+
+  <h2>Button — sizes</h2>
+  <div class="sandbox-row">
+    <ea-button size="sm">Small</ea-button>
+    <ea-button size="md">Medium</ea-button>
+    <ea-button size="lg">Large</ea-button>
+  </div>
+
+  <h2>Button — states</h2>
+  <div class="sandbox-row">
+    <ea-button
+      [loading]="isLoading()"
+      (clicked)="isLoading.set(!isLoading())">
+      Toggle loading
+    </ea-button>
+    <ea-button [disabled]="true">Disabled</ea-button>
+    <ea-button [fullWidth]="true">Full width</ea-button>
+  </div>
+</section>
+
+<!-- ─── Input ──────────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Input — basic</h2>
+  <ea-input
+    label="Default"
+    placeholder="Enter text…"
+    [(value)]="inputValue" />
+  <p class="sandbox-preview">Value: {{ inputValue() }}</p>
+
+  <h2>Input — hint &amp; error</h2>
+  <ea-input
+    label="With hint"
+    hint="Helpful guidance goes here"
+    placeholder="Enter text…" />
+  <ea-input
+    label="With error"
+    error="This field is required"
+    placeholder="Enter text…" />
+
+  <h2>Input — status</h2>
+  <ea-input
+    label="Success"
+    status="success"
+    placeholder="Looks good" />
+
+  <h2>Input — sizes</h2>
+  <ea-input
+    size="sm"
+    label="Small"
+    placeholder="sm" />
+  <ea-input
+    size="md"
+    label="Medium"
+    placeholder="md" />
+  <ea-input
+    size="lg"
+    label="Large"
+    placeholder="lg" />
+
+  <h2>Input — disabled &amp; readonly</h2>
+  <ea-input
+    label="Disabled"
+    [disabled]="true"
+    placeholder="Disabled" />
+  <ea-input
+    label="Readonly"
+    [readonly]="true"
+    value="Read-only value" />
+</section>
+
+<!-- ─── Checkbox ───────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Checkbox — basic</h2>
+  <ea-checkbox
+    label="Accept terms and conditions"
+    [(checked)]="checkboxValue" />
+  <p class="sandbox-preview">Checked: {{ checkboxValue() }}</p>
+
+  <h2>Checkbox — sizes</h2>
+  <div class="sandbox-row">
+    <ea-checkbox
+      size="sm"
+      label="Small" />
+    <ea-checkbox
+      size="md"
+      label="Medium" />
+    <ea-checkbox
+      size="lg"
+      label="Large" />
+  </div>
+
+  <h2>Checkbox — states</h2>
+  <div class="sandbox-row">
+    <ea-checkbox
+      label="Disabled"
+      [disabled]="true" />
+    <ea-checkbox
+      label="Disabled checked"
+      [disabled]="true"
+      [checked]="true" />
+    <ea-checkbox
+      label="Indeterminate"
+      [indeterminate]="true" />
+  </div>
+</section>
+
+<!-- ─── Radio ──────────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Radio — basic</h2>
+  <ea-radio-group [(value)]="radioValue">
+    <ea-radio
+      value="apple"
+      label="Apple" />
+    <ea-radio
+      value="banana"
+      label="Banana" />
+    <ea-radio
+      value="cherry"
+      label="Cherry" />
+  </ea-radio-group>
+  <p class="sandbox-preview">Selected: {{ radioValue() }}</p>
+
+  <h2>Radio — horizontal</h2>
+  <ea-radio-group
+    orientation="horizontal"
+    value="sm">
+    <ea-radio
+      value="sm"
+      label="Small" />
+    <ea-radio
+      value="md"
+      label="Medium" />
+    <ea-radio
+      value="lg"
+      label="Large" />
+  </ea-radio-group>
+
+  <h2>Radio — disabled</h2>
+  <ea-radio-group
+    [disabled]="true"
+    value="a">
+    <ea-radio
+      value="a"
+      label="Option A" />
+    <ea-radio
+      value="b"
+      label="Option B" />
+  </ea-radio-group>
+</section>
+
+<!-- ─── Card ───────────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Card — variants</h2>
+  <div class="sandbox-row sandbox-row--stretch">
+    <ea-card variant="elevated">
+      <span slot="header">Elevated</span>
+      Card with shadow elevation.
+    </ea-card>
+    <ea-card variant="outlined">
+      <span slot="header">Outlined</span>
+      Card with border outline.
+    </ea-card>
+    <ea-card variant="filled">
+      <span slot="header">Filled</span>
+      Card with subtle background.
+    </ea-card>
+  </div>
+
+  <h2>Card — with footer</h2>
+  <ea-card variant="outlined">
+    <span slot="header">Card Title</span>
+    This card has a header, body, and footer with actions.
+    <span slot="footer">
+      <ea-button
+        variant="secondary"
+        size="sm"
+        >Cancel</ea-button
+      >
+      <ea-button size="sm">Save</ea-button>
+    </span>
+  </ea-card>
+</section>
+
+<!-- ─── Dropdown ───────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Dropdown — basic</h2>
+  <ea-dropdown
+    label="Fruit"
+    placeholder="Select a fruit…"
+    [options]="dropdownOptions"
+    [(value)]="dropdownValue" />
+  <p class="sandbox-preview">Selected: {{ dropdownValue() }}</p>
+
+  <h2>Dropdown — hint &amp; error</h2>
+  <ea-dropdown
+    label="With hint"
+    hint="Choose your favourite"
+    [options]="dropdownOptions"
+    placeholder="Select…" />
+  <ea-dropdown
+    label="With error"
+    error="This field is required"
+    [options]="dropdownOptions"
+    placeholder="Select…" />
+
+  <h2>Dropdown — sizes</h2>
+  <ea-dropdown
+    size="sm"
+    label="Small"
+    [options]="dropdownOptions"
+    placeholder="sm" />
+  <ea-dropdown
+    size="md"
+    label="Medium"
+    [options]="dropdownOptions"
+    placeholder="md" />
+  <ea-dropdown
+    size="lg"
+    label="Large"
+    [options]="dropdownOptions"
+    placeholder="lg" />
+
+  <h2>Dropdown — disabled</h2>
+  <ea-dropdown
+    label="Disabled"
+    [disabled]="true"
+    [options]="dropdownOptions"
+    placeholder="Select…" />
+</section>
+
+<!-- ─── Dialog ─────────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Dialog</h2>
+  <ea-button (clicked)="dialogOpen.set(true)">Open Dialog</ea-button>
+
+  <ea-dialog [(open)]="dialogOpen">
+    <span slot="header">Dialog Title</span>
+    <p
+      >This is the dialog body. It supports any content including forms, text, and other
+      components.</p
+    >
+    <span slot="footer">
+      <ea-button
+        variant="secondary"
+        (clicked)="dialogOpen.set(false)"
+        >Cancel</ea-button
+      >
+      <ea-button (clicked)="dialogOpen.set(false)">Confirm</ea-button>
+    </span>
+  </ea-dialog>
+</section>

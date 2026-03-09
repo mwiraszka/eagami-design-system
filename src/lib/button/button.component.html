@@ -1,0 +1,40 @@
+<button
+  class="ea-button"
+  [ngClass]="hostClasses()"
+  [type]="type()"
+  [disabled]="isDisabled()"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-busy]="loading() || null"
+  [attr.aria-disabled]="isDisabled() || null"
+  (click)="handleClick($event)">
+  @if (loading()) {
+    <span
+      class="ea-button__spinner"
+      aria-hidden="true">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-dasharray="31.4"
+          stroke-dashoffset="10" />
+      </svg>
+    </span>
+  }
+
+  <span
+    class="ea-button__content"
+    [class.ea-button__content--hidden]="loading()">
+    <ng-content select="[slot=prefix]" />
+    <span class="ea-button__label">
+      <ng-content />
+    </span>
+    <ng-content select="[slot=suffix]" />
+  </span>
+</button>

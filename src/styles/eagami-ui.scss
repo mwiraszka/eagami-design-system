@@ -1,0 +1,16 @@
+// =============================================================================
+// EAGAMI UI — Global stylesheet
+//
+// Import this once at the root of your application:
+//   @use 'eagami-ui/src/styles/eagami-ui' (or via angular.json styles array)
+//
+// This file loads all design token CSS custom properties and the base reset.
+//
+// Fonts: load DM Sans + Syne via <link> tags in your HTML <head>:
+//   <link rel="preconnect" href="https://fonts.googleapis.com" />
+//   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+//   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Syne:wght@400;500;600;700&display=swap" />
+// =============================================================================
+
+@use 'tokens/index';
+@use 'reset';

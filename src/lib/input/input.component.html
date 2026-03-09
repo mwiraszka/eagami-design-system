@@ -1,0 +1,67 @@
+<div class="ea-input-field">
+  @if (label()) {
+    <label
+      class="ea-input-field__label"
+      [for]="id()"
+      [class.ea-input-field__label--required]="required()">
+      {{ label() }}
+    </label>
+  }
+
+  <div
+    class="ea-input-wrapper"
+    [ngClass]="wrapperClasses()">
+    <!-- Prefix slot (icon or text) -->
+    <span class="ea-input-wrapper__prefix">
+      <ng-content select="[slot=prefix]" />
+    </span>
+
+    <input
+      #inputEl
+      class="ea-input"
+      [id]="id()"
+      [type]="type()"
+      [placeholder]="placeholder()"
+      [disabled]="isDisabled()"
+      [readOnly]="readonly()"
+      [required]="required()"
+      [value]="value()"
+      [attr.aria-invalid]="resolvedStatus() === 'error' || null"
+      [attr.aria-describedby]="
+        showError() ? id() + '-error' : showHint() ? id() + '-hint' : null
+      "
+      (input)="handleInput($event)"
+      (focus)="handleFocus($event)"
+      (blur)="handleBlur($event)" />
+
+    <!-- Suffix slot (icon, clear button, etc.) -->
+    <span class="ea-input-wrapper__suffix">
+      <ng-content select="[slot=suffix]" />
+    </span>
+  </div>
+
+  @if (showError()) {
+    <p
+      class="ea-input-field__message ea-input-field__message--error"
+      [id]="id() + '-error'"
+      role="alert">
+      <svg
+        class="ea-input-field__message-icon"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        aria-hidden="true">
+        <path
+          d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm-.75 4a.75.75 0 0 1 1.5 0v3.5a.75.75 0 0 1-1.5 0V5zm.75 6.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+      </svg>
+      {{ errorMsg() }}
+    </p>
+  }
+
+  @if (showHint()) {
+    <p
+      class="ea-input-field__message ea-input-field__message--hint"
+      [id]="id() + '-hint'">
+      {{ hint() }}
+    </p>
+  }
+</div>

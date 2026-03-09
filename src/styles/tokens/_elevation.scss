@@ -1,0 +1,33 @@
+// =============================================================================
+// ELEVATION TOKENS — box shadows & z-index
+// =============================================================================
+
+:root {
+  // ---------------------------------------------------------------------------
+  // Box shadows
+  // ---------------------------------------------------------------------------
+  --shadow-none: none;
+  --shadow-xs:   0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm:   0 1px 3px 0 rgba(0, 0, 0, 0.10), 0 1px 2px -1px rgba(0, 0, 0, 0.10);
+  --shadow-md:   0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -2px rgba(0, 0, 0, 0.10);
+  --shadow-lg:   0 10px 15px -3px rgba(0, 0, 0, 0.10), 0 4px 6px -4px rgba(0, 0, 0, 0.10);
+  --shadow-xl:   0 20px 25px -5px rgba(0, 0, 0, 0.10), 0 8px 10px -6px rgba(0, 0, 0, 0.10);
+  --shadow-2xl:  0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+
+  // Focus ring — used for keyboard accessibility across all interactive elements
+  --shadow-focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.45);
+
+  // ---------------------------------------------------------------------------
+  // Z-index scale
+  // ---------------------------------------------------------------------------
+  --z-index-base:     0;
+  --z-index-raised:   10;
+  --z-index-dropdown: 100;
+  --z-index-sticky:   200;
+  --z-index-overlay:  300;
+  --z-index-modal:    400;
+  --z-index-popover:  500;
+  --z-index-toast:    600;
+  --z-index-tooltip:  700;
+}

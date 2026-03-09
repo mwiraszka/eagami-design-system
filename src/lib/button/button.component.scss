@@ -1,0 +1,189 @@
+// =============================================================================
+// BUTTON COMPONENT
+// =============================================================================
+
+.ea-button {
+  // Layout
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--inline-xs);
+  position: relative;
+  white-space: nowrap;
+  user-select: none;
+
+  // Typography
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  text-decoration: none;
+  line-height: var(--line-height-none);
+
+  // Shape
+  border-width: var(--border-width-thin);
+  border-style: solid;
+  border-radius: var(--radius-md);
+
+  // Motion
+  transition: var(--transition-colors), var(--transition-shadow);
+  cursor: pointer;
+
+  // Focus ring (keyboard navigation)
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus-ring);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Sizes
+  // ---------------------------------------------------------------------------
+  &--sm {
+    padding: var(--space-1-5) var(--space-3);
+    font-size: var(--font-size-sm);
+    min-height: 2rem; // 32px
+  }
+
+  &--md {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-sm);
+    min-height: 2.5rem; // 40px
+  }
+
+  &--lg {
+    padding: var(--space-2-5) var(--space-6);
+    font-size: var(--font-size-md);
+    min-height: 3rem; // 48px
+  }
+
+  // ---------------------------------------------------------------------------
+  // Variants
+  // ---------------------------------------------------------------------------
+
+  // Primary
+  &--primary {
+    background-color: var(--color-brand-default);
+    border-color: var(--color-brand-default);
+    color: var(--color-text-inverse);
+
+    &:hover:not(.ea-button--disabled) {
+      background-color: var(--color-brand-hover);
+      border-color: var(--color-brand-hover);
+    }
+
+    &:active:not(.ea-button--disabled) {
+      background-color: var(--color-brand-active);
+      border-color: var(--color-brand-active);
+    }
+  }
+
+  // Secondary (outlined)
+  &--secondary {
+    background-color: transparent;
+    border-color: var(--color-border-strong);
+    color: var(--color-text-primary);
+
+    &:hover:not(.ea-button--disabled) {
+      background-color: var(--color-bg-muted);
+      border-color: var(--color-neutral-500);
+    }
+
+    &:active:not(.ea-button--disabled) {
+      background-color: var(--color-neutral-200);
+    }
+  }
+
+  // Ghost (no border, no background)
+  &--ghost {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--color-text-primary);
+
+    &:hover:not(.ea-button--disabled) {
+      background-color: var(--color-bg-muted);
+    }
+
+    &:active:not(.ea-button--disabled) {
+      background-color: var(--color-neutral-200);
+    }
+  }
+
+  // Danger
+  &--danger {
+    background-color: var(--color-error-default);
+    border-color: var(--color-error-default);
+    color: var(--color-text-inverse);
+
+    &:hover:not(.ea-button--disabled) {
+      background-color: var(--color-error-700);
+      border-color: var(--color-error-700);
+    }
+
+    &:active:not(.ea-button--disabled) {
+      background-color: var(--color-error-700);
+      border-color: var(--color-error-700);
+      filter: brightness(0.9);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // States
+  // ---------------------------------------------------------------------------
+
+  &--full-width {
+    width: 100%;
+  }
+
+  &--disabled,
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &--loading {
+    cursor: wait;
+    pointer-events: none;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Inner elements
+  // ---------------------------------------------------------------------------
+
+  &__content {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--inline-xs);
+
+    &--hidden {
+      visibility: hidden;
+    }
+  }
+
+  &__label {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__spinner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 1.1em;
+      height: 1.1em;
+      animation: ea-spin 0.75s linear infinite;
+    }
+  }
+}
+
+@keyframes ea-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,18 @@
+// =============================================================================
+// RADIO GROUP COMPONENT
+// =============================================================================
+
+.ea-radio-group {
+  display: flex;
+
+  &--vertical {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  &--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+}

@@ -1,0 +1,109 @@
+// =============================================================================
+// CARD COMPONENT
+// =============================================================================
+
+.ea-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-family-sans);
+  color: var(--color-text-primary);
+  overflow: hidden;
+
+  // ---------------------------------------------------------------------------
+  // Variants
+  // ---------------------------------------------------------------------------
+  &--elevated {
+    background-color: var(--color-bg-base);
+    box-shadow: var(--shadow-md);
+  }
+
+  &--outlined {
+    background-color: var(--color-bg-base);
+    border: var(--border-width-thin) solid var(--color-border-default);
+  }
+
+  &--filled {
+    background-color: var(--color-bg-subtle);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Padding
+  // ---------------------------------------------------------------------------
+  &--padding-none {
+    .ea-card__header,
+    .ea-card__body,
+    .ea-card__footer {
+      padding: 0;
+    }
+  }
+
+  &--padding-sm {
+    .ea-card__header,
+    .ea-card__body,
+    .ea-card__footer {
+      padding: var(--space-3);
+    }
+  }
+
+  &--padding-md {
+    .ea-card__header,
+    .ea-card__body,
+    .ea-card__footer {
+      padding: var(--space-4);
+    }
+  }
+
+  &--padding-lg {
+    .ea-card__header,
+    .ea-card__body,
+    .ea-card__footer {
+      padding: var(--space-6);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // States
+  // ---------------------------------------------------------------------------
+  &--full-width {
+    width: 100%;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Inner elements
+  // ---------------------------------------------------------------------------
+  &__header,
+  &__footer {
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__header {
+    font-size: var(--text-label-lg-size);
+    font-weight: var(--text-label-lg-weight);
+    line-height: var(--text-label-lg-lh);
+  }
+
+  &__body {
+    flex: 1;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-secondary);
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+
+    // Projected slot wrapper inherits flex layout
+    > * {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+    }
+  }
+}

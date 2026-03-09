@@ -1,0 +1,121 @@
+// =============================================================================
+// RADIO COMPONENT
+// =============================================================================
+
+.ea-radio {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-family-sans);
+  color: var(--color-text-primary);
+
+  // ---------------------------------------------------------------------------
+  // Sizes
+  // ---------------------------------------------------------------------------
+  &--sm {
+    .ea-radio__circle {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .ea-radio__label {
+      font-size: var(--font-size-sm);
+      line-height: 1rem;
+    }
+  }
+
+  &--md {
+    .ea-radio__circle {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .ea-radio__label {
+      font-size: var(--font-size-sm);
+      line-height: 1.25rem;
+    }
+  }
+
+  &--lg {
+    .ea-radio__circle {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .ea-radio__label {
+      font-size: var(--font-size-md);
+      line-height: 1.5rem;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // States
+  // ---------------------------------------------------------------------------
+  &--disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  &--checked {
+    .ea-radio__circle {
+      border-color: var(--color-brand-default);
+
+      &::after {
+        transform: scale(1);
+      }
+    }
+  }
+
+  &:hover:not(.ea-radio--disabled) {
+    .ea-radio__circle {
+      border-color: var(--color-brand-default);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Inner elements
+  // ---------------------------------------------------------------------------
+  &__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+
+    &:focus-visible + .ea-radio__circle {
+      box-shadow: var(--shadow-focus-ring);
+    }
+  }
+
+  &__circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: var(--radius-full);
+    background-color: var(--color-bg-base);
+    border: var(--border-width-medium) solid var(--color-border-strong);
+    transition: var(--transition-colors), var(--transition-shadow);
+
+    &::after {
+      content: '';
+      display: block;
+      width: 45%;
+      height: 45%;
+      border-radius: var(--radius-full);
+      background-color: var(--color-brand-default);
+      transform: scale(0);
+      transition: var(--transition-transform);
+    }
+  }
+
+  &__label {
+    font-weight: var(--font-weight-regular);
+  }
+}

@@ -1,0 +1,194 @@
+// =============================================================================
+// INPUT COMPONENT
+// =============================================================================
+
+.ea-input-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5);
+
+  // ---------------------------------------------------------------------------
+  // Label
+  // ---------------------------------------------------------------------------
+  &__label {
+    font-size: var(--text-label-md-size);
+    font-weight: var(--text-label-md-weight);
+    line-height: var(--text-label-md-lh);
+    color: var(--color-text-primary);
+
+    &--required::after {
+      content: ' *';
+      color: var(--color-error-default);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Helper / error messages
+  // ---------------------------------------------------------------------------
+  &__message {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-helper-size);
+    font-weight: var(--text-helper-weight);
+    line-height: var(--text-helper-lh);
+
+    &--hint {
+      color: var(--color-text-secondary);
+    }
+
+    &--error {
+      color: var(--color-error-default);
+    }
+  }
+
+  &__message-icon {
+    flex-shrink: 0;
+    width: 0.875em;
+    height: 0.875em;
+  }
+}
+
+// =============================================================================
+// INPUT WRAPPER (border + layout shell)
+// =============================================================================
+
+.ea-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background-color: var(--color-bg-base);
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  transition: var(--transition-colors), var(--transition-shadow);
+  overflow: hidden;
+
+  // ---------------------------------------------------------------------------
+  // Sizes
+  // ---------------------------------------------------------------------------
+  &--sm {
+    padding: 0 var(--space-2);
+    min-height: 2rem; // 32px
+
+    .ea-input {
+      font-size: var(--font-size-sm);
+      padding: var(--space-1-5) 0;
+    }
+  }
+
+  &--md {
+    padding: 0 var(--space-3);
+    min-height: 2.5rem; // 40px
+
+    .ea-input {
+      font-size: var(--font-size-sm);
+      padding: var(--space-2) 0;
+    }
+  }
+
+  &--lg {
+    padding: 0 var(--space-4);
+    min-height: 3rem; // 48px
+
+    .ea-input {
+      font-size: var(--font-size-md);
+      padding: var(--space-2-5) 0;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // States
+  // ---------------------------------------------------------------------------
+
+  &--focused {
+    border-color: var(--color-border-focus);
+    box-shadow: var(--shadow-focus-ring);
+  }
+
+  &--error {
+    border-color: var(--color-error-default);
+
+    &.ea-input-wrapper--focused {
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.35);
+    }
+  }
+
+  &--success {
+    border-color: var(--color-success-default);
+
+    &.ea-input-wrapper--focused {
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.35);
+    }
+  }
+
+  &--disabled {
+    background-color: var(--color-bg-muted);
+    border-color: var(--color-border-default);
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    .ea-input {
+      cursor: not-allowed;
+    }
+  }
+
+  &--readonly {
+    background-color: var(--color-bg-subtle);
+  }
+
+  // Prefix / suffix slots
+  &__prefix,
+  &__suffix {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: var(--color-text-secondary);
+
+    // Hide slot wrappers when empty
+    &:empty {
+      display: none;
+    }
+  }
+}
+
+// =============================================================================
+// NATIVE INPUT ELEMENT
+// =============================================================================
+
+.ea-input {
+  flex: 1;
+  width: 100%;
+  min-width: 0; // prevent flex overflow
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-sans);
+  line-height: var(--line-height-normal);
+
+  &::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  // Remove number input spinners
+  &[type='number']::-webkit-inner-spin-button,
+  &[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  // Remove search input clear button
+  &[type='search']::-webkit-search-decoration,
+  &[type='search']::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+}

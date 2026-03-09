@@ -1,0 +1,41 @@
+<dialog
+  #dialogEl
+  class="ea-dialog"
+  [attr.aria-label]="ariaLabel()"
+  (click)="handleBackdropClick($event)"
+  (cancel)="handleCancel($event)">
+  <div
+    class="ea-dialog__panel"
+    [ngClass]="panelClasses()">
+    @if (showClose()) {
+      <button
+        type="button"
+        class="ea-dialog__close"
+        aria-label="Close dialog"
+        (click)="handleClose()">
+        <svg
+          viewBox="0 0 16 16"
+          fill="none"
+          aria-hidden="true">
+          <path
+            d="M4 4l8 8M12 4l-8 8"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round" />
+        </svg>
+      </button>
+    }
+
+    <div class="ea-dialog__header">
+      <ng-content select="[slot=header]" />
+    </div>
+
+    <div class="ea-dialog__body">
+      <ng-content />
+    </div>
+
+    <div class="ea-dialog__footer">
+      <ng-content select="[slot=footer]" />
+    </div>
+  </div>
+</dialog>

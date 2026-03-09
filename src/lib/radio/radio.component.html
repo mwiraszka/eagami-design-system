@@ -1,0 +1,22 @@
+<label
+  class="ea-radio"
+  [ngClass]="hostClasses()"
+  [for]="id()">
+  <input
+    type="radio"
+    class="ea-radio__input"
+    [id]="id()"
+    [name]="name()"
+    [value]="value()"
+    [checked]="isChecked()"
+    [disabled]="isDisabled()"
+    (change)="handleChange()" />
+
+  <span
+    class="ea-radio__circle"
+    aria-hidden="true"></span>
+
+  @if (label()) {
+    <span class="ea-radio__label">{{ label() }}</span>
+  }
+</label>

@@ -1,0 +1,11 @@
+// =============================================================================
+// DESIGN TOKENS — barrel export
+// Import this single file to get all tokens.
+// =============================================================================
+
+@forward 'colors';
+@forward 'typography';
+@forward 'spacing';
+@forward 'shape';
+@forward 'elevation';
+@forward 'motion';
