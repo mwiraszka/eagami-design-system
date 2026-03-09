@@ -62,11 +62,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eagami/eagami-design-system.git"
+    "url": "https://github.com/mwiraszka/eagami-design-system.git"
   },
-  "homepage": "https://github.com/eagami/eagami-design-system#readme",
+  "homepage": "https://github.com/mwiraszka/eagami-design-system#readme",
   "bugs": {
-    "url": "https://github.com/eagami/eagami-design-system/issues"
+    "url": "https://github.com/mwiraszka/eagami-design-system/issues"
   },
   "peerDependencies": {
     "@angular/common": "^21.0.0",
