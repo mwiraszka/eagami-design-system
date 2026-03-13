@@ -179,6 +179,11 @@
   }
 }
 
+:host(.ea-button--full-width) {
+  display: block;
+  width: 100%;
+}
+
 @keyframes ea-spin {
   from {
     transform: rotate(0deg);

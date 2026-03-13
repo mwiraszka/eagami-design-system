@@ -17,6 +17,9 @@ export type ButtonType = 'button' | 'submit' | 'reset';
   styleUrl: './button.component.scss',
   imports: [NgClass],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.ea-button--full-width]': 'fullWidth()',
+  },
 })
 export class ButtonComponent {
   // Inputs
