@@ -81,7 +81,7 @@
     min-height: 2.5rem; // 40px
 
     .ea-input {
-      font-size: var(--font-size-sm);
+      font-size: var(--font-size-md); // 16px — prevents iOS Safari auto-zoom on focus
       padding: var(--space-2) 0;
     }
   }
@@ -147,6 +147,34 @@
     // Hide slot wrappers when empty
     &:empty {
       display: none;
+    }
+  }
+
+  // Built-in password visibility toggle
+  &__password-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-sm);
+    transition: var(--transition-colors);
+
+    &:hover {
+      color: var(--color-text-primary);
+    }
+
+    ea-icon-eye,
+    ea-icon-eye-off {
+      width: 1rem;
+      height: 1rem;
+      pointer-events: none;
     }
   }
 }
