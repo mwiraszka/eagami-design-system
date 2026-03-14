@@ -23,6 +23,9 @@ const meta: Meta<InputComponent> = {
       control: 'select',
       options: ['text', 'email', 'password', 'number', 'search', 'tel', 'url'],
     },
+    autocomplete: { control: 'text' },
+    autofocus: { control: 'boolean' },
+    showPasswordToggle: { control: 'boolean' },
     inputFocused: { action: 'focused' },
     inputBlurred: { action: 'blurred' },
   },
@@ -35,6 +38,8 @@ const meta: Meta<InputComponent> = {
     disabled: false,
     readonly: false,
     required: false,
+    autofocus: false,
+    showPasswordToggle: true,
   },
 };
 
@@ -75,6 +80,24 @@ export const Password: Story = {
     type: 'password',
     placeholder: 'Enter your password…',
     errorMsg: 'Password must be at least 8 characters.',
+  },
+};
+
+export const PasswordNoToggle: Story = {
+  args: {
+    label: 'Password',
+    type: 'password',
+    placeholder: 'Enter your password…',
+    showPasswordToggle: false,
+  },
+};
+
+export const WithAutocomplete: Story = {
+  args: {
+    label: 'Email',
+    type: 'email',
+    placeholder: 'you@example.com',
+    autocomplete: 'email',
   },
 };
 

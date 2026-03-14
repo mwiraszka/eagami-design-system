@@ -1,8 +1,10 @@
 <div
   class="ea-card"
   [ngClass]="hostClasses()">
-  <div class="ea-card__header">
-    <ng-content select="[slot=header]" />
+  <div
+    class="ea-card__header"
+    [style.text-align]="headerAlign()">
+    <ng-content select="[eaCardHeader]" />
   </div>
 
   <div class="ea-card__body">
@@ -10,6 +12,6 @@
   </div>
 
   <div class="ea-card__footer">
-    <ng-content select="[slot=footer]" />
+    <ng-content select="[eaCardFooter]" />
   </div>
 </div>

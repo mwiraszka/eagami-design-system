@@ -88,6 +88,25 @@
     label="Readonly"
     [readonly]="true"
     value="Read-only value" />
+
+  <h2>Input — password</h2>
+  <ea-input
+    label="Password"
+    type="password"
+    autocomplete="current-password"
+    placeholder="Enter your password…" />
+  <ea-input
+    label="Password (toggle hidden)"
+    type="password"
+    [showPasswordToggle]="false"
+    placeholder="No visibility toggle" />
+
+  <h2>Input — autocomplete</h2>
+  <ea-input
+    label="Email"
+    type="email"
+    autocomplete="email"
+    placeholder="you@example.com" />
 </section>
 
 <!-- ─── Checkbox ───────────────────────────────────────────────────────── -->
@@ -175,24 +194,24 @@
   <h2>Card — variants</h2>
   <div class="sandbox-row sandbox-row--stretch">
     <ea-card variant="elevated">
-      <span slot="header">Elevated</span>
+      <span eaCardHeader>Elevated</span>
       Card with shadow elevation.
     </ea-card>
     <ea-card variant="outlined">
-      <span slot="header">Outlined</span>
+      <span eaCardHeader>Outlined</span>
       Card with border outline.
     </ea-card>
     <ea-card variant="filled">
-      <span slot="header">Filled</span>
+      <span eaCardHeader>Filled</span>
       Card with subtle background.
     </ea-card>
   </div>
 
   <h2>Card — with footer</h2>
   <ea-card variant="outlined">
-    <span slot="header">Card Title</span>
+    <span eaCardHeader>Card Title</span>
     This card has a header, body, and footer with actions.
-    <span slot="footer">
+    <span eaCardFooter>
       <ea-button
         variant="secondary"
         size="sm"

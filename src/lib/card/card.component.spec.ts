@@ -11,9 +11,9 @@ import { CardComponent } from './card.component';
       [variant]="variant"
       [padding]="padding"
       [fullWidth]="fullWidth">
-      <span slot="header">{{ header }}</span>
+      <span eaCardHeader>{{ header }}</span>
       Body content
-      <span slot="footer">{{ footer }}</span>
+      <span eaCardFooter>{{ footer }}</span>
     </ea-card>
   `,
 })

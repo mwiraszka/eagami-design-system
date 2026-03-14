@@ -20,12 +20,13 @@
       #inputEl
       class="ea-input"
       [id]="id()"
-      [type]="type()"
+      [type]="effectiveType()"
       [placeholder]="placeholder()"
       [disabled]="isDisabled()"
       [readOnly]="readonly()"
       [required]="required()"
       [value]="value()"
+      [attr.autocomplete]="autocomplete() ?? null"
       [attr.aria-invalid]="resolvedStatus() === 'error' || null"
       [attr.aria-describedby]="
         showError() ? id() + '-error' : showHint() ? id() + '-hint' : null
@@ -38,6 +39,23 @@
     <span class="ea-input-wrapper__suffix">
       <ng-content select="[slot=suffix]" />
     </span>
+
+    <!-- Built-in password visibility toggle -->
+    @if (type() === 'password' && showPasswordToggle()) {
+      <button
+        type="button"
+        class="ea-input-wrapper__password-toggle"
+        [attr.aria-label]="passwordVisible() ? 'Hide password' : 'Show password'"
+        [attr.aria-pressed]="passwordVisible()"
+        (click)="togglePasswordVisibility()"
+        tabindex="-1">
+        @if (passwordVisible()) {
+          <ea-icon-eye-off />
+        } @else {
+          <ea-icon-eye />
+        }
+      </button>
+    }
   </div>
 
   @if (showError()) {
@@ -45,14 +63,7 @@
       class="ea-input-field__message ea-input-field__message--error"
       [id]="id() + '-error'"
       role="alert">
-      <svg
-        class="ea-input-field__message-icon"
-        viewBox="0 0 16 16"
-        fill="currentColor"
-        aria-hidden="true">
-        <path
-          d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm-.75 4a.75.75 0 0 1 1.5 0v3.5a.75.75 0 0 1-1.5 0V5zm.75 6.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-      </svg>
+      <ea-icon-alert-circle class="ea-input-field__message-icon" />
       {{ errorMsg() }}
     </p>
   }

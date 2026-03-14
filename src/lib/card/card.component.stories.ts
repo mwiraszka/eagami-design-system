@@ -10,9 +10,9 @@ const meta: Meta<CardComponent> = {
     props: args,
     template: `
       <ea-card ${argsToTemplate(args)} style="max-width: 360px;">
-        <span slot="header">Card Title</span>
+        <span eaCardHeader>Card Title</span>
         This is the card body content. It can contain any text or elements.
-        <span slot="footer">Footer</span>
+        <span eaCardFooter>Footer</span>
       </ea-card>
     `,
   }),
@@ -25,11 +25,16 @@ const meta: Meta<CardComponent> = {
       control: 'select',
       options: ['none', 'sm', 'md', 'lg'],
     },
+    headerAlign: {
+      control: 'select',
+      options: ['start', 'center', 'end'],
+    },
   },
   args: {
     variant: 'elevated',
     padding: 'md',
     fullWidth: false,
+    headerAlign: 'center',
   },
 };
 
@@ -74,15 +79,15 @@ export const AllVariants: Story = {
     template: `
       <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
         <ea-card variant="elevated" style="max-width: 240px;">
-          <span slot="header">Elevated</span>
+          <span eaCardHeader>Elevated</span>
           Card with shadow elevation.
         </ea-card>
         <ea-card variant="outlined" style="max-width: 240px;">
-          <span slot="header">Outlined</span>
+          <span eaCardHeader>Outlined</span>
           Card with border outline.
         </ea-card>
         <ea-card variant="filled" style="max-width: 240px;">
-          <span slot="header">Filled</span>
+          <span eaCardHeader>Filled</span>
           Card with subtle background.
         </ea-card>
       </div>

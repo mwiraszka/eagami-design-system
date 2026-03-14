@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
@@ -12,6 +13,10 @@ import {
   viewChild,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import { AlertCircleIconComponent } from '../icons/alert-circle.component';
+import { EyeOffIconComponent } from '../icons/eye-off.component';
+import { EyeIconComponent } from '../icons/eye.component';
 
 export type InputSize = 'sm' | 'md' | 'lg';
 export type InputStatus = 'default' | 'error' | 'success';
@@ -29,7 +34,7 @@ export type InputType =
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgClass],
+  imports: [NgClass, EyeIconComponent, EyeOffIconComponent, AlertCircleIconComponent],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -38,7 +43,7 @@ export type InputType =
     },
   ],
 })
-export class InputComponent implements ControlValueAccessor {
+export class InputComponent implements ControlValueAccessor, AfterViewInit {
   readonly inputEl = viewChild<ElementRef<HTMLInputElement>>('inputEl');
 
   // Inputs
@@ -52,6 +57,9 @@ export class InputComponent implements ControlValueAccessor {
   readonly disabled = input<boolean>(false);
   readonly readonly = input<boolean>(false);
   readonly required = input<boolean>(false);
+  readonly autocomplete = input<string | undefined>(undefined);
+  readonly autofocus = input<boolean>(false);
+  readonly showPasswordToggle = input<boolean>(true);
   readonly id = input<string>(`ea-input-${Math.random().toString(36).slice(2, 9)}`);
 
   // Two-way value binding
@@ -59,6 +67,7 @@ export class InputComponent implements ControlValueAccessor {
 
   // Internal state
   readonly focused = signal(false);
+  readonly passwordVisible = signal(false);
   private readonly _formDisabled = signal(false);
 
   // Outputs
@@ -71,6 +80,10 @@ export class InputComponent implements ControlValueAccessor {
 
   // Computed
   readonly isDisabled = computed(() => this.disabled() || this._formDisabled());
+
+  readonly effectiveType = computed<InputType>(() =>
+    this.type() === 'password' && this.passwordVisible() ? 'text' : this.type(),
+  );
 
   readonly resolvedStatus = computed<InputStatus>(() =>
     this.errorMsg() ? 'error' : this.status(),
@@ -87,7 +100,12 @@ export class InputComponent implements ControlValueAccessor {
     'ea-input-wrapper--readonly': this.readonly(),
   }));
 
-  // ControlValueAccessor
+  ngAfterViewInit(): void {
+    if (this.autofocus()) {
+      setTimeout(() => this.inputEl()?.nativeElement.focus());
+    }
+  }
+
   writeValue(val: string): void {
     this.value.set(val ?? '');
   }
@@ -106,9 +124,9 @@ export class InputComponent implements ControlValueAccessor {
 
   // Handlers
   handleInput(event: Event): void {
-    const val = (event.target as HTMLInputElement).value;
-    this.value.set(val);
-    this.onChange(val);
+    const value = (event.target as HTMLInputElement).value;
+    this.value.set(value);
+    this.onChange(value);
   }
 
   handleFocus(event: FocusEvent): void {
@@ -120,6 +138,10 @@ export class InputComponent implements ControlValueAccessor {
     this.focused.set(false);
     this.onTouched();
     this.inputBlurred.emit(event);
+  }
+
+  togglePasswordVisibility(): void {
+    this.passwordVisible.update(value => !value);
   }
 
   focus(): void {
