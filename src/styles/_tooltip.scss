@@ -1,0 +1,29 @@
+// =============================================================================
+// TOOLTIP GLOBAL STYLES
+// =============================================================================
+
+.ea-tooltip {
+  z-index: var(--z-index-tooltip);
+  position: absolute;
+  padding: var(--space-1-5) var(--space-2-5);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  white-space: nowrap;
+  border-radius: var(--radius-md);
+  background-color: var(--color-neutral-800);
+  color: var(--color-neutral-0);
+  pointer-events: none;
+  animation: ea-tooltip-fade-in var(--duration-fast) var(--ease-out);
+}
+
+@keyframes ea-tooltip-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

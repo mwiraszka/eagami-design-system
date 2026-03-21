@@ -1,0 +1,19 @@
+<div
+  class="ea-avatar"
+  [ngClass]="hostClasses()"
+  [attr.aria-label]="alt() || null"
+  role="img">
+  @if (showImage()) {
+    <img
+      class="ea-avatar__image"
+      [src]="src()"
+      [alt]="alt()"
+      (error)="handleImageError($event)" />
+  }
+  @if (showInitials()) {
+    <span class="ea-avatar__initials">{{ initials() }}</span>
+  }
+  @if (showFallback()) {
+    <ea-icon-user class="ea-avatar__fallback" />
+  }
+</div>

@@ -1,0 +1,52 @@
+<div class="ea-textarea-field">
+  @if (label()) {
+    <label
+      class="ea-textarea-field__label"
+      [for]="id()"
+      [class.ea-textarea-field__label--required]="required()">
+      {{ label() }}
+    </label>
+  }
+
+  <div
+    class="ea-textarea-wrapper"
+    [ngClass]="wrapperClasses()">
+    <textarea
+      #textareaEl
+      class="ea-textarea"
+      [id]="id()"
+      [placeholder]="placeholder()"
+      [disabled]="isDisabled()"
+      [readOnly]="readonly()"
+      [required]="required()"
+      [rows]="rows()"
+      [value]="value()"
+      [style.resize]="resize()"
+      [attr.maxlength]="maxlength() ?? null"
+      [attr.aria-invalid]="resolvedStatus() === 'error' || null"
+      [attr.aria-describedby]="
+        showError() ? id() + '-error' : showHint() ? id() + '-hint' : null
+      "
+      (input)="handleInput($event)"
+      (focus)="handleFocus($event)"
+      (blur)="handleBlur($event)"></textarea>
+  </div>
+
+  @if (showError()) {
+    <p
+      class="ea-textarea-field__message ea-textarea-field__message--error"
+      [id]="id() + '-error'"
+      role="alert">
+      <ea-icon-alert-circle class="ea-textarea-field__message-icon" />
+      {{ errorMsg() }}
+    </p>
+  }
+
+  @if (showHint()) {
+    <p
+      class="ea-textarea-field__message ea-textarea-field__message--hint"
+      [id]="id() + '-hint'">
+      {{ hint() }}
+    </p>
+  }
+</div>

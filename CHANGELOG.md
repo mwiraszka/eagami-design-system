@@ -13,6 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `--ea-card-shadow` CSS custom property for overriding card box-shadow without `::ng-deep`
 - Add `--ea-button-font-size` and `--ea-button-font-weight` CSS custom properties for overriding button typography without `::ng-deep`
 - Add icon components: `ea-icon-google`, `ea-icon-check`, `ea-icon-x`, `ea-icon-user`, `ea-icon-info`, `ea-icon-loader`
+- Add `AvatarComponent` with image, initials, and icon fallback; `size` (xs–xl) and `shape` (circle/square) inputs
+- Add `BadgeComponent` with semantic variants (default/success/warning/error/info) and size options
+- Add `SpinnerComponent` with SVG-based loading animation and accessible `role="status"`
+- Add `SwitchComponent` with `ControlValueAccessor` integration, label, and size options
+- Add `TextareaComponent` with `ControlValueAccessor` integration, mirroring `InputComponent` API (label, hint, error, size, status, resize, maxlength)
+- Add `DividerComponent` with horizontal/vertical orientation and optional label
+- Add `TooltipDirective` (`[eaTooltip]`) with configurable position (top/bottom/left/right), triggered on hover and focus
+- Add `ToastComponent` and `ToastService` for notification toasts with semantic variants, auto-dismiss, and slide-in animation
 
 ### Fixed
 
