@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `xl` padding option to `CardComponent` (32px)
 - Add `--ea-card-shadow` CSS custom property for overriding card box-shadow without `::ng-deep`
 - Add `--ea-button-font-size` and `--ea-button-font-weight` CSS custom properties for overriding button typography without `::ng-deep`
+- Add icon components: `ea-icon-google`, `ea-icon-check`, `ea-icon-x`, `ea-icon-user`, `ea-icon-info`, `ea-icon-loader`
 
 ### Fixed
 
