@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 export type CardVariant = 'elevated' | 'outlined' | 'filled';
-export type CardPadding = 'none' | 'sm' | 'md' | 'lg';
+export type CardPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
 export type CardHeaderAlign = 'start' | 'center' | 'end';
 
 @Component({
