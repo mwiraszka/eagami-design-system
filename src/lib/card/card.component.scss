@@ -15,7 +15,7 @@
   // ---------------------------------------------------------------------------
   &--elevated {
     background-color: var(--color-bg-base);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--ea-card-shadow, var(--shadow-md));
   }
 
   &--outlined {
