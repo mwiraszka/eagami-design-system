@@ -3,6 +3,7 @@
 // =============================================================================
 
 // Components
+export * from './lib/avatar-editor/avatar-editor.component';
 export * from './lib/avatar/avatar.component';
 export * from './lib/badge/badge.component';
 export * from './lib/button/button.component';

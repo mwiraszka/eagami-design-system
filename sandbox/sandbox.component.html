@@ -314,6 +314,28 @@
   </div>
 </section>
 
+<!-- ─── Avatar Editor ─────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Avatar Editor — circle</h2>
+  <div class="sandbox-row sandbox-row--stretch">
+    <ea-avatar-editor
+      shape="circle"
+      [canvasSize]="180"
+      (cropped)="onAvatarCropped($event)" />
+    @if (croppedAvatarUrl()) {
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+        <span class="sandbox-preview">Result:</span>
+        <ea-avatar [src]="croppedAvatarUrl()" size="xl" />
+      </div>
+    }
+  </div>
+
+  <h2>Avatar Editor — square</h2>
+  <ea-avatar-editor
+    shape="square"
+    [canvasSize]="180" />
+</section>
+
 <!-- ─── Badge ──────────────────────────────────────────────────────────── -->
 <section class="sandbox-section">
   <h2>Badge — variants</h2>

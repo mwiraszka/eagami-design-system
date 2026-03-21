@@ -1,0 +1,128 @@
+<div
+  class="ea-avatar-editor"
+  [ngClass]="hostClasses()">
+
+  <input
+    #fileInputEl
+    type="file"
+    class="ea-avatar-editor__file-input"
+    [accept]="accept()"
+    (change)="onFileSelected($event)" />
+
+  @if (!hasImage()) {
+    <button
+      type="button"
+      class="ea-avatar-editor__dropzone"
+      [style.width.px]="canvasSize()"
+      [style.height.px]="canvasSize()"
+      (click)="openFilePicker()"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)">
+      <svg
+        class="ea-avatar-editor__upload-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <polyline points="17 8 12 3 7 8" />
+        <line x1="12" y1="3" x2="12" y2="15" />
+      </svg>
+      <span class="ea-avatar-editor__dropzone-text">
+        Drop image or click to upload
+      </span>
+    </button>
+  }
+
+  @if (hasImage()) {
+    <div class="ea-avatar-editor__preview">
+      <canvas
+        #canvasEl
+        class="ea-avatar-editor__canvas"
+        [width]="canvasSize()"
+        [height]="canvasSize()"
+        (mousedown)="onMouseDown($event)"
+        (touchstart)="onTouchStart($event)"></canvas>
+
+      <div class="ea-avatar-editor__controls">
+        <button
+          type="button"
+          class="ea-avatar-editor__zoom-btn"
+          aria-label="Zoom out"
+          [disabled]="zoom() <= minZoom()"
+          (click)="setZoom(zoom() - 0.1)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+        </button>
+
+        <input
+          type="range"
+          class="ea-avatar-editor__zoom-slider"
+          [min]="minZoom()"
+          [max]="maxZoom()"
+          step="0.01"
+          [value]="zoom()"
+          aria-label="Zoom"
+          (input)="onZoomInput($event)" />
+
+        <button
+          type="button"
+          class="ea-avatar-editor__zoom-btn"
+          aria-label="Zoom in"
+          [disabled]="zoom() >= maxZoom()"
+          (click)="setZoom(zoom() + 0.1)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="ea-avatar-editor__actions">
+        <button
+          type="button"
+          class="ea-avatar-editor__action-btn ea-avatar-editor__action-btn--secondary"
+          (click)="openFilePicker()">
+          Change
+        </button>
+        <button
+          type="button"
+          class="ea-avatar-editor__action-btn ea-avatar-editor__action-btn--secondary"
+          (click)="removeImage()">
+          Remove
+        </button>
+        <button
+          type="button"
+          class="ea-avatar-editor__action-btn ea-avatar-editor__action-btn--primary"
+          (click)="exportCrop()">
+          Apply
+        </button>
+      </div>
+    </div>
+  }
+</div>
