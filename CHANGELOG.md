@@ -24,6 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Make toast widths independent so each toast sizes to its own content; full-width layout on mobile (<640px)
+- Increase `lg` size font for `InputComponent` and `TextareaComponent` to `--font-size-lg` for a clearer distinction from `md`
 - Remove double spacing between card header/body/footer sections (header no longer adds bottom padding, footer no longer adds top padding)
 - Use color inheritance in `InputComponent` so password toggle and hint messages respect parent context colors
 - Move Angular and RxJS from direct dependencies to peer dependencies to prevent version conflicts for consumers with different minor/patch versions

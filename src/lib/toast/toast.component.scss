@@ -6,11 +6,18 @@
   position: fixed;
   bottom: var(--space-6);
   right: var(--space-6);
+  left: var(--space-6);
   z-index: var(--z-index-toast);
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: var(--space-2);
-  max-width: 24rem;
+  pointer-events: none;
+
+  @media (min-width: 640px) {
+    left: auto;
+    max-width: 24rem;
+  }
 }
 
 // =============================================================================
@@ -21,6 +28,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
+  width: 100%;
   padding: var(--space-3) var(--space-4);
   font-family: var(--font-family-sans);
   font-size: var(--font-size-sm);
@@ -28,7 +36,12 @@
   line-height: var(--line-height-normal);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
+  pointer-events: auto;
   animation: ea-toast-slide-in var(--duration-slow) var(--ease-out);
+
+  @media (min-width: 640px) {
+    width: auto;
+  }
 
   // ---------------------------------------------------------------------------
   // Variants
