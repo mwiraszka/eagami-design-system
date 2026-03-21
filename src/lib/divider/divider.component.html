@@ -1,0 +1,9 @@
+<div
+  class="ea-divider"
+  [ngClass]="hostClasses()"
+  [attr.role]="'separator'"
+  [attr.aria-orientation]="orientation()">
+  @if (label()) {
+    <span class="ea-divider__label">{{ label() }}</span>
+  }
+</div>

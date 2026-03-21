@@ -1,0 +1,19 @@
+<label
+  class="ea-switch"
+  [ngClass]="hostClasses()">
+  <input
+    class="ea-switch__input"
+    type="checkbox"
+    role="switch"
+    [id]="id()"
+    [checked]="checked()"
+    [disabled]="isDisabled()"
+    [attr.aria-checked]="checked()"
+    (change)="handleChange()" />
+  <span class="ea-switch__track">
+    <span class="ea-switch__thumb"></span>
+  </span>
+  @if (label()) {
+    <span class="ea-switch__label">{{ label() }}</span>
+  }
+</label>

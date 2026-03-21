@@ -19,7 +19,7 @@ import { CardComponent } from './card.component';
 })
 class TestHostComponent {
   variant: 'elevated' | 'outlined' | 'filled' = 'elevated';
-  padding: 'none' | 'sm' | 'md' | 'lg' = 'md';
+  padding: 'none' | 'sm' | 'md' | 'lg' | 'xl' = 'md';
   fullWidth = false;
   header = '';
   footer = '';
@@ -86,6 +86,12 @@ describe('CardComponent', () => {
       host.padding = 'lg';
       fixture.detectChanges();
       expect(getCard().classList).toContain('ea-card--padding-lg');
+    });
+
+    it('applies xl padding', () => {
+      host.padding = 'xl';
+      fixture.detectChanges();
+      expect(getCard().classList).toContain('ea-card--padding-xl');
     });
   });
 

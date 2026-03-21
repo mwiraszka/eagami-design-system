@@ -14,7 +14,7 @@
 
   // Typography
   font-family: var(--font-family-sans);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--ea-button-font-weight, var(--font-weight-medium));
   letter-spacing: var(--letter-spacing-wide);
   text-decoration: none;
   line-height: var(--line-height-none);
@@ -39,19 +39,19 @@
   // ---------------------------------------------------------------------------
   &--sm {
     padding: var(--space-1-5) var(--space-3);
-    font-size: var(--font-size-sm);
+    font-size: var(--ea-button-font-size, var(--font-size-sm));
     min-height: 2rem; // 32px
   }
 
   &--md {
     padding: var(--space-2) var(--space-4);
-    font-size: var(--font-size-sm);
+    font-size: var(--ea-button-font-size, var(--font-size-sm));
     min-height: 2.5rem; // 40px
   }
 
   &--lg {
     padding: var(--space-2-5) var(--space-6);
-    font-size: var(--font-size-md);
+    font-size: var(--ea-button-font-size, var(--font-size-md));
     min-height: 3rem; // 48px
   }
 

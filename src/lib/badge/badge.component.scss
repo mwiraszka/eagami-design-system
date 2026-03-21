@@ -1,0 +1,60 @@
+// =============================================================================
+// BADGE COMPONENT
+// =============================================================================
+
+.ea-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-none);
+  white-space: nowrap;
+  border-radius: var(--radius-full);
+
+  // ---------------------------------------------------------------------------
+  // Sizes
+  // ---------------------------------------------------------------------------
+  &--sm {
+    padding: var(--space-0-5) var(--space-2);
+    font-size: var(--font-size-xs);
+  }
+
+  &--md {
+    padding: var(--space-1) var(--space-2-5);
+    font-size: var(--font-size-xs);
+  }
+
+  &--lg {
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--font-size-sm);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Variants
+  // ---------------------------------------------------------------------------
+  &--default {
+    background-color: var(--color-bg-muted);
+    color: var(--color-text-secondary);
+  }
+
+  &--success {
+    background-color: var(--color-success-subtle);
+    color: var(--color-success-700);
+  }
+
+  &--warning {
+    background-color: var(--color-warning-subtle);
+    color: var(--color-warning-700);
+  }
+
+  &--error {
+    background-color: var(--color-error-subtle);
+    color: var(--color-error-700);
+  }
+
+  &--info {
+    background-color: var(--color-info-subtle);
+    color: var(--color-info-700);
+  }
+}

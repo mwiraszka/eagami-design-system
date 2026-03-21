@@ -290,3 +290,180 @@
     </span>
   </ea-dialog>
 </section>
+
+<!-- ─── Avatar ─────────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Avatar — sizes</h2>
+  <div class="sandbox-row">
+    <ea-avatar size="xs" initials="XS"></ea-avatar>
+    <ea-avatar size="sm" initials="SM"></ea-avatar>
+    <ea-avatar size="md" initials="MD"></ea-avatar>
+    <ea-avatar size="lg" initials="LG"></ea-avatar>
+    <ea-avatar size="xl" initials="XL"></ea-avatar>
+  </div>
+
+  <h2>Avatar — shapes &amp; fallbacks</h2>
+  <div class="sandbox-row">
+    <ea-avatar initials="EA" shape="circle"></ea-avatar>
+    <ea-avatar initials="SQ" shape="square"></ea-avatar>
+    <ea-avatar shape="circle"></ea-avatar>
+    <ea-avatar
+      src="https://i.pravatar.cc/128?u=eagami"
+      alt="User photo">
+    </ea-avatar>
+  </div>
+</section>
+
+<!-- ─── Avatar Editor ─────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Avatar Editor — circle</h2>
+  <div class="sandbox-row sandbox-row--stretch">
+    <ea-avatar-editor
+      shape="circle"
+      [canvasSize]="180"
+      (cropped)="onAvatarCropped($event)" />
+    @if (croppedAvatarUrl()) {
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+        <span class="sandbox-preview">Result:</span>
+        <ea-avatar [src]="croppedAvatarUrl()" size="xl" />
+      </div>
+    }
+  </div>
+
+  <h2>Avatar Editor — square</h2>
+  <ea-avatar-editor
+    shape="square"
+    [canvasSize]="180" />
+</section>
+
+<!-- ─── Badge ──────────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Badge — variants</h2>
+  <div class="sandbox-row">
+    <ea-badge variant="default">Default</ea-badge>
+    <ea-badge variant="success">Active</ea-badge>
+    <ea-badge variant="warning">Pending</ea-badge>
+    <ea-badge variant="error">Failed</ea-badge>
+    <ea-badge variant="info">New</ea-badge>
+  </div>
+
+  <h2>Badge — sizes</h2>
+  <div class="sandbox-row">
+    <ea-badge size="sm">Small</ea-badge>
+    <ea-badge size="md">Medium</ea-badge>
+    <ea-badge size="lg">Large</ea-badge>
+  </div>
+</section>
+
+<!-- ─── Spinner ────────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Spinner — sizes</h2>
+  <div class="sandbox-row">
+    <ea-spinner size="sm"></ea-spinner>
+    <ea-spinner size="md"></ea-spinner>
+    <ea-spinner size="lg"></ea-spinner>
+  </div>
+</section>
+
+<!-- ─── Switch ─────────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Switch — basic</h2>
+  <ea-switch
+    label="Enable notifications"
+    [(checked)]="switchValue" />
+  <p class="sandbox-preview">Enabled: {{ switchValue() }}</p>
+
+  <h2>Switch — sizes</h2>
+  <div class="sandbox-row">
+    <ea-switch size="sm" label="Small" />
+    <ea-switch size="md" label="Medium" />
+    <ea-switch size="lg" label="Large" />
+  </div>
+
+  <h2>Switch — states</h2>
+  <div class="sandbox-row">
+    <ea-switch label="Disabled" [disabled]="true" />
+    <ea-switch label="Disabled on" [disabled]="true" [checked]="true" />
+  </div>
+</section>
+
+<!-- ─── Textarea ───────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Textarea — basic</h2>
+  <ea-textarea
+    label="Message"
+    placeholder="Enter your message…"
+    [(value)]="textareaValue" />
+  <p class="sandbox-preview">Value: {{ textareaValue() }}</p>
+
+  <h2>Textarea — hint &amp; error</h2>
+  <ea-textarea
+    label="With hint"
+    hint="Maximum 500 characters"
+    placeholder="Enter text…" />
+  <ea-textarea
+    label="With error"
+    error="This field is required"
+    placeholder="Enter text…" />
+
+  <h2>Textarea — sizes</h2>
+  <ea-textarea size="sm" label="Small" placeholder="sm" />
+  <ea-textarea size="md" label="Medium" placeholder="md" />
+  <ea-textarea size="lg" label="Large" placeholder="lg" />
+
+  <h2>Textarea — no resize</h2>
+  <ea-textarea
+    label="Fixed size"
+    resize="none"
+    placeholder="Cannot be resized" />
+
+  <h2>Textarea — disabled &amp; readonly</h2>
+  <ea-textarea
+    label="Disabled"
+    [disabled]="true"
+    placeholder="Disabled" />
+  <ea-textarea
+    label="Readonly"
+    [readonly]="true"
+    value="Read-only content" />
+</section>
+
+<!-- ─── Divider ────────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Divider — horizontal</h2>
+  <ea-divider />
+  <ea-divider label="or" />
+  <ea-divider label="Section" />
+
+  <h2>Divider — vertical</h2>
+  <div class="sandbox-row" style="height: 48px;">
+    <span>Left</span>
+    <ea-divider orientation="vertical" />
+    <span>Right</span>
+  </div>
+</section>
+
+<!-- ─── Tooltip ────────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Tooltip — positions</h2>
+  <div class="sandbox-row">
+    <ea-button eaTooltip="Top tooltip" tooltipPosition="top">Top</ea-button>
+    <ea-button eaTooltip="Bottom tooltip" tooltipPosition="bottom">Bottom</ea-button>
+    <ea-button eaTooltip="Left tooltip" tooltipPosition="left">Left</ea-button>
+    <ea-button eaTooltip="Right tooltip" tooltipPosition="right">Right</ea-button>
+  </div>
+</section>
+
+<!-- ─── Toast ──────────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Toast — trigger by variant</h2>
+  <div class="sandbox-row">
+    <ea-button variant="secondary" (clicked)="showToast('default')">Default</ea-button>
+    <ea-button variant="secondary" (clicked)="showToast('success')">Success</ea-button>
+    <ea-button variant="secondary" (clicked)="showToast('warning')">Warning</ea-button>
+    <ea-button variant="secondary" (clicked)="showToast('error')">Error</ea-button>
+    <ea-button variant="secondary" (clicked)="showToast('info')">Info</ea-button>
+  </div>
+</section>
+
+<ea-toast />
