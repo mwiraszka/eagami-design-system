@@ -18,6 +18,8 @@ Every component is standalone, signal-based, and fully themed via design tokens.
 | Dropdown / Select | ~4 KB | ~30 KB | ~20 KB | ~25 KB | ~40 KB |
 | Dialog / Modal | ~2 KB | ~20 KB | ~15 KB | ~18 KB | ~30 KB |
 
+> ¹ Approximate — depends on configuration, tree-shaking, and Angular version. @eagami/ui sizes measured from production build.
+
 | | **@eagami/ui** | Angular Material | PrimeNG | ng-bootstrap | ng-zorro |
 |---|---|---|---|---|---|
 | External CSS dependency | No | No | Optional | Bootstrap (~30 KB) | No |
@@ -25,8 +27,6 @@ Every component is standalone, signal-based, and fully themed via design tokens.
 | Signals-first API | Yes | Partial | No | No | No |
 | `OnPush` by default | Yes | Partial | No | No | No |
 | Runtime dependencies | 0 | CDK + animations | PrimeIcons² | Bootstrap CSS | CDK |
-
-> ¹ Approximate — depends on configuration, tree-shaking, and Angular version. @eagami/ui sizes measured from production build.
 > ² PrimeNG components are tree-shakable but PrimeIcons font (~50 KB) is typically included globally.
 
 ## Features
