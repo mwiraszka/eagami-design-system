@@ -248,11 +248,14 @@ export class AvatarEditorComponent implements OnDestroy {
         this.hasImage.set(true);
         this.zoom.set(1);
         this.centerImage();
-        this.draw();
 
-        const canvas = this.canvasEl()?.nativeElement;
-        canvas?.removeEventListener('wheel', this.boundWheel);
-        canvas?.addEventListener('wheel', this.boundWheel, { passive: false });
+        // Defer draw until Angular has rendered the canvas (@if block)
+        requestAnimationFrame(() => {
+          this.draw();
+          const canvas = this.canvasEl()?.nativeElement;
+          canvas?.removeEventListener('wheel', this.boundWheel);
+          canvas?.addEventListener('wheel', this.boundWheel, { passive: false });
+        });
       };
       img.src = e.target?.result as string;
     };
