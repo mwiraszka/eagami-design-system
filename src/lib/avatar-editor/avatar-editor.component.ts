@@ -3,15 +3,26 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  Injector,
   OnDestroy,
   ViewEncapsulation,
+  afterNextRender,
   computed,
   effect,
+  inject,
   input,
   output,
   signal,
   viewChild,
 } from '@angular/core';
+
+import { CameraIconComponent } from '../icons/camera.component';
+import { MinusIconComponent } from '../icons/minus.component';
+import { PlusIconComponent } from '../icons/plus.component';
+import { RotateCcwIconComponent } from '../icons/rotate-ccw.component';
+import { TrashIconComponent } from '../icons/trash.component';
+import { UploadIconComponent } from '../icons/upload.component';
+import { TooltipDirective } from '../tooltip/tooltip.directive';
 
 export type AvatarEditorShape = 'circle' | 'square';
 
@@ -22,7 +33,16 @@ export interface AvatarEditorCropEvent {
 
 @Component({
   selector: 'ea-avatar-editor',
-  imports: [NgClass],
+  imports: [
+    NgClass,
+    CameraIconComponent,
+    MinusIconComponent,
+    PlusIconComponent,
+    RotateCcwIconComponent,
+    TrashIconComponent,
+    UploadIconComponent,
+    TooltipDirective,
+  ],
   templateUrl: './avatar-editor.component.html',
   styleUrl: './avatar-editor.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -43,11 +63,13 @@ export class AvatarEditorComponent implements OnDestroy {
   readonly exportType = input<string>('image/png');
 
   readonly cropped = output<AvatarEditorCropEvent>();
+  readonly removed = output<void>();
   readonly fileError = output<string>();
 
   readonly hasImage = signal(false);
   readonly isDragOver = signal(false);
   readonly zoom = signal(1);
+  readonly canRevert = computed(() => this.hasImage() && !!this.currentSrc());
 
   private image: HTMLImageElement | null = null;
   private offsetX = 0;
@@ -55,6 +77,7 @@ export class AvatarEditorComponent implements OnDestroy {
   private dragStartX = 0;
   private dragStartY = 0;
   private isDragging = false;
+  private hasDragged = false;
   private initialOffsetX = 0;
   private initialOffsetY = 0;
 
@@ -64,6 +87,7 @@ export class AvatarEditorComponent implements OnDestroy {
     'ea-avatar-editor--drag-over': this.isDragOver(),
   }));
 
+  private readonly injector = inject(Injector);
   private readonly boundWheel = (e: WheelEvent) => this.onWheel(e);
 
   constructor() {
@@ -115,6 +139,7 @@ export class AvatarEditorComponent implements OnDestroy {
     if (!this.hasImage()) return;
     event.preventDefault();
     this.isDragging = true;
+    this.hasDragged = false;
     this.dragStartX = event.clientX;
     this.dragStartY = event.clientY;
     this.initialOffsetX = this.offsetX;
@@ -128,6 +153,7 @@ export class AvatarEditorComponent implements OnDestroy {
     if (!this.hasImage() || event.touches.length !== 1) return;
     const touch = event.touches[0];
     this.isDragging = true;
+    this.hasDragged = false;
     this.dragStartX = touch.clientX;
     this.dragStartY = touch.clientY;
     this.initialOffsetX = this.offsetX;
@@ -146,6 +172,7 @@ export class AvatarEditorComponent implements OnDestroy {
     if (!this.isDragging) return;
     const dx = event.clientX - this.dragStartX;
     const dy = event.clientY - this.dragStartY;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) this.hasDragged = true;
     this.offsetX = this.initialOffsetX + dx;
     this.offsetY = this.initialOffsetY + dy;
     this.clampOffset();
@@ -153,6 +180,7 @@ export class AvatarEditorComponent implements OnDestroy {
   }
 
   private onMouseUp(): void {
+    if (!this.hasDragged) this.openFilePicker();
     this.isDragging = false;
     document.removeEventListener('mousemove', this.onMouseMoveBound);
     document.removeEventListener('mouseup', this.onMouseUpBound);
@@ -164,6 +192,7 @@ export class AvatarEditorComponent implements OnDestroy {
     const touch = event.touches[0];
     const dx = touch.clientX - this.dragStartX;
     const dy = touch.clientY - this.dragStartY;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) this.hasDragged = true;
     this.offsetX = this.initialOffsetX + dx;
     this.offsetY = this.initialOffsetY + dy;
     this.clampOffset();
@@ -171,6 +200,7 @@ export class AvatarEditorComponent implements OnDestroy {
   }
 
   private onTouchEnd(): void {
+    if (!this.hasDragged) this.openFilePicker();
     this.isDragging = false;
     document.removeEventListener('touchmove', this.onTouchMoveBound);
     document.removeEventListener('touchend', this.onTouchEndBound);
@@ -202,6 +232,13 @@ export class AvatarEditorComponent implements OnDestroy {
     this.offsetX = 0;
     this.offsetY = 0;
     this.clearCanvas();
+    this.removed.emit();
+  }
+
+  revertImage(): void {
+    const src = this.currentSrc();
+    if (!src) return;
+    this.loadFromUrl(src);
   }
 
   exportCrop(): void {
@@ -246,13 +283,7 @@ export class AvatarEditorComponent implements OnDestroy {
       this.hasImage.set(true);
       this.zoom.set(1);
       this.centerImage();
-
-      requestAnimationFrame(() => {
-        this.draw();
-        const canvas = this.canvasEl()?.nativeElement;
-        canvas?.removeEventListener('wheel', this.boundWheel);
-        canvas?.addEventListener('wheel', this.boundWheel, { passive: false });
-      });
+      this.scheduleDrawAfterRender();
     };
     img.src = url;
   }
@@ -276,18 +307,23 @@ export class AvatarEditorComponent implements OnDestroy {
         this.hasImage.set(true);
         this.zoom.set(1);
         this.centerImage();
-
-        // Defer draw until Angular has rendered the canvas (@if block)
-        requestAnimationFrame(() => {
-          this.draw();
-          const canvas = this.canvasEl()?.nativeElement;
-          canvas?.removeEventListener('wheel', this.boundWheel);
-          canvas?.addEventListener('wheel', this.boundWheel, { passive: false });
-        });
+        this.scheduleDrawAfterRender();
       };
       img.src = e.target?.result as string;
     };
     reader.readAsDataURL(file);
+  }
+
+  private scheduleDrawAfterRender(): void {
+    afterNextRender(
+      () => {
+        this.draw();
+        const canvas = this.canvasEl()?.nativeElement;
+        canvas?.removeEventListener('wheel', this.boundWheel);
+        canvas?.addEventListener('wheel', this.boundWheel, { passive: false });
+      },
+      { injector: this.injector },
+    );
   }
 
   private centerImage(): void {
