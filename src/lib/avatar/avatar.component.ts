@@ -19,6 +19,7 @@ export type AvatarShape = 'circle' | 'square';
   styleUrl: './avatar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  host: { style: 'display: inline-block; line-height: 0;' },
 })
 export class AvatarComponent {
   readonly src = input<string | undefined>(undefined);
