@@ -6,6 +6,7 @@ import {
   OnDestroy,
   ViewEncapsulation,
   computed,
+  effect,
   input,
   output,
   signal,
@@ -64,6 +65,14 @@ export class AvatarEditorComponent implements OnDestroy {
   }));
 
   private readonly boundWheel = (e: WheelEvent) => this.onWheel(e);
+
+  constructor() {
+    effect(() => {
+      const src = this.currentSrc();
+      if (!src) return;
+      this.loadFromUrl(src);
+    });
+  }
 
   ngOnDestroy(): void {
     const canvas = this.canvasEl()?.nativeElement;
@@ -227,6 +236,25 @@ export class AvatarEditorComponent implements OnDestroy {
       this.exportType(),
       this.exportQuality(),
     );
+  }
+
+  private loadFromUrl(url: string): void {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      this.image = img;
+      this.hasImage.set(true);
+      this.zoom.set(1);
+      this.centerImage();
+
+      requestAnimationFrame(() => {
+        this.draw();
+        const canvas = this.canvasEl()?.nativeElement;
+        canvas?.removeEventListener('wheel', this.boundWheel);
+        canvas?.addEventListener('wheel', this.boundWheel, { passive: false });
+      });
+    };
+    img.src = url;
   }
 
   private loadFile(file: File): void {
