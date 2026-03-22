@@ -17,6 +17,8 @@
 
   // Focus ring — used for keyboard accessibility across all interactive elements
   --shadow-focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.45);
+  --shadow-focus-ring-error: 0 0 0 3px var(--color-error-200);
+  --shadow-focus-ring-success: 0 0 0 3px var(--color-success-200);
 
   // ---------------------------------------------------------------------------
   // Z-index scale

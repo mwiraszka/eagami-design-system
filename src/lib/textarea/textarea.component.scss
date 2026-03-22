@@ -86,7 +86,7 @@
     border-color: var(--color-error-default);
 
     &.ea-textarea-wrapper--focused {
-      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.35);
+      box-shadow: var(--shadow-focus-ring-error);
     }
   }
 
@@ -94,7 +94,7 @@
     border-color: var(--color-success-default);
 
     &.ea-textarea-wrapper--focused {
-      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.35);
+      box-shadow: var(--shadow-focus-ring-success);
     }
   }
 

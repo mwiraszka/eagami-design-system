@@ -20,6 +20,7 @@ const meta: Meta<AvatarEditorComponent> = {
     minZoom: { control: 'number' },
     maxZoom: { control: 'number' },
     cropped: { action: 'cropped' },
+    removed: { action: 'removed' },
     fileError: { action: 'fileError' },
   },
   args: {
@@ -43,16 +44,24 @@ export const LargeCanvas: Story = {
   args: { canvasSize: 300 },
 };
 
+export const WithExistingImage: Story = {
+  args: { currentSrc: 'assets/sample-avatar.jpg' },
+};
+
+export const SquareWithExistingImage: Story = {
+  args: { shape: 'square', currentSrc: 'assets/sample-avatar.jpg' },
+};
+
 export const BothShapes: Story = {
   render: () => ({
     template: `
       <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
         <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
-          <span style="font-size: 0.875rem; color: #6b7280;">Circle</span>
+          <span style="font-size: 0.875rem; color: var(--color-text-secondary);">Circle</span>
           <ea-avatar-editor shape="circle" [canvasSize]="180"></ea-avatar-editor>
         </div>
         <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
-          <span style="font-size: 0.875rem; color: #6b7280;">Square</span>
+          <span style="font-size: 0.875rem; color: var(--color-text-secondary);">Square</span>
           <ea-avatar-editor shape="square" [canvasSize]="180"></ea-avatar-editor>
         </div>
       </div>

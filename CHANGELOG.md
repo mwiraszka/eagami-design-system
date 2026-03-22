@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2026-03-22
+
+### Added
+
+- Add hover overlay on avatar editor canvas to change photo by clicking the image
+- Add revert-to-original and remove icon buttons inline with zoom controls in avatar editor
+- Add tooltips to all avatar editor icon buttons
+- Add `removed` output to `AvatarEditorComponent`
+- Add icon components: `ea-icon-camera`, `ea-icon-minus`, `ea-icon-plus`, `ea-icon-rotate-ccw`, `ea-icon-trash`, `ea-icon-upload`
+- Add `--shadow-focus-ring-error` and `--shadow-focus-ring-success` elevation tokens
+- Add `pnpm screenshots` command to capture README component images via Puppeteer
+
+### Changed
+
+- Redesign avatar editor controls: replace Change/Remove/Apply buttons with icon button row and canvas hover overlay
+- Avatar editor controls are always visible (disabled when no image is loaded)
+
+### Fixed
+
+- Fix avatar editor image not displaying until clicked by using `afterNextRender` instead of `setTimeout`/`requestAnimationFrame`
+- Fix browser autofill adding light blue background to input fields
+- Replace all hardcoded hex and rgba colors with design token references
+
 ## [0.4.1] - 2026-03-22
 
 ### Fixed
@@ -71,6 +94,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Global SCSS design tokens for colors, typography, spacing, elevation, motion, and shape
 - CSS custom property theming support
 
+[0.5.0]: https://github.com/mwiraszka/eagami-design-system/compare/v0.4.1...v0.5.0
 [0.4.1]: https://github.com/mwiraszka/eagami-design-system/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/mwiraszka/eagami-design-system/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/mwiraszka/eagami-design-system/compare/v0.2.0...v0.3.0

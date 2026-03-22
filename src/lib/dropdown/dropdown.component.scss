@@ -92,7 +92,7 @@
       border-color: var(--color-error-default);
 
       &.ea-dropdown__trigger--open {
-        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.35);
+        box-shadow: var(--shadow-focus-ring-error);
       }
     }
 

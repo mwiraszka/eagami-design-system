@@ -2,9 +2,15 @@
 // CARD COMPONENT
 // =============================================================================
 
+ea-card {
+  display: block;
+  min-height: 0;
+}
+
 .ea-card {
   display: flex;
   flex-direction: column;
+  min-height: 0;
   border-radius: var(--radius-lg);
   font-family: var(--font-family-sans);
   color: var(--color-text-primary);

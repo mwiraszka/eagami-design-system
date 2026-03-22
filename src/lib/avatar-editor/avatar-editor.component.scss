@@ -5,6 +5,7 @@
 .ea-avatar-editor {
   display: inline-flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--space-3);
   font-family: var(--font-family-sans);
 
@@ -67,6 +68,8 @@
   }
 
   &__upload-icon {
+    width: 32px;
+    height: 32px;
     opacity: 0.6;
   }
 
@@ -75,17 +78,20 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Preview (image loaded)
+  // Canvas wrapper (holds canvas and overlay)
   // ---------------------------------------------------------------------------
-  &__preview {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-3);
+  &__canvas-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+  }
+
+  &--circle &__canvas-wrapper {
+    border-radius: var(--radius-full);
   }
 
   &__canvas {
-    border-radius: var(--radius-lg);
+    display: block;
     cursor: grab;
 
     &:active {
@@ -93,12 +99,37 @@
     }
   }
 
-  &--circle &__canvas {
-    border-radius: var(--radius-full);
+  // ---------------------------------------------------------------------------
+  // Hover overlay (change photo)
+  // ---------------------------------------------------------------------------
+  &__canvas-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    background-color: var(--color-bg-overlay);
+    color: var(--color-text-inverse);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-fast) var(--easing-default);
+  }
+
+  &__overlay-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  &__canvas-wrapper:hover &__canvas-overlay {
+    opacity: 1;
   }
 
   // ---------------------------------------------------------------------------
-  // Zoom controls
+  // Controls (zoom + action icon buttons in a single row)
   // ---------------------------------------------------------------------------
   &__controls {
     display: flex;
@@ -106,13 +137,21 @@
     gap: var(--space-2);
   }
 
-  &__zoom-btn {
+  &__icon-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 1.75rem;
     height: 1.75rem;
     padding: 0;
+
+    ea-icon-rotate-ccw,
+    ea-icon-minus,
+    ea-icon-plus,
+    ea-icon-trash {
+      width: 1rem;
+      height: 1rem;
+    }
     border: var(--border-width-thin) solid var(--color-border-default);
     border-radius: var(--radius-md);
     background-color: var(--color-bg-base);
@@ -132,6 +171,14 @@
     &:disabled {
       opacity: 0.4;
       cursor: not-allowed;
+    }
+
+    &--danger {
+      color: var(--color-error-default);
+
+      &:hover:not(:disabled) {
+        border-color: var(--color-error-default);
+      }
     }
   }
 
@@ -177,51 +224,10 @@
         box-shadow: var(--shadow-focus-ring);
       }
     }
-  }
 
-  // ---------------------------------------------------------------------------
-  // Action buttons
-  // ---------------------------------------------------------------------------
-  &__actions {
-    display: flex;
-    gap: var(--space-2);
-  }
-
-  &__action-btn {
-    padding: var(--space-1-5) var(--space-3);
-    font-family: inherit;
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    line-height: var(--line-height-normal);
-    border: var(--border-width-thin) solid transparent;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: var(--transition-colors);
-
-    &:focus-visible {
-      outline: none;
-      box-shadow: var(--shadow-focus-ring);
-    }
-
-    &--primary {
-      background-color: var(--color-primary-600);
-      color: var(--color-neutral-0);
-
-      &:hover {
-        background-color: var(--color-primary-700);
-      }
-    }
-
-    &--secondary {
-      border-color: var(--color-border-default);
-      background-color: var(--color-bg-base);
-      color: var(--color-text-secondary);
-
-      &:hover {
-        border-color: var(--color-border-focus);
-        background-color: var(--color-bg-muted);
-        color: var(--color-text-primary);
-      }
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
     }
   }
 }
