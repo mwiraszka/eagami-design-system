@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/header.png" alt="eagami design system — elegant web design." width="560" />
+  <img src="docs/images/header.png" alt="eagami design system — elegant web design." width="800" />
 </p>
 
 A lightweight, accessible Angular component library built on CSS custom properties. Ready to use out of the box — install, import, and start building.
@@ -33,7 +33,7 @@ Every component is standalone, signal-based, and fully themed via design tokens.
 
 - **Zero configuration** — works immediately after install with sensible defaults
 - **Standalone components** — no `NgModule` boilerplate, just import and use
-- **Signal-based** — built on Angular's modern reactivity primitives (`input()`, `model()`, `output()`)
+- **Signal-based** — built on Angular's modern reactivity primitives (`input()`, `model()`, `output()`, `effect()`)
 - **Full theming via CSS custom properties** — override any design token on `:root` or scope overrides to individual components
 - **Dark mode built in** — automatic via `prefers-color-scheme`, no extra setup
 - **Accessible** — ARIA attributes, keyboard navigation, focus management, and screen reader support throughout
