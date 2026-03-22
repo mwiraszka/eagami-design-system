@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/eagami-header.png" alt="eagami design system — elegant web design." width="800" />
+  <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/eagami-header.png" alt="eagami design system — elegant web design." width="800" />
 </p>
 
 A lightweight, accessible Angular component library built on CSS custom properties. Ready to use out of the box — install, import, and start building.
@@ -91,7 +91,7 @@ Variants: `primary` | `secondary` | `ghost` | `danger`. Sizes: `sm` | `md` | `lg
 </ea-button>
 ```
 
-<img src="docs/images/button.png" alt="Button component" width="560" />
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/button.png" alt="Button component" width="560" />
 
 ---
 
@@ -108,7 +108,7 @@ Full `ControlValueAccessor` support. Types: `text` | `email` | `password` | `num
   [(value)]="email" />
 ```
 
-<img src="docs/images/input.png" alt="Input component" width="560" />
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/input.png" alt="Input component" width="560" />
 
 ---
 
@@ -125,7 +125,7 @@ Mirrors the Input API with `ControlValueAccessor`. Configurable `rows`, `resize`
   [(value)]="message" />
 ```
 
-<img src="docs/images/textarea.png" alt="Textarea component" width="560" />
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/textarea.png" alt="Textarea component" width="560" />
 
 ---
 
@@ -137,7 +137,7 @@ Mirrors the Input API with `ControlValueAccessor`. Configurable `rows`, `resize`
 <ea-checkbox label="Accept terms and conditions" [(checked)]="accepted" />
 ```
 
-<img src="docs/images/checkbox.png" alt="Checkbox component" width="560" />
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/checkbox.png" alt="Checkbox component" width="560" />
 
 ---
 
@@ -149,7 +149,7 @@ Toggle switch with `ControlValueAccessor`. Sizes: `sm` | `md` | `lg`.
 <ea-switch label="Enable notifications" [(checked)]="notificationsOn" />
 ```
 
-<img src="docs/images/switch.png" alt="Switch component" width="560" />
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/switch.png" alt="Switch component" width="560" />
 
 ---
 
@@ -165,7 +165,7 @@ Composite pattern with `ControlValueAccessor`. Supports `vertical` and `horizont
 </ea-radio-group>
 ```
 
-<img src="docs/images/radio.png" alt="Radio group component" width="560" />
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/radio.png" alt="Radio group component" width="560" />
 
 ---
 
@@ -181,7 +181,7 @@ Select dropdown with `ControlValueAccessor` and keyboard navigation (Arrow keys,
   [(value)]="selectedCountry" />
 ```
 
-<img src="docs/images/dropdown.png" alt="Dropdown component" width="560" />
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/dropdown.png" alt="Dropdown component" width="560" />
 
 ---
 
@@ -200,7 +200,7 @@ Content container with variants: `elevated` | `outlined` | `filled`. Padding: `n
 </ea-card>
 ```
 
-<img src="docs/images/card.png" alt="Card component" width="560" />
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/card.png" alt="Card component" width="560" />
 
 ---
 
@@ -214,7 +214,7 @@ Image with initials or icon fallback. Sizes: `xs` | `sm` | `md` | `lg` | `xl`. S
 <ea-avatar />  <!-- shows fallback user icon -->
 ```
 
-<img src="docs/images/avatar.png" alt="Avatar component" width="560" />
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/avatar.png" alt="Avatar component" width="560" />
 
 ---
 
@@ -229,7 +229,7 @@ Canvas-based image editor with drag-and-drop upload, pan, zoom (slider + scroll 
   (cropped)="onCropped($event)" />
 ```
 
-<img src="docs/images/avatar-editor.png" alt="Avatar editor component" width="560" />
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/avatar-editor.png" alt="Avatar editor component" width="560" />
 
 ---
 
@@ -242,7 +242,7 @@ Semantic status indicators. Variants: `default` | `success` | `warning` | `error
 <ea-badge variant="error">Failed</ea-badge>
 ```
 
-<img src="docs/images/badge.png" alt="Badge component" width="560" />
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/badge.png" alt="Badge component" width="560" />
 
 ---
 
@@ -254,7 +254,7 @@ SVG loading indicator with `role="status"` for accessibility. Sizes: `sm` | `md`
 <ea-spinner size="md" label="Loading data" />
 ```
 
-<img src="docs/images/spinner.png" alt="Spinner component" width="560" />
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/spinner.png" alt="Spinner component" width="560" />
 
 ---
 
@@ -268,7 +268,7 @@ Visual separator with optional label. Orientation: `horizontal` | `vertical`.
 <ea-divider orientation="vertical" />
 ```
 
-<img src="docs/images/divider.png" alt="Divider component" width="560" />
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/divider.png" alt="Divider component" width="560" />
 
 ---
 
@@ -327,7 +327,7 @@ Add the toast outlet once in your root template:
 <ea-toast />
 ```
 
-<img src="docs/images/toast.png" alt="Toast component" width="560" />
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/toast.png" alt="Toast component" width="560" />
 
 ## Icons
 
