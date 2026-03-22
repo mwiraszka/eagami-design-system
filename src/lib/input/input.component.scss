@@ -111,7 +111,7 @@
     border-color: var(--color-error-default);
 
     &.ea-input-wrapper--focused {
-      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.35);
+      box-shadow: var(--shadow-focus-ring-error);
     }
   }
 
@@ -119,7 +119,7 @@
     border-color: var(--color-success-default);
 
     &.ea-input-wrapper--focused {
-      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.35);
+      box-shadow: var(--shadow-focus-ring-success);
     }
   }
 
@@ -198,6 +198,14 @@
 
   &::placeholder {
     color: var(--color-text-tertiary);
+  }
+
+  // Override browser autofill background color
+  &:-webkit-autofill,
+  &:autofill {
+    -webkit-text-fill-color: var(--color-text-primary);
+    -webkit-box-shadow: 0 0 0 1000px var(--color-bg-base) inset;
+    transition: background-color 5000s ease-in-out 0s;
   }
 
   &:disabled {
