@@ -308,7 +308,7 @@
     <ea-avatar initials="SQ" shape="square"></ea-avatar>
     <ea-avatar shape="circle"></ea-avatar>
     <ea-avatar
-      src="https://i.pravatar.cc/128?u=eagami"
+      src="assets/sample-avatar.jpg"
       alt="User photo">
     </ea-avatar>
   </div>
@@ -334,6 +334,18 @@
   <ea-avatar-editor
     shape="square"
     [canvasSize]="180" />
+
+  <h2>Avatar Editor — circle with existing image</h2>
+  <ea-avatar-editor
+    shape="circle"
+    [canvasSize]="180"
+    currentSrc="assets/sample-avatar.jpg" />
+
+  <h2>Avatar Editor — square with existing image</h2>
+  <ea-avatar-editor
+    shape="square"
+    [canvasSize]="180"
+    currentSrc="assets/sample-avatar.jpg" />
 </section>
 
 <!-- ─── Badge ──────────────────────────────────────────────────────────── -->
