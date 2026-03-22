@@ -1,13 +1,16 @@
 name: Publish
 
 on:
-  push:
-    tags:
-      - 'v*'
+  pull_request:
+    types: [closed]
+    branches: [main]
 
 jobs:
   publish:
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'v')
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -28,3 +31,17 @@ jobs:
       - run: pnpm publish:lib
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create tag and GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ github.event.pull_request.head.ref }}"
+
+          # Extract changelog entry for this version (strip the leading "v")
+          SEMVER="${VERSION#v}"
+          NOTES=$(awk "/^## \[${SEMVER}\]/{found=1; next} /^## \[/{if(found) exit} found{print}" CHANGELOG.md)
+
+          git tag "$VERSION"
+          git push origin "$VERSION"
+          gh release create "$VERSION" --title "$VERSION" --notes "$NOTES"
