@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/header.png" alt="eagami design system — elegant web design." width="800" />
+  <img src="docs/images/eagami-header.png" alt="eagami design system — elegant web design." width="800" />
 </p>
 
 A lightweight, accessible Angular component library built on CSS custom properties. Ready to use out of the box — install, import, and start building.
