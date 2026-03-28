@@ -381,7 +381,6 @@ See [`src/styles/tokens/`](src/styles/tokens/) for the full token reference.
 | `@angular/common` | `^21.0.0` |
 | `@angular/core` | `^21.0.0` |
 | `@angular/forms` | `^21.0.0` |
-| `rxjs` | `^7.0.0` |
 
 ## Development
 
