@@ -1,0 +1,62 @@
+<div class="ea-code-input-field">
+  @if (label()) {
+    <label
+      class="ea-code-input-field__label"
+      [class.ea-code-input-field__label--required]="required()"
+      [id]="id() + '-label'">
+      {{ label() }}
+    </label>
+  }
+
+  <div
+    class="ea-code-input-group"
+    [class.ea-code-input-group--sm]="size() === 'sm'"
+    [class.ea-code-input-group--md]="size() === 'md'"
+    [class.ea-code-input-group--lg]="size() === 'lg'"
+    [class.ea-code-input-group--error]="resolvedStatus() === 'error'"
+    [class.ea-code-input-group--success]="resolvedStatus() === 'success'"
+    [class.ea-code-input-group--disabled]="isDisabled()"
+    role="group"
+    [attr.aria-labelledby]="label() ? id() + '-label' : null"
+    [attr.aria-describedby]="
+      showError() ? id() + '-error' : showHint() ? id() + '-hint' : null
+    ">
+    @for (i of indices(); track i) {
+      <input
+        #digitEl
+        class="ea-code-input"
+        [class.ea-code-input--focused]="focusedIndex() === i"
+        [class.ea-code-input--filled]="digits()[i] !== ''"
+        type="text"
+        inputmode="numeric"
+        autocomplete="one-time-code"
+        maxlength="1"
+        [disabled]="isDisabled()"
+        [required]="required()"
+        [value]="digits()[i]"
+        [attr.aria-label]="'Digit ' + (i + 1) + ' of ' + length()"
+        (input)="handleInput($event, i)"
+        (keydown)="handleKeydown($event, i)"
+        (paste)="handlePaste($event)"
+        (focus)="handleFocus(i)"
+        (blur)="handleBlur()" />
+    }
+  </div>
+
+  @if (showError()) {
+    <p
+      class="ea-code-input-field__message ea-code-input-field__message--error"
+      [id]="id() + '-error'"
+      role="alert">
+      {{ errorMsg() }}
+    </p>
+  }
+
+  @if (showHint()) {
+    <p
+      class="ea-code-input-field__message ea-code-input-field__message--hint"
+      [id]="id() + '-hint'">
+      {{ hint() }}
+    </p>
+  }
+</div>

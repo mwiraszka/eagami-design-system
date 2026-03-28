@@ -8,6 +8,7 @@ export * from './lib/avatar/avatar.component';
 export * from './lib/badge/badge.component';
 export * from './lib/button/button.component';
 export * from './lib/card/card.component';
+export * from './lib/code-input/code-input.component';
 export * from './lib/checkbox/checkbox.component';
 export * from './lib/dialog/dialog.component';
 export * from './lib/divider/divider.component';
