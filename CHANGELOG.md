@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `AlertComponent` (`ea-alert`) with semantic variants (default, success, warning, error, info) and dismissible option
 - Add `SkeletonComponent` (`ea-skeleton`) with text, circle, and rect variants for loading placeholders
 - Add `AccordionComponent` (`ea-accordion`) and `AccordionItemComponent` (`ea-accordion-item`) with single and multi-expand modes
+- Add `ea-icon-chevron-down` icon component
 
 ### Changed
 

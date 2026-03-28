@@ -404,21 +404,22 @@ Built-in SVG icon components following the Feather icon style (24x24 viewBox, st
 
 | Tag | Preview |
 |---|---|
-| `<ea-icon-alert-circle />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/alert-circle.png" width="24" height="24" alt="alert-circle" /> |
-| `<ea-icon-camera />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/camera.png" width="24" height="24" alt="camera" /> |
-| `<ea-icon-check />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/check.png" width="24" height="24" alt="check" /> |
-| `<ea-icon-eye />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/eye.png" width="24" height="24" alt="eye" /> |
-| `<ea-icon-eye-off />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/eye-off.png" width="24" height="24" alt="eye-off" /> |
-| `<ea-icon-google />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/google.png" width="24" height="24" alt="google" /> |
-| `<ea-icon-info />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/info.png" width="24" height="24" alt="info" /> |
-| `<ea-icon-loader />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/loader.png" width="24" height="24" alt="loader" /> |
-| `<ea-icon-minus />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/minus.png" width="24" height="24" alt="minus" /> |
-| `<ea-icon-plus />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/plus.png" width="24" height="24" alt="plus" /> |
-| `<ea-icon-rotate-ccw />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/rotate-ccw.png" width="24" height="24" alt="rotate-ccw" /> |
-| `<ea-icon-trash />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/trash.png" width="24" height="24" alt="trash" /> |
-| `<ea-icon-upload />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/upload.png" width="24" height="24" alt="upload" /> |
-| `<ea-icon-user />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/user.png" width="24" height="24" alt="user" /> |
-| `<ea-icon-x />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/x.png" width="24" height="24" alt="x" /> |
+| `<ea-icon-alert-circle />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/alert-circle.png" width="48" height="48" alt="alert-circle" /> |
+| `<ea-icon-camera />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/camera.png" width="48" height="48" alt="camera" /> |
+| `<ea-icon-chevron-down />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/chevron-down.png" width="48" height="48" alt="chevron-down" /> |
+| `<ea-icon-check />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/check.png" width="48" height="48" alt="check" /> |
+| `<ea-icon-eye />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/eye.png" width="48" height="48" alt="eye" /> |
+| `<ea-icon-eye-off />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/eye-off.png" width="48" height="48" alt="eye-off" /> |
+| `<ea-icon-google />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/google.png" width="48" height="48" alt="google" /> |
+| `<ea-icon-info />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/info.png" width="48" height="48" alt="info" /> |
+| `<ea-icon-loader />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/loader.png" width="48" height="48" alt="loader" /> |
+| `<ea-icon-minus />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/minus.png" width="48" height="48" alt="minus" /> |
+| `<ea-icon-plus />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/plus.png" width="48" height="48" alt="plus" /> |
+| `<ea-icon-rotate-ccw />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/rotate-ccw.png" width="48" height="48" alt="rotate-ccw" /> |
+| `<ea-icon-trash />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/trash.png" width="48" height="48" alt="trash" /> |
+| `<ea-icon-upload />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/upload.png" width="48" height="48" alt="upload" /> |
+| `<ea-icon-user />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/user.png" width="48" height="48" alt="user" /> |
+| `<ea-icon-x />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/x.png" width="48" height="48" alt="x" /> |
 
 ## Theming
 
