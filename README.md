@@ -38,7 +38,7 @@ Every component is standalone, signal-based, and fully themed via design tokens.
 - **Dark mode built in** — automatic via `prefers-color-scheme`, no extra setup
 - **Accessible** — ARIA attributes, keyboard navigation, focus management, and screen reader support throughout
 - **Form-ready** — `ControlValueAccessor` on all form components (Input, Textarea, Checkbox, Switch, Radio, Dropdown)
-- **Lightweight** — no third-party runtime dependencies beyond Angular and `tslib`
+- **Lightweight** — zero runtime dependencies beyond Angular
 - **Tree-shakeable** — only the components you import end up in your bundle
 
 ## Installation
