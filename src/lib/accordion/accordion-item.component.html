@@ -1,0 +1,33 @@
+<div
+  class="ea-accordion-item"
+  [class.ea-accordion-item--expanded]="isExpanded()"
+  [class.ea-accordion-item--disabled]="disabled()">
+  <button
+    class="ea-accordion-item__trigger"
+    type="button"
+    [attr.aria-expanded]="isExpanded()"
+    [disabled]="disabled()"
+    (click)="toggle()">
+    <span class="ea-accordion-item__label">{{ label() }}</span>
+    <svg
+      class="ea-accordion-item__chevron"
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  </button>
+  @if (isExpanded()) {
+    <div
+      class="ea-accordion-item__content"
+      role="region">
+      <ng-content />
+    </div>
+  }
+</div>

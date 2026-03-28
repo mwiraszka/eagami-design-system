@@ -1,0 +1,42 @@
+@if (visible()) {
+  <div
+    class="ea-alert"
+    [class.ea-alert--default]="variant() === 'default'"
+    [class.ea-alert--success]="variant() === 'success'"
+    [class.ea-alert--warning]="variant() === 'warning'"
+    [class.ea-alert--error]="variant() === 'error'"
+    [class.ea-alert--info]="variant() === 'info'"
+    role="alert">
+    <span class="ea-alert__icon">
+      @switch (variant()) {
+        @case ('success') {
+          <ea-icon-check />
+        }
+        @case ('warning') {
+          <ea-icon-alert-circle />
+        }
+        @case ('error') {
+          <ea-icon-alert-circle />
+        }
+        @case ('info') {
+          <ea-icon-info />
+        }
+        @default {
+          <ea-icon-info />
+        }
+      }
+    </span>
+    <div class="ea-alert__content">
+      <ng-content />
+    </div>
+    @if (dismissible()) {
+      <button
+        class="ea-alert__close"
+        type="button"
+        aria-label="Dismiss"
+        (click)="dismiss()">
+        <ea-icon-x />
+      </button>
+    }
+  </div>
+}

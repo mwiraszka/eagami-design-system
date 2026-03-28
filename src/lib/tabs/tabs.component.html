@@ -1,0 +1,26 @@
+<div class="ea-tabs">
+  <div
+    class="ea-tabs__list"
+    [class.ea-tabs__list--underline]="variant() === 'underline'"
+    [class.ea-tabs__list--filled]="variant() === 'filled'"
+    [class.ea-tabs__list--sm]="size() === 'sm'"
+    [class.ea-tabs__list--md]="size() === 'md'"
+    [class.ea-tabs__list--lg]="size() === 'lg'"
+    role="tablist"
+    (keydown)="handleKeydown($event)">
+    @for (tab of registeredTabs(); track tab.value()) {
+      <button
+        class="ea-tabs__trigger"
+        [class.ea-tabs__trigger--active]="tab.isActive()"
+        type="button"
+        role="tab"
+        [attr.aria-selected]="tab.isActive()"
+        [disabled]="tab.disabled()"
+        [tabindex]="tab.isActive() ? 0 : -1"
+        (click)="selectTab(tab.value())">
+        {{ tab.label() }}
+      </button>
+    }
+  </div>
+  <ng-content />
+</div>

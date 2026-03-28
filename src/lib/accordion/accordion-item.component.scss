@@ -1,0 +1,77 @@
+// =============================================================================
+// ACCORDION ITEM COMPONENT
+// =============================================================================
+
+.ea-accordion-item {
+  border-bottom: var(--border-width-thin) solid var(--color-border-default);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Trigger button
+  // ---------------------------------------------------------------------------
+  &__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-family-sans);
+    line-height: var(--line-height-normal);
+    text-align: left;
+    background: none;
+    border: none;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: var(--transition-colors);
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-bg-subtle);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-focus-ring);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Chevron icon
+  // ---------------------------------------------------------------------------
+  &__chevron {
+    flex-shrink: 0;
+    color: var(--color-text-secondary);
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  &--expanded &__chevron {
+    transform: rotate(180deg);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Content panel
+  // ---------------------------------------------------------------------------
+  &__content {
+    padding: 0 var(--space-4) var(--space-4);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-secondary);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Disabled state
+  // ---------------------------------------------------------------------------
+  &--disabled {
+    opacity: 0.5;
+  }
+}

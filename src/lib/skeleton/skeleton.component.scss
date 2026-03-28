@@ -1,0 +1,52 @@
+// =============================================================================
+// SKELETON COMPONENT
+// =============================================================================
+
+.ea-skeleton {
+  display: block;
+  background-color: var(--color-bg-muted);
+  border-radius: var(--radius-md);
+
+  // ---------------------------------------------------------------------------
+  // Variants
+  // ---------------------------------------------------------------------------
+  &--text {
+    width: 100%;
+    height: 1rem;
+    border-radius: var(--radius-sm);
+  }
+
+  &--circle {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-full);
+  }
+
+  &--rect {
+    width: 100%;
+    height: 6rem;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Animation
+  // ---------------------------------------------------------------------------
+  &--animated {
+    animation: ea-skeleton-pulse 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes ea-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ea-skeleton--animated {
+    animation: none;
+  }
+}
