@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add `CodeInputComponent` (`ea-code-input`) for verification code entry with auto-advance, paste support, arrow key navigation, and `ControlValueAccessor` integration
 
+### Changed
+
+- Remove `rxjs` from peer dependencies (no longer used by any component)
+
 ## [0.5.0] - 2026-03-22
 
 ### Added
