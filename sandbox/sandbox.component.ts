@@ -84,7 +84,8 @@ export class SandboxComponent {
   ];
 
   showToast(variant: 'default' | 'success' | 'warning' | 'error' | 'info'): void {
-    this.toastService.show(`This is a ${variant} toast`, { variant });
+    const article = variant === 'error' || variant === 'info' ? 'an' : 'a';
+    this.toastService.show(`This is ${article} ${variant} toast`, { variant });
   }
 
   onAvatarCropped(event: AvatarEditorCropEvent): void {

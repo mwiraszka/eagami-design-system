@@ -77,6 +77,12 @@ h2 {
   }
 }
 
+.sandbox-toast-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .sandbox-preview {
   font-size: 0.875rem;
   color: var(--color-text-secondary);
