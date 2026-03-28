@@ -10,10 +10,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add `CodeInputComponent` (`ea-code-input`) for verification code entry with auto-advance, paste support, arrow key navigation, and `ControlValueAccessor` integration
+- Add `TabsComponent` (`ea-tabs`) and `TabComponent` (`ea-tab`) with underline and filled variants, keyboard navigation, and ARIA tab roles
+- Add `AlertComponent` (`ea-alert`) with semantic variants (default, success, warning, error, info) and dismissible option
+- Add `SkeletonComponent` (`ea-skeleton`) with text, circle, and rect variants for loading placeholders
+- Add `AccordionComponent` (`ea-accordion`) and `AccordionItemComponent` (`ea-accordion-item`) with single and multi-expand modes
 
 ### Changed
 
 - Remove `rxjs` from peer dependencies (no longer used by any component)
+- Remove `tslib` from dependencies (not used in compiled output)
+
+### Fixed
+
+- Fix tab panel spacing increasing with each tab due to empty host elements participating in flex gap layout
 
 ## [0.5.0] - 2026-03-22
 
