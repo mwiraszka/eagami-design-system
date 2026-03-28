@@ -14,6 +14,8 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { ChevronDownIconComponent } from '../icons/chevron-down.component';
+
 export type DropdownSize = 'sm' | 'md' | 'lg';
 
 export interface DropdownOption {
@@ -24,7 +26,7 @@ export interface DropdownOption {
 
 @Component({
   selector: 'ea-dropdown',
-  imports: [NgClass],
+  imports: [NgClass, ChevronDownIconComponent],
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

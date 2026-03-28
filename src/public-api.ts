@@ -18,6 +18,7 @@ export * from './lib/divider/divider.component';
 export * from './lib/dropdown/dropdown.component';
 export * from './lib/icons/alert-circle.component';
 export * from './lib/icons/camera.component';
+export * from './lib/icons/chevron-down.component';
 export * from './lib/icons/check.component';
 export * from './lib/icons/eye-off.component';
 export * from './lib/icons/eye.component';

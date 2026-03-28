@@ -5,10 +5,12 @@ import {
   inject,
 } from '@angular/core';
 
+import { XIconComponent } from '../icons/x.component';
 import { ToastService } from './toast.service';
 
 @Component({
   selector: 'ea-toast',
+  imports: [XIconComponent],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

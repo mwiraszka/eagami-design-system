@@ -26,19 +26,9 @@
         [class.ea-dropdown__value--placeholder]="!selectedLabel()">
         {{ selectedLabel() || placeholder() }}
       </span>
-      <svg
+      <ea-icon-chevron-down
         class="ea-dropdown__chevron"
-        [class.ea-dropdown__chevron--open]="isOpen()"
-        viewBox="0 0 16 16"
-        fill="none"
-        aria-hidden="true">
-        <path
-          d="M4 6l4 4 4-4"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round" />
-      </svg>
+        [class.ea-dropdown__chevron--open]="isOpen()" />
     </button>
 
     @if (isOpen()) {

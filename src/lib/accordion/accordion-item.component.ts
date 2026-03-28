@@ -6,10 +6,12 @@ import {
   input,
 } from '@angular/core';
 
+import { ChevronDownIconComponent } from '../icons/chevron-down.component';
 import { AccordionComponent } from './accordion.component';
 
 @Component({
   selector: 'ea-accordion-item',
+  imports: [ChevronDownIconComponent],
   templateUrl: './accordion-item.component.html',
   styleUrl: './accordion-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

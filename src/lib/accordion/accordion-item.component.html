@@ -9,19 +9,7 @@
     [disabled]="disabled()"
     (click)="toggle()">
     <span class="ea-accordion-item__label">{{ label() }}</span>
-    <svg
-      class="ea-accordion-item__chevron"
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round">
-      <polyline points="6 9 12 15 18 9" />
-    </svg>
+    <ea-icon-chevron-down class="ea-accordion-item__chevron" />
   </button>
   @if (isExpanded()) {
     <div
