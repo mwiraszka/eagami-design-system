@@ -329,6 +329,75 @@ Add the toast outlet once in your root template:
 
 <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/toast.png" alt="Toast component" width="560" />
 
+---
+
+### Code Input
+
+Verification code input with auto-advance, paste support, and arrow key navigation. Configurable `length` (default 6). Full `ControlValueAccessor` support.
+
+```html
+<ea-code-input [(value)]="code" [length]="6" (completed)="verify()" />
+```
+
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/code-input.png" alt="Code input component" width="560" />
+
+---
+
+### Tabs
+
+Tab navigation with keyboard support (Arrow keys, Home/End). Variants: `underline` | `filled`. Sizes: `sm` | `md` | `lg`.
+
+```html
+<ea-tabs activeTab="account" variant="underline">
+  <ea-tab value="account" label="Account">Account content</ea-tab>
+  <ea-tab value="security" label="Security">Security content</ea-tab>
+</ea-tabs>
+```
+
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/tabs.png" alt="Tabs component" width="560" />
+
+---
+
+### Alert
+
+Semantic alert banners. Variants: `default` | `success` | `warning` | `error` | `info`. Optional `dismissible` close button with two-way `visible` binding.
+
+```html
+<ea-alert variant="success">Changes saved successfully.</ea-alert>
+<ea-alert variant="error" [dismissible]="true">Something went wrong.</ea-alert>
+```
+
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/alert.png" alt="Alert component" width="560" />
+
+---
+
+### Skeleton
+
+Loading placeholder with animated pulse. Variants: `text` | `circle` | `rect`. Custom `width` and `height`. Respects `prefers-reduced-motion`.
+
+```html
+<ea-skeleton variant="text" width="200px" />
+<ea-skeleton variant="circle" width="48px" height="48px" />
+<ea-skeleton variant="rect" width="100%" height="120px" />
+```
+
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/skeleton.png" alt="Skeleton component" width="560" />
+
+---
+
+### Accordion
+
+Expandable content sections. Supports single or `multi` expand mode. Built-in chevron animation and disabled state.
+
+```html
+<ea-accordion>
+  <ea-accordion-item label="Section 1">Content for section 1</ea-accordion-item>
+  <ea-accordion-item label="Section 2">Content for section 2</ea-accordion-item>
+</ea-accordion>
+```
+
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/accordion.png" alt="Accordion component" width="560" />
+
 ## Icons
 
 Built-in SVG icon components following the Feather icon style (24x24 viewBox, stroke-based, inherits `currentColor`):

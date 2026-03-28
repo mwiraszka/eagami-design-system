@@ -47,11 +47,16 @@ const SECTIONS = [
   { name: 'dialog', heading: 'Dialog' },
   { name: 'tooltip', heading: 'Tooltip' },
   { name: 'toast', heading: 'Toast' },
+  { name: 'code-input', heading: 'Code Input' },
+  { name: 'tabs', heading: 'Tabs' },
+  { name: 'alert', heading: 'Alert' },
+  { name: 'skeleton', heading: 'Skeleton' },
+  { name: 'accordion', heading: 'Accordion' },
 ];
 
 if (!existsSync(OUT)) mkdirSync(OUT, { recursive: true });
 
-async function waitForServer(timeout = 60_000) {
+async function waitForServer(timeout = 120_000) {
   const start = Date.now();
   while (Date.now() - start < timeout) {
     try {
