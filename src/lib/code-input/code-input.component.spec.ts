@@ -262,7 +262,9 @@ describe('CodeInputComponent', () => {
     it('shows the error message when errorMsg is set', () => {
       fixture.componentRef.setInput('error', 'Invalid code');
       fixture.detectChanges();
-      const msg = fixture.nativeElement.querySelector('.ea-code-input-field__message--error');
+      const msg = fixture.nativeElement.querySelector(
+        '.ea-code-input-field__message--error',
+      );
       expect(msg?.textContent).toContain('Invalid code');
     });
 
@@ -275,7 +277,9 @@ describe('CodeInputComponent', () => {
     it('shows the hint message when hint is set and no error', () => {
       fixture.componentRef.setInput('hint', 'Check your email');
       fixture.detectChanges();
-      const msg = fixture.nativeElement.querySelector('.ea-code-input-field__message--hint');
+      const msg = fixture.nativeElement.querySelector(
+        '.ea-code-input-field__message--hint',
+      );
       expect(msg?.textContent).toContain('Check your email');
     });
 
