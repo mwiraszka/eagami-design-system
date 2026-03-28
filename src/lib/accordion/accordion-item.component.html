@@ -1,0 +1,21 @@
+<div
+  class="ea-accordion-item"
+  [class.ea-accordion-item--expanded]="isExpanded()"
+  [class.ea-accordion-item--disabled]="disabled()">
+  <button
+    class="ea-accordion-item__trigger"
+    type="button"
+    [attr.aria-expanded]="isExpanded()"
+    [disabled]="disabled()"
+    (click)="toggle()">
+    <span class="ea-accordion-item__label">{{ label() }}</span>
+    <ea-icon-chevron-down class="ea-accordion-item__chevron" />
+  </button>
+  @if (isExpanded()) {
+    <div
+      class="ea-accordion-item__content"
+      role="region">
+      <ng-content />
+    </div>
+  }
+</div>

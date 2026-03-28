@@ -1,0 +1,148 @@
+// =============================================================================
+// CODE INPUT COMPONENT
+// =============================================================================
+
+.ea-code-input-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5);
+  color: var(--color-text-secondary);
+
+  // ---------------------------------------------------------------------------
+  // Label
+  // ---------------------------------------------------------------------------
+  &__label {
+    font-size: var(--text-label-md-size);
+    font-weight: var(--text-label-md-weight);
+    line-height: var(--text-label-md-lh);
+    color: var(--color-text-primary);
+
+    &--required::after {
+      content: ' *';
+      color: var(--color-error-default);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Helper / error messages
+  // ---------------------------------------------------------------------------
+  &__message {
+    font-size: var(--text-helper-size);
+    font-weight: var(--text-helper-weight);
+    line-height: var(--text-helper-lh);
+
+    &--hint {
+      color: inherit;
+    }
+
+    &--error {
+      color: var(--color-error-default);
+    }
+  }
+}
+
+// =============================================================================
+// DIGIT GROUP (container for individual digit inputs)
+// =============================================================================
+
+.ea-code-input-group {
+  display: flex;
+  gap: var(--space-2);
+
+  // ---------------------------------------------------------------------------
+  // Sizes
+  // ---------------------------------------------------------------------------
+  &--sm .ea-code-input {
+    width: 2rem;
+    height: 2.5rem;
+    font-size: var(--font-size-md);
+  }
+
+  &--md .ea-code-input {
+    width: 2.5rem;
+    height: 3rem;
+    font-size: var(--font-size-xl);
+  }
+
+  &--lg .ea-code-input {
+    width: 3rem;
+    height: 3.5rem;
+    font-size: var(--font-size-2xl);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Status modifiers
+  // ---------------------------------------------------------------------------
+  &--error .ea-code-input {
+    border-color: var(--color-error-default);
+
+    &--focused {
+      box-shadow: var(--shadow-focus-ring-error);
+    }
+  }
+
+  &--success .ea-code-input {
+    border-color: var(--color-success-default);
+
+    &--focused {
+      box-shadow: var(--shadow-focus-ring-success);
+    }
+  }
+
+  &--disabled {
+    opacity: 0.6;
+
+    .ea-code-input {
+      background-color: var(--color-bg-muted);
+      border-color: var(--color-border-default);
+      cursor: not-allowed;
+    }
+  }
+}
+
+// =============================================================================
+// INDIVIDUAL DIGIT INPUT
+// =============================================================================
+
+.ea-code-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  font-family: var(--font-family-sans);
+  line-height: var(--line-height-none);
+  letter-spacing: var(--letter-spacing-normal);
+  background-color: var(--color-bg-base);
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  outline: none;
+  color: var(--color-text-primary);
+  caret-color: transparent;
+  transition: var(--transition-colors), var(--transition-shadow);
+
+  &::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  &--focused {
+    border-color: var(--color-border-focus);
+    box-shadow: var(--shadow-focus-ring);
+  }
+
+  &--filled {
+    border-color: var(--color-border-strong);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  // Remove spinner buttons in webkit
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

@@ -38,7 +38,7 @@ Every component is standalone, signal-based, and fully themed via design tokens.
 - **Dark mode built in** — automatic via `prefers-color-scheme`, no extra setup
 - **Accessible** — ARIA attributes, keyboard navigation, focus management, and screen reader support throughout
 - **Form-ready** — `ControlValueAccessor` on all form components (Input, Textarea, Checkbox, Switch, Radio, Dropdown)
-- **Lightweight** — no third-party runtime dependencies beyond Angular and `tslib`
+- **Lightweight** — zero runtime dependencies beyond Angular
 - **Tree-shakeable** — only the components you import end up in your bundle
 
 ## Installation
@@ -329,27 +329,97 @@ Add the toast outlet once in your root template:
 
 <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/toast.png" alt="Toast component" width="560" />
 
+---
+
+### Code Input
+
+Verification code input with auto-advance, paste support, and arrow key navigation. Configurable `length` (default 6). Full `ControlValueAccessor` support.
+
+```html
+<ea-code-input [(value)]="code" [length]="6" (completed)="verify()" />
+```
+
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/code-input.png" alt="Code input component" width="560" />
+
+---
+
+### Tabs
+
+Tab navigation with keyboard support (Arrow keys, Home/End). Variants: `underline` | `filled`. Sizes: `sm` | `md` | `lg`.
+
+```html
+<ea-tabs activeTab="account" variant="underline">
+  <ea-tab value="account" label="Account">Account content</ea-tab>
+  <ea-tab value="security" label="Security">Security content</ea-tab>
+</ea-tabs>
+```
+
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/tabs.png" alt="Tabs component" width="560" />
+
+---
+
+### Alert
+
+Semantic alert banners. Variants: `default` | `success` | `warning` | `error` | `info`. Optional `dismissible` close button with two-way `visible` binding.
+
+```html
+<ea-alert variant="success">Changes saved successfully.</ea-alert>
+<ea-alert variant="error" [dismissible]="true">Something went wrong.</ea-alert>
+```
+
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/alert.png" alt="Alert component" width="560" />
+
+---
+
+### Skeleton
+
+Loading placeholder with animated pulse. Variants: `text` | `circle` | `rect`. Custom `width` and `height`. Respects `prefers-reduced-motion`.
+
+```html
+<ea-skeleton variant="text" width="200px" />
+<ea-skeleton variant="circle" width="48px" height="48px" />
+<ea-skeleton variant="rect" width="100%" height="120px" />
+```
+
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/skeleton.png" alt="Skeleton component" width="560" />
+
+---
+
+### Accordion
+
+Expandable content sections. Supports single or `multi` expand mode. Built-in chevron animation and disabled state.
+
+```html
+<ea-accordion>
+  <ea-accordion-item label="Section 1">Content for section 1</ea-accordion-item>
+  <ea-accordion-item label="Section 2">Content for section 2</ea-accordion-item>
+</ea-accordion>
+```
+
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/accordion.png" alt="Accordion component" width="560" />
+
 ## Icons
 
 Built-in SVG icon components following the Feather icon style (24x24 viewBox, stroke-based, inherits `currentColor`):
 
 | Tag | Preview |
 |---|---|
-| `<ea-icon-alert-circle />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/alert-circle.png" width="24" height="24" alt="alert-circle" /> |
-| `<ea-icon-camera />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/camera.png" width="24" height="24" alt="camera" /> |
-| `<ea-icon-check />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/check.png" width="24" height="24" alt="check" /> |
-| `<ea-icon-eye />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/eye.png" width="24" height="24" alt="eye" /> |
-| `<ea-icon-eye-off />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/eye-off.png" width="24" height="24" alt="eye-off" /> |
-| `<ea-icon-google />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/google.png" width="24" height="24" alt="google" /> |
-| `<ea-icon-info />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/info.png" width="24" height="24" alt="info" /> |
-| `<ea-icon-loader />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/loader.png" width="24" height="24" alt="loader" /> |
-| `<ea-icon-minus />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/minus.png" width="24" height="24" alt="minus" /> |
-| `<ea-icon-plus />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/plus.png" width="24" height="24" alt="plus" /> |
-| `<ea-icon-rotate-ccw />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/rotate-ccw.png" width="24" height="24" alt="rotate-ccw" /> |
-| `<ea-icon-trash />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/trash.png" width="24" height="24" alt="trash" /> |
-| `<ea-icon-upload />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/upload.png" width="24" height="24" alt="upload" /> |
-| `<ea-icon-user />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/user.png" width="24" height="24" alt="user" /> |
-| `<ea-icon-x />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/x.png" width="24" height="24" alt="x" /> |
+| `<ea-icon-alert-circle />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/alert-circle.png" width="48" height="48" alt="alert-circle" /> |
+| `<ea-icon-camera />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/camera.png" width="48" height="48" alt="camera" /> |
+| `<ea-icon-chevron-down />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/chevron-down.png" width="48" height="48" alt="chevron-down" /> |
+| `<ea-icon-check />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/check.png" width="48" height="48" alt="check" /> |
+| `<ea-icon-eye />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/eye.png" width="48" height="48" alt="eye" /> |
+| `<ea-icon-eye-off />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/eye-off.png" width="48" height="48" alt="eye-off" /> |
+| `<ea-icon-google />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/google.png" width="48" height="48" alt="google" /> |
+| `<ea-icon-info />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/info.png" width="48" height="48" alt="info" /> |
+| `<ea-icon-loader />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/loader.png" width="48" height="48" alt="loader" /> |
+| `<ea-icon-minus />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/minus.png" width="48" height="48" alt="minus" /> |
+| `<ea-icon-plus />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/plus.png" width="48" height="48" alt="plus" /> |
+| `<ea-icon-rotate-ccw />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/rotate-ccw.png" width="48" height="48" alt="rotate-ccw" /> |
+| `<ea-icon-trash />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/trash.png" width="48" height="48" alt="trash" /> |
+| `<ea-icon-upload />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/upload.png" width="48" height="48" alt="upload" /> |
+| `<ea-icon-user />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/user.png" width="48" height="48" alt="user" /> |
+| `<ea-icon-x />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/x.png" width="48" height="48" alt="x" /> |
 
 ## Theming
 
@@ -381,7 +451,6 @@ See [`src/styles/tokens/`](src/styles/tokens/) for the full token reference.
 | `@angular/common` | `^21.0.0` |
 | `@angular/core` | `^21.0.0` |
 | `@angular/forms` | `^21.0.0` |
-| `rxjs` | `^7.0.0` |
 
 ## Development
 

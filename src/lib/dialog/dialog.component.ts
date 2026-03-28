@@ -12,11 +12,13 @@ import {
   viewChild,
 } from '@angular/core';
 
+import { XIconComponent } from '../icons/x.component';
+
 export type DialogSize = 'sm' | 'md' | 'lg' | 'full';
 
 @Component({
   selector: 'ea-dialog',
-  imports: [NgClass],
+  imports: [NgClass, XIconComponent],
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

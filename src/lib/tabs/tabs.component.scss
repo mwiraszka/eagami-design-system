@@ -1,0 +1,104 @@
+// =============================================================================
+// TABS COMPONENT
+// =============================================================================
+
+.ea-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+
+  // ---------------------------------------------------------------------------
+  // Tab list (row of triggers)
+  // ---------------------------------------------------------------------------
+  &__list {
+    display: flex;
+    gap: var(--space-1);
+
+    // Underline variant
+    &--underline {
+      border-bottom: var(--border-width-thin) solid var(--color-border-default);
+      gap: 0;
+
+      .ea-tabs__trigger {
+        border-radius: 0;
+        border-bottom: var(--border-width-medium) solid transparent;
+        margin-bottom: calc(-1 * var(--border-width-thin));
+
+        &--active {
+          border-bottom-color: var(--color-primary-600);
+          color: var(--color-primary-600);
+        }
+
+        &:hover:not(:disabled):not(.ea-tabs__trigger--active) {
+          border-bottom-color: var(--color-border-strong);
+        }
+      }
+    }
+
+    // Filled variant
+    &--filled {
+      background-color: var(--color-bg-muted);
+      border-radius: var(--radius-lg);
+      padding: var(--space-1);
+
+      .ea-tabs__trigger {
+        border-radius: var(--radius-md);
+
+        &--active {
+          background-color: var(--color-bg-base);
+          box-shadow: var(--shadow-sm);
+          color: var(--color-text-primary);
+        }
+      }
+    }
+
+    // Sizes
+    &--sm .ea-tabs__trigger {
+      padding: var(--space-1-5) var(--space-3);
+      font-size: var(--font-size-xs);
+    }
+
+    &--md .ea-tabs__trigger {
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--font-size-sm);
+    }
+
+    &--lg .ea-tabs__trigger {
+      padding: var(--space-2-5) var(--space-5);
+      font-size: var(--font-size-md);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Individual trigger button
+  // ---------------------------------------------------------------------------
+  &__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-family-sans);
+    line-height: var(--line-height-normal);
+    white-space: nowrap;
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: var(--transition-colors);
+
+    &:hover:not(:disabled) {
+      color: var(--color-text-primary);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-focus-ring);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}

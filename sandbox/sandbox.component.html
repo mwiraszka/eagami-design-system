@@ -109,6 +109,43 @@
     placeholder="you@example.com" />
 </section>
 
+<!-- ─── Code Input ────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Code Input — basic</h2>
+  <ea-code-input
+    label="Verification code"
+    hint="Check your email for the 6-digit code"
+    [(value)]="codeInputValue" />
+  <p class="sandbox-preview">Value: {{ codeInputValue() }}</p>
+
+  <h2>Code Input — error</h2>
+  <ea-code-input
+    label="Verification code"
+    error="Invalid verification code" />
+
+  <h2>Code Input — sizes</h2>
+  <ea-code-input
+    size="sm"
+    label="Small" />
+  <ea-code-input
+    size="md"
+    label="Medium" />
+  <ea-code-input
+    size="lg"
+    label="Large" />
+
+  <h2>Code Input — 4-digit PIN</h2>
+  <ea-code-input
+    label="PIN"
+    [length]="4"
+    hint="Enter your 4-digit PIN" />
+
+  <h2>Code Input — disabled</h2>
+  <ea-code-input
+    label="Verification code"
+    [disabled]="true" />
+</section>
+
 <!-- ─── Checkbox ───────────────────────────────────────────────────────── -->
 <section class="sandbox-section">
   <h2>Checkbox — basic</h2>
@@ -295,17 +332,31 @@
 <section class="sandbox-section">
   <h2>Avatar — sizes</h2>
   <div class="sandbox-row">
-    <ea-avatar size="xs" initials="XS"></ea-avatar>
-    <ea-avatar size="sm" initials="SM"></ea-avatar>
-    <ea-avatar size="md" initials="MD"></ea-avatar>
-    <ea-avatar size="lg" initials="LG"></ea-avatar>
-    <ea-avatar size="xl" initials="XL"></ea-avatar>
+    <ea-avatar
+      size="xs"
+      initials="XS"></ea-avatar>
+    <ea-avatar
+      size="sm"
+      initials="SM"></ea-avatar>
+    <ea-avatar
+      size="md"
+      initials="MD"></ea-avatar>
+    <ea-avatar
+      size="lg"
+      initials="LG"></ea-avatar>
+    <ea-avatar
+      size="xl"
+      initials="XL"></ea-avatar>
   </div>
 
   <h2>Avatar — shapes &amp; fallbacks</h2>
   <div class="sandbox-row">
-    <ea-avatar initials="EA" shape="circle"></ea-avatar>
-    <ea-avatar initials="SQ" shape="square"></ea-avatar>
+    <ea-avatar
+      initials="EA"
+      shape="circle"></ea-avatar>
+    <ea-avatar
+      initials="SQ"
+      shape="square"></ea-avatar>
     <ea-avatar shape="circle"></ea-avatar>
     <ea-avatar
       src="assets/sample-avatar.jpg"
@@ -323,9 +374,12 @@
       [canvasSize]="180"
       (cropped)="onAvatarCropped($event)" />
     @if (croppedAvatarUrl()) {
-      <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+      <div
+        style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem">
         <span class="sandbox-preview">Result:</span>
-        <ea-avatar [src]="croppedAvatarUrl()" size="xl" />
+        <ea-avatar
+          [src]="croppedAvatarUrl()"
+          size="xl" />
       </div>
     }
   </div>
@@ -387,15 +441,26 @@
 
   <h2>Switch — sizes</h2>
   <div class="sandbox-row">
-    <ea-switch size="sm" label="Small" />
-    <ea-switch size="md" label="Medium" />
-    <ea-switch size="lg" label="Large" />
+    <ea-switch
+      size="sm"
+      label="Small" />
+    <ea-switch
+      size="md"
+      label="Medium" />
+    <ea-switch
+      size="lg"
+      label="Large" />
   </div>
 
   <h2>Switch — states</h2>
   <div class="sandbox-row">
-    <ea-switch label="Disabled" [disabled]="true" />
-    <ea-switch label="Disabled on" [disabled]="true" [checked]="true" />
+    <ea-switch
+      label="Disabled"
+      [disabled]="true" />
+    <ea-switch
+      label="Disabled on"
+      [disabled]="true"
+      [checked]="true" />
   </div>
 </section>
 
@@ -419,9 +484,18 @@
     placeholder="Enter text…" />
 
   <h2>Textarea — sizes</h2>
-  <ea-textarea size="sm" label="Small" placeholder="sm" />
-  <ea-textarea size="md" label="Medium" placeholder="md" />
-  <ea-textarea size="lg" label="Large" placeholder="lg" />
+  <ea-textarea
+    size="sm"
+    label="Small"
+    placeholder="sm" />
+  <ea-textarea
+    size="md"
+    label="Medium"
+    placeholder="md" />
+  <ea-textarea
+    size="lg"
+    label="Large"
+    placeholder="lg" />
 
   <h2>Textarea — no resize</h2>
   <ea-textarea
@@ -448,7 +522,9 @@
   <ea-divider label="Section" />
 
   <h2>Divider — vertical</h2>
-  <div class="sandbox-row" style="height: 48px;">
+  <div
+    class="sandbox-row"
+    style="height: 48px">
     <span>Left</span>
     <ea-divider orientation="vertical" />
     <span>Right</span>
@@ -459,22 +535,223 @@
 <section class="sandbox-section">
   <h2>Tooltip — positions</h2>
   <div class="sandbox-row">
-    <ea-button eaTooltip="Top tooltip" tooltipPosition="top">Top</ea-button>
-    <ea-button eaTooltip="Bottom tooltip" tooltipPosition="bottom">Bottom</ea-button>
-    <ea-button eaTooltip="Left tooltip" tooltipPosition="left">Left</ea-button>
-    <ea-button eaTooltip="Right tooltip" tooltipPosition="right">Right</ea-button>
+    <ea-button
+      eaTooltip="Top tooltip"
+      tooltipPosition="top"
+      >Top</ea-button
+    >
+    <ea-button
+      eaTooltip="Bottom tooltip"
+      tooltipPosition="bottom"
+      >Bottom</ea-button
+    >
+    <ea-button
+      eaTooltip="Left tooltip"
+      tooltipPosition="left"
+      >Left</ea-button
+    >
+    <ea-button
+      eaTooltip="Right tooltip"
+      tooltipPosition="right"
+      >Right</ea-button
+    >
   </div>
+</section>
+
+<!-- ─── Alert ─────────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Alert — variants</h2>
+  <div style="display: flex; flex-direction: column; gap: 0.75rem">
+    <ea-alert variant="default">This is a default alert</ea-alert>
+    <ea-alert variant="success">Your changes have been saved</ea-alert>
+    <ea-alert variant="warning">Your trial expires in 3 days</ea-alert>
+    <ea-alert variant="error">Something went wrong &mdash; please try again</ea-alert>
+    <ea-alert variant="info">A new version is available</ea-alert>
+  </div>
+
+  <h2>Alert — dismissible</h2>
+  <ea-alert
+    variant="info"
+    [dismissible]="true"
+    >This alert can be dismissed</ea-alert
+  >
+</section>
+
+<!-- ─── Skeleton ──────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Skeleton — variants</h2>
+  <div style="display: flex; align-items: center; gap: 0.75rem">
+    <ea-skeleton variant="circle" />
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem">
+      <ea-skeleton width="60%" />
+      <ea-skeleton
+        width="40%"
+        height="0.75rem" />
+    </div>
+  </div>
+
+  <h2>Skeleton — rect</h2>
+  <ea-skeleton
+    variant="rect"
+    height="6rem" />
+</section>
+
+<!-- ─── Tabs ──────────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Tabs — underline</h2>
+  <ea-tabs activeTab="account">
+    <ea-tab
+      value="account"
+      label="Account"
+      >Account settings content</ea-tab
+    >
+    <ea-tab
+      value="security"
+      label="Security"
+      >Security settings content</ea-tab
+    >
+    <ea-tab
+      value="notifications"
+      label="Notifications"
+      >Notification preferences</ea-tab
+    >
+  </ea-tabs>
+
+  <h2>Tabs — filled</h2>
+  <ea-tabs
+    variant="filled"
+    activeTab="overview">
+    <ea-tab
+      value="overview"
+      label="Overview"
+      >Overview content</ea-tab
+    >
+    <ea-tab
+      value="analytics"
+      label="Analytics"
+      >Analytics content</ea-tab
+    >
+    <ea-tab
+      value="reports"
+      label="Reports"
+      >Reports content</ea-tab
+    >
+  </ea-tabs>
+
+  <h2>Tabs — with disabled tab</h2>
+  <ea-tabs activeTab="general">
+    <ea-tab
+      value="general"
+      label="General"
+      >General settings</ea-tab
+    >
+    <ea-tab
+      value="billing"
+      label="Billing"
+      >Billing details</ea-tab
+    >
+    <ea-tab
+      value="admin"
+      label="Admin"
+      [disabled]="true"
+      >Admin panel</ea-tab
+    >
+  </ea-tabs>
+</section>
+
+<!-- ─── Accordion ─────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Accordion — single</h2>
+  <ea-accordion>
+    <ea-accordion-item
+      value="what"
+      label="What is @eagami/ui?">
+      A lightweight, accessible Angular component library built on CSS custom properties.
+    </ea-accordion-item>
+    <ea-accordion-item
+      value="install"
+      label="How do I install it?">
+      Run pnpm add &#64;eagami/ui, then add the global stylesheet to your angular.json.
+    </ea-accordion-item>
+    <ea-accordion-item
+      value="theme"
+      label="Can I customize the theme?">
+      Yes — override any CSS custom property on :root or scope overrides to individual
+      components.
+    </ea-accordion-item>
+  </ea-accordion>
+
+  <h2>Accordion — multi</h2>
+  <ea-accordion [multi]="true">
+    <ea-accordion-item
+      value="one"
+      label="Section One">
+      Multiple sections can be open at once in multi mode.
+    </ea-accordion-item>
+    <ea-accordion-item
+      value="two"
+      label="Section Two">
+      Content for section two.
+    </ea-accordion-item>
+    <ea-accordion-item
+      value="disabled"
+      label="Disabled Section"
+      [disabled]="true">
+      This content is not reachable.
+    </ea-accordion-item>
+  </ea-accordion>
 </section>
 
 <!-- ─── Toast ──────────────────────────────────────────────────────────── -->
 <section class="sandbox-section">
-  <h2>Toast — trigger by variant</h2>
+  <h2>Toast — variants</h2>
+  <div class="sandbox-toast-demo">
+    <div class="ea-toast ea-toast--default">
+      <span class="ea-toast__message">This is a default toast</span>
+    </div>
+    <div class="ea-toast ea-toast--success">
+      <span class="ea-toast__message">This is a success toast</span>
+    </div>
+    <div class="ea-toast ea-toast--warning">
+      <span class="ea-toast__message">This is a warning toast</span>
+    </div>
+    <div class="ea-toast ea-toast--error">
+      <span class="ea-toast__message">This is an error toast</span>
+    </div>
+    <div class="ea-toast ea-toast--info">
+      <span class="ea-toast__message">This is an info toast</span>
+    </div>
+  </div>
+</section>
+
+<section class="sandbox-section">
+  <h2>Toast — trigger</h2>
   <div class="sandbox-row">
-    <ea-button variant="secondary" (clicked)="showToast('default')">Default</ea-button>
-    <ea-button variant="secondary" (clicked)="showToast('success')">Success</ea-button>
-    <ea-button variant="secondary" (clicked)="showToast('warning')">Warning</ea-button>
-    <ea-button variant="secondary" (clicked)="showToast('error')">Error</ea-button>
-    <ea-button variant="secondary" (clicked)="showToast('info')">Info</ea-button>
+    <ea-button
+      variant="secondary"
+      (clicked)="showToast('default')"
+      >Default</ea-button
+    >
+    <ea-button
+      variant="secondary"
+      (clicked)="showToast('success')"
+      >Success</ea-button
+    >
+    <ea-button
+      variant="secondary"
+      (clicked)="showToast('warning')"
+      >Warning</ea-button
+    >
+    <ea-button
+      variant="secondary"
+      (clicked)="showToast('error')"
+      >Error</ea-button
+    >
+    <ea-button
+      variant="secondary"
+      (clicked)="showToast('info')"
+      >Info</ea-button
+    >
   </div>
 </section>
 

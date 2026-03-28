@@ -1,11 +1,15 @@
 import {
+  AccordionComponent,
+  AccordionItemComponent,
+  AlertComponent,
+  AvatarComponent,
   AvatarEditorComponent,
   AvatarEditorCropEvent,
-  AvatarComponent,
   BadgeComponent,
   ButtonComponent,
   CardComponent,
   CheckboxComponent,
+  CodeInputComponent,
   DialogComponent,
   DividerComponent,
   DropdownComponent,
@@ -13,8 +17,11 @@ import {
   InputComponent,
   RadioComponent,
   RadioGroupComponent,
+  SkeletonComponent,
   SpinnerComponent,
   SwitchComponent,
+  TabComponent,
+  TabsComponent,
   TextareaComponent,
   ToastComponent,
   ToastService,
@@ -26,20 +33,27 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 @Component({
   selector: 'sandbox-root',
   imports: [
+    AccordionComponent,
+    AccordionItemComponent,
+    AlertComponent,
     AvatarEditorComponent,
     AvatarComponent,
     BadgeComponent,
     ButtonComponent,
     CardComponent,
     CheckboxComponent,
+    CodeInputComponent,
     DialogComponent,
     DividerComponent,
     DropdownComponent,
     InputComponent,
     RadioComponent,
     RadioGroupComponent,
+    SkeletonComponent,
     SpinnerComponent,
     SwitchComponent,
+    TabComponent,
+    TabsComponent,
     TextareaComponent,
     ToastComponent,
     TooltipDirective,
@@ -52,6 +66,7 @@ export class SandboxComponent {
   private readonly toastService = inject(ToastService);
 
   isLoading = signal(false);
+  codeInputValue = signal('');
   inputValue = signal('');
   checkboxValue = signal(false);
   radioValue = signal('');
@@ -69,7 +84,8 @@ export class SandboxComponent {
   ];
 
   showToast(variant: 'default' | 'success' | 'warning' | 'error' | 'info'): void {
-    this.toastService.show(`This is a ${variant} toast`, { variant });
+    const article = variant === 'error' || variant === 'info' ? 'an' : 'a';
+    this.toastService.show(`This is ${article} ${variant} toast`, { variant });
   }
 
   onAvatarCropped(event: AvatarEditorCropEvent): void {
