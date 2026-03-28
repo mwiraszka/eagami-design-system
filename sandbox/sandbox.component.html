@@ -109,6 +109,37 @@
     placeholder="you@example.com" />
 </section>
 
+<!-- ─── Code Input ────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Code Input — basic</h2>
+  <ea-code-input
+    label="Verification code"
+    hint="Check your email for the 6-digit code"
+    [(value)]="codeInputValue" />
+  <p class="sandbox-preview">Value: {{ codeInputValue() }}</p>
+
+  <h2>Code Input — error</h2>
+  <ea-code-input
+    label="Verification code"
+    error="Invalid verification code" />
+
+  <h2>Code Input — sizes</h2>
+  <ea-code-input size="sm" label="Small" />
+  <ea-code-input size="md" label="Medium" />
+  <ea-code-input size="lg" label="Large" />
+
+  <h2>Code Input — 4-digit PIN</h2>
+  <ea-code-input
+    label="PIN"
+    [length]="4"
+    hint="Enter your 4-digit PIN" />
+
+  <h2>Code Input — disabled</h2>
+  <ea-code-input
+    label="Verification code"
+    [disabled]="true" />
+</section>
+
 <!-- ─── Checkbox ───────────────────────────────────────────────────────── -->
 <section class="sandbox-section">
   <h2>Checkbox — basic</h2>

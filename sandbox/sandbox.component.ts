@@ -6,6 +6,7 @@ import {
   ButtonComponent,
   CardComponent,
   CheckboxComponent,
+  CodeInputComponent,
   DialogComponent,
   DividerComponent,
   DropdownComponent,
@@ -32,6 +33,7 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
     ButtonComponent,
     CardComponent,
     CheckboxComponent,
+    CodeInputComponent,
     DialogComponent,
     DividerComponent,
     DropdownComponent,
@@ -52,6 +54,7 @@ export class SandboxComponent {
   private readonly toastService = inject(ToastService);
 
   isLoading = signal(false);
+  codeInputValue = signal('');
   inputValue = signal('');
   checkboxValue = signal(false);
   radioValue = signal('');
