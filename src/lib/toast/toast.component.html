@@ -1,5 +1,8 @@
 @if (toastService.toasts().length) {
-  <div class="ea-toast-container" aria-live="polite" aria-atomic="false">
+  <div
+    class="ea-toast-container"
+    aria-live="polite"
+    aria-atomic="false">
     @for (toast of toastService.toasts(); track toast.id) {
       <div
         class="ea-toast ea-toast--{{ toast.variant }}"
@@ -20,8 +23,16 @@
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
+            <line
+              x1="18"
+              y1="6"
+              x2="6"
+              y2="18" />
+            <line
+              x1="6"
+              y1="6"
+              x2="18"
+              y2="18" />
           </svg>
         </button>
       </div>
