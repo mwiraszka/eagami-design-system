@@ -1,0 +1,109 @@
+// =============================================================================
+// PROGRESS BAR COMPONENT
+// =============================================================================
+
+.ea-progress-bar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5);
+  font-family: var(--font-family-sans);
+
+  // ---------------------------------------------------------------------------
+  // Header
+  // ---------------------------------------------------------------------------
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  &__label {
+    font-size: var(--text-label-sm-size);
+    font-weight: var(--text-label-sm-weight);
+    line-height: var(--text-label-sm-lh);
+    color: var(--color-text-primary);
+  }
+
+  &__value {
+    font-size: var(--text-label-sm-size);
+    font-weight: var(--text-label-sm-weight);
+    line-height: var(--text-label-sm-lh);
+    color: var(--color-text-secondary);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Track & fill
+  // ---------------------------------------------------------------------------
+  &__track {
+    overflow: hidden;
+    border-radius: var(--radius-full);
+    background-color: var(--color-bg-muted);
+  }
+
+  &__fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    background-color: var(--color-brand-default);
+    transition: width var(--duration-slow) var(--ease-out);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Sizes
+  // ---------------------------------------------------------------------------
+  &--sm .ea-progress-bar__track {
+    height: 0.25rem;
+  }
+
+  &--md .ea-progress-bar__track {
+    height: 0.375rem;
+  }
+
+  &--lg .ea-progress-bar__track {
+    height: 0.5rem;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Variants
+  // ---------------------------------------------------------------------------
+  &--success .ea-progress-bar__fill {
+    background-color: var(--color-success-default);
+  }
+
+  &--warning .ea-progress-bar__fill {
+    background-color: var(--color-warning-default);
+  }
+
+  &--error .ea-progress-bar__fill {
+    background-color: var(--color-error-default);
+  }
+
+  &--info .ea-progress-bar__fill {
+    background-color: var(--color-info-default);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Indeterminate
+  // ---------------------------------------------------------------------------
+  &--indeterminate .ea-progress-bar__fill {
+    width: 40%;
+    transition: none;
+    animation: ea-progress-indeterminate 1.5s var(--ease-in-out) infinite;
+  }
+}
+
+@keyframes ea-progress-indeterminate {
+  0% {
+    transform: translateX(-110%);
+  }
+
+  100% {
+    transform: translateX(260%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ea-progress-bar--indeterminate .ea-progress-bar__fill {
+    width: 100%;
+    animation: none;
+  }
+}

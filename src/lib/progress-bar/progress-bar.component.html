@@ -1,0 +1,25 @@
+<div
+  class="ea-progress-bar"
+  [ngClass]="hostClasses()">
+  @if (label() || showValue()) {
+    <div class="ea-progress-bar__header">
+      @if (label()) {
+        <span class="ea-progress-bar__label">{{ label() }}</span>
+      }
+      @if (showValue() && !indeterminate()) {
+        <span class="ea-progress-bar__value">{{ percentageRounded() }}%</span>
+      }
+    </div>
+  }
+  <div
+    class="ea-progress-bar__track"
+    role="progressbar"
+    [attr.aria-valuenow]="indeterminate() ? null : percentageRounded()"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    [attr.aria-label]="label() || 'Progress'">
+    <div
+      class="ea-progress-bar__fill"
+      [style.width]="indeterminate() ? null : percentage() + '%'"></div>
+  </div>
+</div>
