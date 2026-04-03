@@ -13,6 +13,7 @@ import {
   input,
   output,
   signal,
+  untracked,
   viewChild,
 } from '@angular/core';
 
@@ -90,7 +91,7 @@ export class AvatarEditorComponent implements OnDestroy {
   private hasDragged = false;
   private initialOffsetX = 0;
   private initialOffsetY = 0;
-  private _initialSrcLoaded = false;
+  private _suppressCropStateEmit = false;
 
   readonly hostClasses = computed(() => ({
     [`ea-avatar-editor--${this.shape()}`]: true,
@@ -105,9 +106,7 @@ export class AvatarEditorComponent implements OnDestroy {
     effect(() => {
       const src = this.currentSrc();
       if (!src) return;
-      const cropState = !this._initialSrcLoaded ? (this.cropState() ?? null) : null;
-      this._initialSrcLoaded = true;
-      this.loadFromUrl(src, cropState);
+      this.loadFromUrl(src, untracked(() => this.cropState()) ?? null, true);
     });
   }
 
@@ -254,7 +253,7 @@ export class AvatarEditorComponent implements OnDestroy {
   revertImage(): void {
     const src = this.currentSrc();
     if (!src) return;
-    this.loadFromUrl(src);
+    this.loadFromUrl(src, null, true);
   }
 
   exportCrop(): Promise<Blob> {
@@ -299,9 +298,17 @@ export class AvatarEditorComponent implements OnDestroy {
     });
   }
 
-  private loadFromUrl(url: string, cropState: AvatarEditorCropState | null = null): void {
+  private loadFromUrl(
+    url: string,
+    cropState: AvatarEditorCropState | null = null,
+    suppressEmit = false,
+  ): void {
+    this._suppressCropStateEmit = suppressEmit;
     const img = new Image();
     img.crossOrigin = 'anonymous';
+    img.onerror = () => {
+      this._suppressCropStateEmit = false;
+    };
     img.onload = () => {
       this.image = img;
       this.hasImage.set(true);
@@ -351,6 +358,7 @@ export class AvatarEditorComponent implements OnDestroy {
     afterNextRender(
       () => {
         this.draw();
+        this._suppressCropStateEmit = false;
         const canvas = this.canvasEl()?.nativeElement;
         canvas?.removeEventListener('wheel', this.boundWheel);
         canvas?.addEventListener('wheel', this.boundWheel, { passive: false });
@@ -434,6 +442,7 @@ export class AvatarEditorComponent implements OnDestroy {
   }
 
   private emitCropStateChange(): void {
+    if (this._suppressCropStateEmit) return;
     this.cropStateChange.emit({
       zoom: this.zoom(),
       offsetX: this.offsetX,
