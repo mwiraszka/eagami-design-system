@@ -13,6 +13,7 @@ import {
   input,
   output,
   signal,
+  untracked,
   viewChild,
 } from '@angular/core';
 
@@ -105,7 +106,7 @@ export class AvatarEditorComponent implements OnDestroy {
     effect(() => {
       const src = this.currentSrc();
       if (!src) return;
-      this.loadFromUrl(src, this.cropState() ?? null, true);
+      this.loadFromUrl(src, untracked(() => this.cropState()) ?? null, true);
     });
   }
 
@@ -305,6 +306,9 @@ export class AvatarEditorComponent implements OnDestroy {
     this._suppressCropStateEmit = suppressEmit;
     const img = new Image();
     img.crossOrigin = 'anonymous';
+    img.onerror = () => {
+      this._suppressCropStateEmit = false;
+    };
     img.onload = () => {
       this.image = img;
       this.hasImage.set(true);
