@@ -8,7 +8,7 @@
     [accept]="accept()"
     (change)="onFileSelected($event)" />
 
-  @if (!hasImage()) {
+  @if (!hasImage() && !isLoading()) {
     <button
       type="button"
       class="ea-avatar-editor__dropzone"
@@ -23,7 +23,7 @@
     </button>
   }
 
-  @if (hasImage()) {
+  @if (hasImage() || isLoading()) {
     <div
       class="ea-avatar-editor__canvas-wrapper"
       [style.width.px]="canvasSize()"
@@ -31,18 +31,30 @@
       (dragover)="onDragOver($event)"
       (dragleave)="onDragLeave($event)"
       (drop)="onDrop($event)">
-      <canvas
-        #canvasEl
-        class="ea-avatar-editor__canvas"
-        [width]="canvasSize()"
-        [height]="canvasSize()"
-        (mousedown)="onMouseDown($event)"
-        (touchstart)="onTouchStart($event)"></canvas>
+      @if (isLoading()) {
+        <ea-skeleton
+          [variant]="shape() === 'circle' ? 'circle' : 'rect'"
+          [width]="canvasSize() + 'px'"
+          [height]="canvasSize() + 'px'" />
+      }
 
-      <div class="ea-avatar-editor__canvas-overlay">
-        <ea-icon-camera class="ea-avatar-editor__overlay-icon" />
-        <span>Change photo</span>
-      </div>
+      @if (hasImage()) {
+        <canvas
+          #canvasEl
+          class="ea-avatar-editor__canvas"
+          [style.display]="isLoading() ? 'none' : 'block'"
+          [width]="canvasSize()"
+          [height]="canvasSize()"
+          (mousedown)="onMouseDown($event)"
+          (touchstart)="onTouchStart($event)"></canvas>
+
+        @if (!isLoading()) {
+          <div class="ea-avatar-editor__canvas-overlay">
+            <ea-icon-camera class="ea-avatar-editor__overlay-icon" />
+            <span>Change photo</span>
+          </div>
+        }
+      }
     </div>
   }
 

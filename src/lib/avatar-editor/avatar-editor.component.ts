@@ -23,6 +23,7 @@ import { PlusIconComponent } from '../icons/plus.component';
 import { RotateCcwIconComponent } from '../icons/rotate-ccw.component';
 import { TrashIconComponent } from '../icons/trash.component';
 import { UploadIconComponent } from '../icons/upload.component';
+import { SkeletonComponent } from '../skeleton/skeleton.component';
 import { TooltipDirective } from '../tooltip/tooltip.directive';
 
 export type AvatarEditorShape = 'circle' | 'square';
@@ -46,6 +47,7 @@ export interface AvatarEditorCropState {
     MinusIconComponent,
     PlusIconComponent,
     RotateCcwIconComponent,
+    SkeletonComponent,
     TrashIconComponent,
     UploadIconComponent,
     TooltipDirective,
@@ -80,6 +82,7 @@ export class AvatarEditorComponent implements OnDestroy {
   readonly hasImage = signal(false);
   readonly isDragOver = signal(false);
   readonly isAtOriginal = signal(false);
+  readonly isLoading = signal(false);
   readonly zoom = signal(1);
   readonly canRevert = computed(
     () => this.hasImage() && !!this.currentSrc() && !this.isAtOriginal(),
@@ -108,7 +111,10 @@ export class AvatarEditorComponent implements OnDestroy {
   constructor() {
     effect(() => {
       const src = this.currentSrc();
-      if (!src) return;
+      if (!src) {
+        this.isLoading.set(false);
+        return;
+      }
       this.loadFromUrl(src, untracked(() => this.cropState()) ?? null, true);
     });
   }
@@ -253,6 +259,7 @@ export class AvatarEditorComponent implements OnDestroy {
   removeImage(): void {
     this.image = null;
     this.hasImage.set(false);
+    this.isLoading.set(false);
     this.zoom.set(1);
     this.offsetX = 0;
     this.offsetY = 0;
@@ -314,10 +321,12 @@ export class AvatarEditorComponent implements OnDestroy {
     cropState: AvatarEditorCropState | null = null,
     suppressEmit = false,
   ): void {
+    this.isLoading.set(true);
     this._suppressCropStateEmit = suppressEmit;
     const img = new Image();
     img.crossOrigin = 'anonymous';
     img.onerror = () => {
+      this.isLoading.set(false);
       this._suppressCropStateEmit = false;
     };
     img.onload = () => {
@@ -370,6 +379,7 @@ export class AvatarEditorComponent implements OnDestroy {
     afterNextRender(
       () => {
         this.draw();
+        this.isLoading.set(false);
         this._suppressCropStateEmit = false;
         const canvas = this.canvasEl()?.nativeElement;
         canvas?.removeEventListener('wheel', this.boundWheel);

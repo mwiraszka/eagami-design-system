@@ -534,6 +534,74 @@ describe('AvatarEditorComponent', () => {
     });
   });
 
+  // ── isLoading ─────────────────────────────────────────────────────────────
+
+  describe('isLoading', () => {
+    it('is false initially', () => {
+      expect(component.isLoading()).toBe(false);
+    });
+
+    it('is true immediately after currentSrc is set and load begins', () => {
+      fixture.componentRef.setInput('currentSrc', 'https://example.com/photo.jpg');
+      fixture.detectChanges();
+
+      expect(component.isLoading()).toBe(true);
+    });
+
+    it('is false after image fully loads', () => {
+      loadImage();
+
+      expect(component.isLoading()).toBe(false);
+    });
+
+    it('is false after a load error', () => {
+      fixture.componentRef.setInput('currentSrc', 'https://example.com/photo.jpg');
+      fixture.detectChanges();
+
+      triggerError();
+
+      expect(component.isLoading()).toBe(false);
+    });
+
+    it('is false after removeImage', () => {
+      fixture.componentRef.setInput('currentSrc', 'https://example.com/photo.jpg');
+      fixture.detectChanges(); // isLoading = true
+
+      component.removeImage();
+
+      expect(component.isLoading()).toBe(false);
+    });
+
+    it('is false when currentSrc is cleared', () => {
+      fixture.componentRef.setInput('currentSrc', 'https://example.com/photo.jpg');
+      fixture.detectChanges(); // isLoading = true
+
+      fixture.componentRef.setInput('currentSrc', undefined);
+      fixture.detectChanges();
+
+      expect(component.isLoading()).toBe(false);
+    });
+
+    it('is true during revertImage load', () => {
+      loadImage();
+
+      component.revertImage();
+
+      expect(component.isLoading()).toBe(true);
+    });
+
+    it('is false after revertImage load completes', () => {
+      loadImage();
+
+      component.revertImage();
+      fixture.detectChanges();
+      triggerLoad();
+      fixture.detectChanges();
+
+      expect(component.isLoading()).toBe(false);
+    });
+  });
+
   // ── Zoom ──────────────────────────────────────────────────────────────────
 
   describe('Zoom', () => {
