@@ -515,6 +515,23 @@ describe('AvatarEditorComponent', () => {
 
       expect(component.zoom()).toBe(1);
     });
+
+    it('sets isAtOriginal to true', () => {
+      loadImage();
+
+      component.revertImage();
+
+      expect(component.isAtOriginal()).toBe(true);
+    });
+
+    it('re-enables canRevert after zooming post-revert', () => {
+      loadImage();
+      component.revertImage();
+
+      component.setZoom(2);
+
+      expect(component.canRevert()).toBe(true);
+    });
   });
 
   // ── Zoom ──────────────────────────────────────────────────────────────────
@@ -715,6 +732,25 @@ describe('AvatarEditorComponent', () => {
       fixture.detectChanges();
 
       expect(revertBtn().disabled).toBe(true);
+    });
+
+    it('revert button is disabled after revertImage is called', () => {
+      loadImage();
+
+      component.revertImage();
+      fixture.detectChanges();
+
+      expect(revertBtn().disabled).toBe(true);
+    });
+
+    it('revert button is re-enabled after zooming post-revert', () => {
+      loadImage();
+      component.revertImage();
+
+      component.setZoom(2);
+      fixture.detectChanges();
+
+      expect(revertBtn().disabled).toBe(false);
     });
 
     it('zoom in button is disabled before any image loads', () => {
