@@ -90,7 +90,6 @@ export class AvatarEditorComponent implements OnDestroy {
   private hasDragged = false;
   private initialOffsetX = 0;
   private initialOffsetY = 0;
-  private _initialSrcLoaded = false;
 
   readonly hostClasses = computed(() => ({
     [`ea-avatar-editor--${this.shape()}`]: true,
@@ -105,9 +104,7 @@ export class AvatarEditorComponent implements OnDestroy {
     effect(() => {
       const src = this.currentSrc();
       if (!src) return;
-      const cropState = !this._initialSrcLoaded ? (this.cropState() ?? null) : null;
-      this._initialSrcLoaded = true;
-      this.loadFromUrl(src, cropState);
+      this.loadFromUrl(src, this.cropState() ?? null);
     });
   }
 
