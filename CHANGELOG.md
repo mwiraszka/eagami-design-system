@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fix `AvatarEditorComponent` to apply `cropState` on every `currentSrc` change, not just the initial load — restores crop position correctly when the source URL is swapped after the first render
+- Fix `AvatarEditorComponent` to suppress `cropStateChange` emission during programmatic image loads (`currentSrc` changes and revert) — prevents transient state divergence that caused the save button to flicker enabled
 
 ## [0.7.0] - 2026-04-02
 
