@@ -1,0 +1,15 @@
+<span
+  class="ea-tag"
+  [ngClass]="hostClasses()">
+  <ng-content />
+  @if (removable()) {
+    <button
+      type="button"
+      class="ea-tag__remove"
+      [disabled]="disabled() || null"
+      (click)="onRemove($event)"
+      aria-label="Remove">
+      <ea-icon-x />
+    </button>
+  }
+</span>

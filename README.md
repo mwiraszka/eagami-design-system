@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/eagami-header.png" alt="eagami design system — elegant web design." width="800" />
+  <img src="docs/images/eagami-header.png" alt="eagami design system — elegant web design." width="800" />
 </p>
 
 A lightweight, accessible Angular component library built on CSS custom properties. Ready to use out of the box — install, import, and start building.
@@ -91,7 +91,7 @@ Variants: `primary` | `secondary` | `ghost` | `danger`. Sizes: `sm` | `md` | `lg
 </ea-button>
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/button.png" alt="Button component" width="560" />
+<img src="docs/images/button.png" alt="Button component" width="560" />
 
 ---
 
@@ -108,7 +108,7 @@ Full `ControlValueAccessor` support. Types: `text` | `email` | `password` | `num
   [(value)]="email" />
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/input.png" alt="Input component" width="560" />
+<img src="docs/images/input.png" alt="Input component" width="560" />
 
 ---
 
@@ -125,7 +125,7 @@ Mirrors the Input API with `ControlValueAccessor`. Configurable `rows`, `resize`
   [(value)]="message" />
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/textarea.png" alt="Textarea component" width="560" />
+<img src="docs/images/textarea.png" alt="Textarea component" width="560" />
 
 ---
 
@@ -137,7 +137,7 @@ Mirrors the Input API with `ControlValueAccessor`. Configurable `rows`, `resize`
 <ea-checkbox label="Accept terms and conditions" [(checked)]="accepted" />
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/checkbox.png" alt="Checkbox component" width="560" />
+<img src="docs/images/checkbox.png" alt="Checkbox component" width="560" />
 
 ---
 
@@ -149,7 +149,7 @@ Toggle switch with `ControlValueAccessor`. Sizes: `sm` | `md` | `lg`.
 <ea-switch label="Enable notifications" [(checked)]="notificationsOn" />
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/switch.png" alt="Switch component" width="560" />
+<img src="docs/images/switch.png" alt="Switch component" width="560" />
 
 ---
 
@@ -165,7 +165,7 @@ Composite pattern with `ControlValueAccessor`. Supports `vertical` and `horizont
 </ea-radio-group>
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/radio.png" alt="Radio group component" width="560" />
+<img src="docs/images/radio.png" alt="Radio group component" width="560" />
 
 ---
 
@@ -181,7 +181,7 @@ Select dropdown with `ControlValueAccessor` and keyboard navigation (Arrow keys,
   [(value)]="selectedCountry" />
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/dropdown.png" alt="Dropdown component" width="560" />
+<img src="docs/images/dropdown.png" alt="Dropdown component" width="560" />
 
 ---
 
@@ -200,7 +200,7 @@ Content container with variants: `elevated` | `outlined` | `filled`. Padding: `n
 </ea-card>
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/card.png" alt="Card component" width="560" />
+<img src="docs/images/card.png" alt="Card component" width="560" />
 
 ---
 
@@ -214,7 +214,7 @@ Image with initials or icon fallback. Sizes: `xs` | `sm` | `md` | `lg` | `xl`. S
 <ea-avatar />  <!-- shows fallback user icon -->
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/avatar.png" alt="Avatar component" width="560" />
+<img src="docs/images/avatar.png" alt="Avatar component" width="560" />
 
 ---
 
@@ -229,7 +229,7 @@ Canvas-based image editor with drag-and-drop upload, pan, zoom (slider + scroll 
   (cropped)="onCropped($event)" />
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/avatar-editor.png" alt="Avatar editor component" width="560" />
+<img src="docs/images/avatar-editor.png" alt="Avatar editor component" width="560" />
 
 ---
 
@@ -242,7 +242,7 @@ Semantic status indicators. Variants: `default` | `success` | `warning` | `error
 <ea-badge variant="error">Failed</ea-badge>
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/badge.png" alt="Badge component" width="560" />
+<img src="docs/images/badge.png" alt="Badge component" width="560" />
 
 ---
 
@@ -254,7 +254,7 @@ SVG loading indicator with `role="status"` for accessibility. Sizes: `sm` | `md`
 <ea-spinner size="md" label="Loading data" />
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/spinner.png" alt="Spinner component" width="560" />
+<img src="docs/images/spinner.png" alt="Spinner component" width="560" />
 
 ---
 
@@ -268,7 +268,7 @@ Visual separator with optional label. Orientation: `horizontal` | `vertical`.
 <ea-divider orientation="vertical" />
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/divider.png" alt="Divider component" width="560" />
+<img src="docs/images/divider.png" alt="Divider component" width="560" />
 
 ---
 
@@ -327,7 +327,7 @@ Add the toast outlet once in your root template:
 <ea-toast />
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/toast.png" alt="Toast component" width="560" />
+<img src="docs/images/toast.png" alt="Toast component" width="560" />
 
 ---
 
@@ -339,7 +339,7 @@ Verification code input with auto-advance, paste support, and arrow key navigati
 <ea-code-input [(value)]="code" [length]="6" (completed)="verify()" />
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/code-input.png" alt="Code input component" width="560" />
+<img src="docs/images/code-input.png" alt="Code input component" width="560" />
 
 ---
 
@@ -354,7 +354,7 @@ Tab navigation with keyboard support (Arrow keys, Home/End). Variants: `underlin
 </ea-tabs>
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/tabs.png" alt="Tabs component" width="560" />
+<img src="docs/images/tabs.png" alt="Tabs component" width="560" />
 
 ---
 
@@ -367,7 +367,7 @@ Semantic alert banners. Variants: `default` | `success` | `warning` | `error` | 
 <ea-alert variant="error" [dismissible]="true">Something went wrong.</ea-alert>
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/alert.png" alt="Alert component" width="560" />
+<img src="docs/images/alert.png" alt="Alert component" width="560" />
 
 ---
 
@@ -381,7 +381,7 @@ Loading placeholder with animated pulse. Variants: `text` | `circle` | `rect`. C
 <ea-skeleton variant="rect" width="100%" height="120px" />
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/skeleton.png" alt="Skeleton component" width="560" />
+<img src="docs/images/skeleton.png" alt="Skeleton component" width="560" />
 
 ---
 
@@ -396,7 +396,34 @@ Expandable content sections. Supports single or `multi` expand mode. Built-in ch
 </ea-accordion>
 ```
 
-<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/accordion.png" alt="Accordion component" width="560" />
+<img src="docs/images/accordion.png" alt="Accordion component" width="560" />
+
+### Progress Bar
+
+Linear progress indicator with determinate and indeterminate modes. Variants: `default` | `success` | `warning` | `error` | `info`. Sizes: `sm` | `md` | `lg`. Optional `label` and `showValue` display.
+
+```html
+<ea-progress-bar [value]="72" label="Uploading" [showValue]="true" />
+<ea-progress-bar variant="success" [value]="100" />
+<ea-progress-bar [indeterminate]="true" label="Processing…" />
+```
+
+<img src="docs/images/progress-bar.png" alt="Progress bar component" width="560" />
+
+---
+
+### Tag
+
+Inline label with optional remove button. Variants: `default` | `primary` | `success` | `warning` | `error` | `info`. Sizes: `sm` | `md` | `lg`.
+
+```html
+<ea-tag variant="primary">TypeScript</ea-tag>
+<ea-tag variant="success" [removable]="true" (removed)="onRemove()">Active</ea-tag>
+```
+
+<img src="docs/images/tag.png" alt="Tag component" width="560" />
+
+---
 
 ## Icons
 
@@ -404,22 +431,22 @@ Built-in SVG icon components following the Feather icon style (24x24 viewBox, st
 
 | Tag | Preview |
 |---|---|
-| `<ea-icon-alert-circle />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/alert-circle.png" width="48" height="48" alt="alert-circle" /> |
-| `<ea-icon-camera />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/camera.png" width="48" height="48" alt="camera" /> |
-| `<ea-icon-chevron-down />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/chevron-down.png" width="48" height="48" alt="chevron-down" /> |
-| `<ea-icon-check />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/check.png" width="48" height="48" alt="check" /> |
-| `<ea-icon-eye />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/eye.png" width="48" height="48" alt="eye" /> |
-| `<ea-icon-eye-off />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/eye-off.png" width="48" height="48" alt="eye-off" /> |
-| `<ea-icon-google />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/google.png" width="48" height="48" alt="google" /> |
-| `<ea-icon-info />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/info.png" width="48" height="48" alt="info" /> |
-| `<ea-icon-loader />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/loader.png" width="48" height="48" alt="loader" /> |
-| `<ea-icon-minus />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/minus.png" width="48" height="48" alt="minus" /> |
-| `<ea-icon-plus />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/plus.png" width="48" height="48" alt="plus" /> |
-| `<ea-icon-rotate-ccw />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/rotate-ccw.png" width="48" height="48" alt="rotate-ccw" /> |
-| `<ea-icon-trash />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/trash.png" width="48" height="48" alt="trash" /> |
-| `<ea-icon-upload />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/upload.png" width="48" height="48" alt="upload" /> |
-| `<ea-icon-user />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/user.png" width="48" height="48" alt="user" /> |
-| `<ea-icon-x />` | <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/icons/x.png" width="48" height="48" alt="x" /> |
+| `<ea-icon-alert-circle />` | <img src="docs/images/icons/alert-circle.png" width="48" height="48" alt="alert-circle" /> |
+| `<ea-icon-camera />` | <img src="docs/images/icons/camera.png" width="48" height="48" alt="camera" /> |
+| `<ea-icon-chevron-down />` | <img src="docs/images/icons/chevron-down.png" width="48" height="48" alt="chevron-down" /> |
+| `<ea-icon-check />` | <img src="docs/images/icons/check.png" width="48" height="48" alt="check" /> |
+| `<ea-icon-eye />` | <img src="docs/images/icons/eye.png" width="48" height="48" alt="eye" /> |
+| `<ea-icon-eye-off />` | <img src="docs/images/icons/eye-off.png" width="48" height="48" alt="eye-off" /> |
+| `<ea-icon-google />` | <img src="docs/images/icons/google.png" width="48" height="48" alt="google" /> |
+| `<ea-icon-info />` | <img src="docs/images/icons/info.png" width="48" height="48" alt="info" /> |
+| `<ea-icon-loader />` | <img src="docs/images/icons/loader.png" width="48" height="48" alt="loader" /> |
+| `<ea-icon-minus />` | <img src="docs/images/icons/minus.png" width="48" height="48" alt="minus" /> |
+| `<ea-icon-plus />` | <img src="docs/images/icons/plus.png" width="48" height="48" alt="plus" /> |
+| `<ea-icon-rotate-ccw />` | <img src="docs/images/icons/rotate-ccw.png" width="48" height="48" alt="rotate-ccw" /> |
+| `<ea-icon-trash />` | <img src="docs/images/icons/trash.png" width="48" height="48" alt="trash" /> |
+| `<ea-icon-upload />` | <img src="docs/images/icons/upload.png" width="48" height="48" alt="upload" /> |
+| `<ea-icon-user />` | <img src="docs/images/icons/user.png" width="48" height="48" alt="user" /> |
+| `<ea-icon-x />` | <img src="docs/images/icons/x.png" width="48" height="48" alt="x" /> |
 
 ## Theming
 

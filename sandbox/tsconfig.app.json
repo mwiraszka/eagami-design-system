@@ -4,7 +4,5 @@
     "outDir": "../out-tsc/sandbox",
     "types": []
   },
-  "include": [
-    "**/*.ts"
-  ]
+  "include": ["**/*.ts"]
 }

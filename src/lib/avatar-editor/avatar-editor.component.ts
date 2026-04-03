@@ -31,6 +31,12 @@ export interface AvatarEditorCropEvent {
   dataUrl: string;
 }
 
+export interface AvatarEditorCropState {
+  zoom: number;
+  offsetX: number;
+  offsetY: number;
+}
+
 @Component({
   selector: 'ea-avatar-editor',
   imports: [
@@ -62,9 +68,13 @@ export class AvatarEditorComponent implements OnDestroy {
   readonly exportQuality = input<number>(0.92);
   readonly exportType = input<string>('image/png');
 
+  readonly cropState = input<AvatarEditorCropState | null | undefined>();
+
   readonly cropped = output<AvatarEditorCropEvent>();
+  readonly fileSelected = output<File>();
   readonly removed = output<void>();
   readonly fileError = output<string>();
+  readonly cropStateChange = output<AvatarEditorCropState>();
 
   readonly hasImage = signal(false);
   readonly isDragOver = signal(false);
@@ -80,6 +90,7 @@ export class AvatarEditorComponent implements OnDestroy {
   private hasDragged = false;
   private initialOffsetX = 0;
   private initialOffsetY = 0;
+  private _initialSrcLoaded = false;
 
   readonly hostClasses = computed(() => ({
     [`ea-avatar-editor--${this.shape()}`]: true,
@@ -94,7 +105,9 @@ export class AvatarEditorComponent implements OnDestroy {
     effect(() => {
       const src = this.currentSrc();
       if (!src) return;
-      this.loadFromUrl(src);
+      const cropState = !this._initialSrcLoaded ? (this.cropState() ?? null) : null;
+      this._initialSrcLoaded = true;
+      this.loadFromUrl(src, cropState);
     });
   }
 
@@ -177,6 +190,7 @@ export class AvatarEditorComponent implements OnDestroy {
     this.offsetY = this.initialOffsetY + dy;
     this.clampOffset();
     this.draw();
+    this.emitCropStateChange();
   }
 
   private onMouseUp(): void {
@@ -197,6 +211,7 @@ export class AvatarEditorComponent implements OnDestroy {
     this.offsetY = this.initialOffsetY + dy;
     this.clampOffset();
     this.draw();
+    this.emitCropStateChange();
   }
 
   private onTouchEnd(): void {
@@ -218,6 +233,7 @@ export class AvatarEditorComponent implements OnDestroy {
     this.zoom.set(Math.round(clamped * 100) / 100);
     this.clampOffset();
     this.draw();
+    this.emitCropStateChange();
   }
 
   onZoomInput(event: Event): void {
@@ -241,48 +257,63 @@ export class AvatarEditorComponent implements OnDestroy {
     this.loadFromUrl(src);
   }
 
-  exportCrop(): void {
-    if (!this.image) return;
+  exportCrop(): Promise<Blob> {
+    return new Promise((resolve, reject) => {
+      if (!this.image) {
+        reject(new Error('No image loaded'));
+        return;
+      }
 
-    const size = this.canvasSize();
-    const offscreen = document.createElement('canvas');
-    offscreen.width = size;
-    offscreen.height = size;
-    const ctx = offscreen.getContext('2d')!;
+      const size = this.canvasSize();
+      const offscreen = document.createElement('canvas');
+      offscreen.width = size;
+      offscreen.height = size;
+      const ctx = offscreen.getContext('2d')!;
 
-    if (this.shape() === 'circle') {
-      ctx.beginPath();
-      ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
-      ctx.closePath();
-      ctx.clip();
-    }
+      if (this.shape() === 'circle') {
+        ctx.beginPath();
+        ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.clip();
+      }
 
-    const { drawX, drawY, drawW, drawH } = this.getDrawParams();
-    ctx.drawImage(this.image, drawX, drawY, drawW, drawH);
+      const { drawX, drawY, drawW, drawH } = this.getDrawParams();
+      ctx.drawImage(this.image, drawX, drawY, drawW, drawH);
 
-    offscreen.toBlob(
-      blob => {
-        if (blob) {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            this.cropped.emit({ blob, dataUrl: reader.result as string });
-          };
-          reader.readAsDataURL(blob);
-        }
-      },
-      this.exportType(),
-      this.exportQuality(),
-    );
+      offscreen.toBlob(
+        blob => {
+          if (blob) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              this.cropped.emit({ blob, dataUrl: reader.result as string });
+              resolve(blob);
+            };
+            reader.readAsDataURL(blob);
+          } else {
+            reject(new Error('Canvas export failed'));
+          }
+        },
+        this.exportType(),
+        this.exportQuality(),
+      );
+    });
   }
 
-  private loadFromUrl(url: string): void {
+  private loadFromUrl(url: string, cropState: AvatarEditorCropState | null = null): void {
     const img = new Image();
     img.crossOrigin = 'anonymous';
     img.onload = () => {
       this.image = img;
       this.hasImage.set(true);
-      this.zoom.set(1);
-      this.centerImage();
+      if (cropState) {
+        this.zoom.set(Math.min(this.maxZoom(), Math.max(this.minZoom(), cropState.zoom)));
+        this.offsetX = cropState.offsetX;
+        this.offsetY = cropState.offsetY;
+        this.clampOffset();
+      } else {
+        this.zoom.set(1);
+        this.centerImage();
+      }
       this.scheduleDrawAfterRender();
     };
     img.src = url;
@@ -298,6 +329,8 @@ export class AvatarEditorComponent implements OnDestroy {
       this.fileError.emit(`File exceeds ${maxMb} MB limit`);
       return;
     }
+
+    this.fileSelected.emit(file);
 
     const reader = new FileReader();
     reader.onload = e => {
@@ -398,6 +431,14 @@ export class AvatarEditorComponent implements OnDestroy {
     ctx.globalCompositeOperation = 'destination-over';
     ctx.drawImage(this.image, drawX, drawY, drawW, drawH);
     ctx.globalCompositeOperation = 'source-over';
+  }
+
+  private emitCropStateChange(): void {
+    this.cropStateChange.emit({
+      zoom: this.zoom(),
+      offsetX: this.offsetX,
+      offsetY: this.offsetY,
+    });
   }
 
   private clearCanvas(): void {

@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2026-04-02
+
+### Added
+
+- Add `ProgressBarComponent` (`ea-progress-bar`) with determinate and indeterminate modes, semantic variants, and optional label/value display
+- Add `TagComponent` (`ea-tag`) with semantic variants, sizes, and optional remove button
+- Add `cropState` input to `AvatarEditorComponent` — when provided alongside `currentSrc`, restores zoom and pan position after the image loads; ignored on subsequent `currentSrc` changes
+- Add `cropStateChange` output to `AvatarEditorComponent` — emits the current crop state on every zoom or pan change
+- Add `fileSelected` output to `AvatarEditorComponent` — emits the original `File` when the user picks or drops a file (fires after validation passes)
+- `exportCrop()` on `AvatarEditorComponent` now returns `Promise<Blob>`; the `(cropped)` output continues to fire for backwards compatibility
+- Add `--ea-card-header-padding`, `--ea-card-body-padding`, and `--ea-card-footer-padding` CSS custom properties to `CardComponent` for per-section padding overrides
+- Add `--ea-input-toggle-color` CSS custom property to `InputComponent` for overriding the password visibility toggle color
+
 ## [0.6.0] - 2026-03-28
 
 ### Added
@@ -114,6 +127,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Global SCSS design tokens for colors, typography, spacing, elevation, motion, and shape
 - CSS custom property theming support
 
+[0.7.0]: https://github.com/mwiraszka/eagami-design-system/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/mwiraszka/eagami-design-system/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/mwiraszka/eagami-design-system/compare/v0.4.1...v0.5.0
 [0.4.1]: https://github.com/mwiraszka/eagami-design-system/compare/v0.4.0...v0.4.1
