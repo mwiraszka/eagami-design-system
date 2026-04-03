@@ -37,66 +37,72 @@ ea-card {
   // Padding
   // ---------------------------------------------------------------------------
   &--padding-none {
-    .ea-card__header,
-    .ea-card__body,
+    .ea-card__header {
+      padding: var(--ea-card-header-padding, 0);
+    }
+
+    .ea-card__body {
+      padding: var(--ea-card-body-padding, 0);
+    }
+
     .ea-card__footer {
-      padding: 0;
+      padding: var(--ea-card-footer-padding, 0);
     }
   }
 
   &--padding-sm {
     .ea-card__header {
-      padding: var(--space-3) var(--space-3) 0;
+      padding: var(--ea-card-header-padding, var(--space-3) var(--space-3) 0);
     }
 
     .ea-card__body {
-      padding: var(--space-3);
+      padding: var(--ea-card-body-padding, var(--space-3));
     }
 
     .ea-card__footer {
-      padding: 0 var(--space-3) var(--space-3);
+      padding: var(--ea-card-footer-padding, 0 var(--space-3) var(--space-3));
     }
   }
 
   &--padding-md {
     .ea-card__header {
-      padding: var(--space-4) var(--space-4) 0;
+      padding: var(--ea-card-header-padding, var(--space-4) var(--space-4) 0);
     }
 
     .ea-card__body {
-      padding: var(--space-4);
+      padding: var(--ea-card-body-padding, var(--space-4));
     }
 
     .ea-card__footer {
-      padding: 0 var(--space-4) var(--space-4);
+      padding: var(--ea-card-footer-padding, 0 var(--space-4) var(--space-4));
     }
   }
 
   &--padding-lg {
     .ea-card__header {
-      padding: var(--space-6) var(--space-6) 0;
+      padding: var(--ea-card-header-padding, var(--space-6) var(--space-6) 0);
     }
 
     .ea-card__body {
-      padding: var(--space-6);
+      padding: var(--ea-card-body-padding, var(--space-6));
     }
 
     .ea-card__footer {
-      padding: 0 var(--space-6) var(--space-6);
+      padding: var(--ea-card-footer-padding, 0 var(--space-6) var(--space-6));
     }
   }
 
   &--padding-xl {
     .ea-card__header {
-      padding: var(--space-8) var(--space-8) 0;
+      padding: var(--ea-card-header-padding, var(--space-8) var(--space-8) 0);
     }
 
     .ea-card__body {
-      padding: var(--space-8);
+      padding: var(--ea-card-body-padding, var(--space-8));
     }
 
     .ea-card__footer {
-      padding: 0 var(--space-8) var(--space-8);
+      padding: var(--ea-card-footer-padding, 0 var(--space-8) var(--space-8));
     }
   }
 
