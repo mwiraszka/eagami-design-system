@@ -164,7 +164,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: inherit;
+    color: var(--ea-input-toggle-color, inherit);
     border-radius: var(--radius-sm);
     transition: var(--transition-colors);
 
