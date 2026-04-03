@@ -41,6 +41,8 @@ const SECTIONS = [
   { name: 'card', heading: 'Card' },
   { name: 'avatar', heading: 'Avatar —' },
   { name: 'avatar-editor', heading: 'Avatar Editor' },
+  { name: 'progress-bar', heading: 'Progress Bar' },
+  { name: 'tag', heading: 'Tag' },
   { name: 'badge', heading: 'Badge' },
   { name: 'spinner', heading: 'Spinner' },
   { name: 'divider', heading: 'Divider' },

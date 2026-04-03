@@ -398,6 +398,33 @@ Expandable content sections. Supports single or `multi` expand mode. Built-in ch
 
 <img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/accordion.png" alt="Accordion component" width="560" />
 
+### Progress Bar
+
+Linear progress indicator with determinate and indeterminate modes. Variants: `default` | `success` | `warning` | `error` | `info`. Sizes: `sm` | `md` | `lg`. Optional `label` and `showValue` display.
+
+```html
+<ea-progress-bar [value]="72" label="Uploading" [showValue]="true" />
+<ea-progress-bar variant="success" [value]="100" />
+<ea-progress-bar [indeterminate]="true" label="Processing…" />
+```
+
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/progress-bar.png" alt="Progress bar component" width="560" />
+
+---
+
+### Tag
+
+Inline label with optional remove button. Variants: `default` | `primary` | `success` | `warning` | `error` | `info`. Sizes: `sm` | `md` | `lg`.
+
+```html
+<ea-tag variant="primary">TypeScript</ea-tag>
+<ea-tag variant="success" [removable]="true" (removed)="onRemove()">Active</ea-tag>
+```
+
+<img src="https://raw.githubusercontent.com/mwiraszka/eagami-design-system/main/docs/images/tag.png" alt="Tag component" width="560" />
+
+---
+
 ## Icons
 
 Built-in SVG icon components following the Feather icon style (24x24 viewBox, stroke-based, inherits `currentColor`):

@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add `ProgressBarComponent` (`ea-progress-bar`) with determinate and indeterminate modes, semantic variants, and optional label/value display
+- Add `TagComponent` (`ea-tag`) with semantic variants, sizes, and optional remove button
 - Add `cropState` input to `AvatarEditorComponent` — when provided alongside `currentSrc`, restores zoom and pan position after the image loads; ignored on subsequent `currentSrc` changes
 - Add `cropStateChange` output to `AvatarEditorComponent` — emits the current crop state on every zoom or pan change
 - Add `fileSelected` output to `AvatarEditorComponent` — emits the original `File` when the user picks or drops a file (fires after validation passes)
