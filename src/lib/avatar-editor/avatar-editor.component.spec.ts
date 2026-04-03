@@ -515,6 +515,91 @@ describe('AvatarEditorComponent', () => {
 
       expect(component.zoom()).toBe(1);
     });
+
+    it('sets isAtOriginal to true', () => {
+      loadImage();
+
+      component.revertImage();
+
+      expect(component.isAtOriginal()).toBe(true);
+    });
+
+    it('re-enables canRevert after zooming post-revert', () => {
+      loadImage();
+      component.revertImage();
+
+      component.setZoom(2);
+
+      expect(component.canRevert()).toBe(true);
+    });
+  });
+
+  // ── isLoading ─────────────────────────────────────────────────────────────
+
+  describe('isLoading', () => {
+    it('is false initially', () => {
+      expect(component.isLoading()).toBe(false);
+    });
+
+    it('is true immediately after currentSrc is set and load begins', () => {
+      fixture.componentRef.setInput('currentSrc', 'https://example.com/photo.jpg');
+      fixture.detectChanges();
+
+      expect(component.isLoading()).toBe(true);
+    });
+
+    it('is false after image fully loads', () => {
+      loadImage();
+
+      expect(component.isLoading()).toBe(false);
+    });
+
+    it('is false after a load error', () => {
+      fixture.componentRef.setInput('currentSrc', 'https://example.com/photo.jpg');
+      fixture.detectChanges();
+
+      triggerError();
+
+      expect(component.isLoading()).toBe(false);
+    });
+
+    it('is false after removeImage', () => {
+      fixture.componentRef.setInput('currentSrc', 'https://example.com/photo.jpg');
+      fixture.detectChanges(); // isLoading = true
+
+      component.removeImage();
+
+      expect(component.isLoading()).toBe(false);
+    });
+
+    it('is false when currentSrc is cleared', () => {
+      fixture.componentRef.setInput('currentSrc', 'https://example.com/photo.jpg');
+      fixture.detectChanges(); // isLoading = true
+
+      fixture.componentRef.setInput('currentSrc', undefined);
+      fixture.detectChanges();
+
+      expect(component.isLoading()).toBe(false);
+    });
+
+    it('is true during revertImage load', () => {
+      loadImage();
+
+      component.revertImage();
+
+      expect(component.isLoading()).toBe(true);
+    });
+
+    it('is false after revertImage load completes', () => {
+      loadImage();
+
+      component.revertImage();
+      fixture.detectChanges();
+      triggerLoad();
+      fixture.detectChanges();
+
+      expect(component.isLoading()).toBe(false);
+    });
   });
 
   // ── Zoom ──────────────────────────────────────────────────────────────────
@@ -715,6 +800,25 @@ describe('AvatarEditorComponent', () => {
       fixture.detectChanges();
 
       expect(revertBtn().disabled).toBe(true);
+    });
+
+    it('revert button is disabled after revertImage is called', () => {
+      loadImage();
+
+      component.revertImage();
+      fixture.detectChanges();
+
+      expect(revertBtn().disabled).toBe(true);
+    });
+
+    it('revert button is re-enabled after zooming post-revert', () => {
+      loadImage();
+      component.revertImage();
+
+      component.setZoom(2);
+      fixture.detectChanges();
+
+      expect(revertBtn().disabled).toBe(false);
     });
 
     it('zoom in button is disabled before any image loads', () => {
