@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.7.2] - 2026-04-03
 
+### Added
+
+- Show a loading skeleton inside `AvatarEditorComponent` while an image is being fetched — skeleton matches the editor shape (`circle` or `rect`) and canvas size
+
 ### Fixed
 
 - Disable `AvatarEditorComponent` revert button once already reverted to original; re-enables on any zoom or pan change
