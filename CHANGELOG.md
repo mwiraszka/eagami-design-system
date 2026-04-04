@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Separate `revertSrc` input on `AvatarEditorComponent` so the "revert to original" button can reset to a different image than `currentSrc`
 
+### Fixed
+
+- Remove unused `tslib` dependency from published package
+
 ## [0.7.2] - 2026-04-03
 
 ### Added
