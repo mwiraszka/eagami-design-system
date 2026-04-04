@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.3] - 2026-04-04
+
+### Added
+
+- Separate `revertSrc` input on `AvatarEditorComponent` so the "revert to original" button can reset to a different image than `currentSrc`
+
 ## [0.7.2] - 2026-04-03
 
 ### Added
@@ -144,6 +150,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Global SCSS design tokens for colors, typography, spacing, elevation, motion, and shape
 - CSS custom property theming support
 
+[0.7.3]: https://github.com/mwiraszka/eagami-design-system/compare/v0.7.2...v0.7.3
 [0.7.2]: https://github.com/mwiraszka/eagami-design-system/compare/v0.7.1...v0.7.2
 [0.7.1]: https://github.com/mwiraszka/eagami-design-system/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/mwiraszka/eagami-design-system/compare/v0.6.0...v0.7.0
