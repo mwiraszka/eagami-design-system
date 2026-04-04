@@ -534,6 +534,56 @@ describe('AvatarEditorComponent', () => {
     });
   });
 
+  // ── revertSrc ─────────────────────────────────────────────────────────────
+
+  describe('revertSrc', () => {
+    it('revertImage loads from revertSrc instead of currentSrc when provided', () => {
+      fixture.componentRef.setInput('revertSrc', 'https://example.com/clerk-avatar.jpg');
+      loadImage('https://example.com/full-size.jpg');
+      mockImageInstances.length = 0;
+
+      component.revertImage();
+
+      expect(lastImage()?.src).toBe('https://example.com/clerk-avatar.jpg');
+    });
+
+    it('revertImage falls back to currentSrc when revertSrc is not set', () => {
+      loadImage('https://example.com/full-size.jpg');
+      mockImageInstances.length = 0;
+
+      component.revertImage();
+
+      expect(lastImage()?.src).toBe('https://example.com/full-size.jpg');
+    });
+
+    it('canRevert is true when revertSrc is set even without currentSrc', () => {
+      fixture.componentRef.setInput('revertSrc', 'https://example.com/clerk-avatar.jpg');
+      fixture.detectChanges();
+
+      selectFile(makeFile('image/jpeg'));
+      lastMockFileReader!.onload!({ target: { result: 'data:image/jpeg;base64,abc' } });
+      triggerLoad();
+      fixture.detectChanges();
+
+      expect(component.canRevert()).toBe(true);
+    });
+
+    it('revertImage uses revertSrc when currentSrc is undefined', () => {
+      fixture.componentRef.setInput('revertSrc', 'https://example.com/clerk-avatar.jpg');
+      fixture.detectChanges();
+
+      selectFile(makeFile('image/jpeg'));
+      lastMockFileReader!.onload!({ target: { result: 'data:image/jpeg;base64,abc' } });
+      triggerLoad();
+      fixture.detectChanges();
+      mockImageInstances.length = 0;
+
+      component.revertImage();
+
+      expect(lastImage()?.src).toBe('https://example.com/clerk-avatar.jpg');
+    });
+  });
+
   // ── isLoading ─────────────────────────────────────────────────────────────
 
   describe('isLoading', () => {

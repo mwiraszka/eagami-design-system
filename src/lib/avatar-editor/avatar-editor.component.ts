@@ -64,6 +64,7 @@ export class AvatarEditorComponent implements OnDestroy {
   readonly shape = input<AvatarEditorShape>('circle');
   readonly canvasSize = input<number>(200);
   readonly currentSrc = input<string | undefined>(undefined);
+  readonly revertSrc = input<string | undefined>(undefined);
   readonly accept = input<string>('image/*');
   readonly maxFileSize = input<number>(5 * 1024 * 1024); // 5 MB
   readonly minZoom = input<number>(1);
@@ -85,7 +86,10 @@ export class AvatarEditorComponent implements OnDestroy {
   readonly isLoading = signal(false);
   readonly zoom = signal(1);
   readonly canRevert = computed(
-    () => this.hasImage() && !!this.currentSrc() && !this.isAtOriginal(),
+    () =>
+      this.hasImage() &&
+      !!(this.revertSrc() || this.currentSrc()) &&
+      !this.isAtOriginal(),
   );
 
   private image: HTMLImageElement | null = null;
@@ -268,7 +272,7 @@ export class AvatarEditorComponent implements OnDestroy {
   }
 
   revertImage(): void {
-    const src = this.currentSrc();
+    const src = this.revertSrc() || this.currentSrc();
     if (!src) return;
     this.isAtOriginal.set(true);
     this.loadFromUrl(src, null, true);
