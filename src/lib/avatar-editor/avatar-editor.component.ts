@@ -64,6 +64,7 @@ export class AvatarEditorComponent implements OnDestroy {
   readonly shape = input<AvatarEditorShape>('circle');
   readonly canvasSize = input<number>(200);
   readonly currentSrc = input<string | undefined>(undefined);
+  readonly loading = input<boolean>(false);
   readonly accept = input<string>('image/*');
   readonly maxFileSize = input<number>(5 * 1024 * 1024); // 5 MB
   readonly minZoom = input<number>(1);
@@ -84,9 +85,7 @@ export class AvatarEditorComponent implements OnDestroy {
   readonly isAtOriginal = signal(false);
   readonly isLoading = signal(false);
   readonly zoom = signal(1);
-  readonly canRevert = computed(
-    () => this.hasImage() && !this.isAtOriginal() && !!this.originalImage,
-  );
+  readonly canRevert = computed(() => !this.isAtOriginal() && this.originalCaptured);
 
   private image: HTMLImageElement | null = null;
   private offsetX = 0;
@@ -98,6 +97,7 @@ export class AvatarEditorComponent implements OnDestroy {
   private initialOffsetX = 0;
   private initialOffsetY = 0;
   private _suppressCropStateEmit = false;
+  private originalCaptured = false;
   private originalImage: HTMLImageElement | null = null;
   private originalCropState: { zoom: number; offsetX: number; offsetY: number } | null =
     null;
@@ -116,8 +116,15 @@ export class AvatarEditorComponent implements OnDestroy {
       const src = this.currentSrc();
       if (!src) {
         this.isLoading.set(false);
+        if (!this.originalCaptured) {
+          this.originalCaptured = true;
+          this.originalImage = null;
+          this.originalCropState = null;
+          this.isAtOriginal.set(true);
+        }
         return;
       }
+      this.originalCaptured = false;
       this.originalImage = null;
       this.originalCropState = null;
       this.loadFromUrl(src, untracked(() => this.cropState()) ?? null, true);
@@ -269,28 +276,39 @@ export class AvatarEditorComponent implements OnDestroy {
     this.offsetX = 0;
     this.offsetY = 0;
     this.clearCanvas();
+    this.isAtOriginal.set(this.originalCaptured && !this.originalImage);
     this.removed.emit();
   }
 
   revertImage(): void {
-    if (!this.originalImage) return;
+    if (!this.originalCaptured) return;
 
-    this.image = this.originalImage;
-    this.hasImage.set(true);
+    if (this.originalImage) {
+      this.image = this.originalImage;
+      this.hasImage.set(true);
 
-    const crop = this.originalCropState;
-    if (crop) {
-      this.zoom.set(Math.min(this.maxZoom(), Math.max(this.minZoom(), crop.zoom)));
-      this.offsetX = crop.offsetX;
-      this.offsetY = crop.offsetY;
-      this.clampOffset();
+      const crop = this.originalCropState;
+      if (crop) {
+        this.zoom.set(Math.min(this.maxZoom(), Math.max(this.minZoom(), crop.zoom)));
+        this.offsetX = crop.offsetX;
+        this.offsetY = crop.offsetY;
+        this.clampOffset();
+      } else {
+        this.zoom.set(1);
+        this.centerImage();
+      }
+
+      this.isAtOriginal.set(true);
+      this.scheduleDrawAfterRender();
     } else {
+      this.image = null;
+      this.hasImage.set(false);
       this.zoom.set(1);
-      this.centerImage();
+      this.offsetX = 0;
+      this.offsetY = 0;
+      this.clearCanvas();
+      this.isAtOriginal.set(true);
     }
-
-    this.isAtOriginal.set(true);
-    this.scheduleDrawAfterRender();
   }
 
   exportCrop(): Promise<Blob> {
@@ -361,6 +379,7 @@ export class AvatarEditorComponent implements OnDestroy {
         this.centerImage();
       }
       if (suppressEmit) {
+        this.originalCaptured = true;
         this.originalImage = img;
         this.originalCropState = cropState
           ? { ...cropState }

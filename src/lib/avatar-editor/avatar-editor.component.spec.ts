@@ -471,25 +471,16 @@ describe('AvatarEditorComponent', () => {
       expect(spy).toHaveBeenCalledTimes(1);
     });
 
-    it('sets canRevert to false', () => {
-      component.setZoom(2);
-      expect(component.canRevert()).toBe(true);
-
+    it('enables canRevert when original had an image', () => {
       component.removeImage();
 
-      expect(component.canRevert()).toBe(false);
+      expect(component.canRevert()).toBe(true);
     });
   });
 
   // ── revertImage ───────────────────────────────────────────────────────────
 
   describe('revertImage', () => {
-    it('does nothing when no original image exists', () => {
-      component.revertImage();
-
-      expect(component.hasImage()).toBe(false);
-    });
-
     it('restores the original image without a network request', () => {
       loadImage();
       const imageCountBefore = mockImageInstances.length;
@@ -586,6 +577,43 @@ describe('AvatarEditorComponent', () => {
       expect(component.isAtOriginal()).toBe(true);
       expect(component.zoom()).toBe(1.8);
     });
+
+    it('restores empty state when original had no image', () => {
+      selectFile(makeFile('image/jpeg'));
+      lastMockFileReader!.onload!({ target: { result: 'data:image/jpeg;base64,abc' } });
+      triggerLoad();
+      fixture.detectChanges();
+      expect(component.hasImage()).toBe(true);
+
+      component.revertImage();
+
+      expect(component.hasImage()).toBe(false);
+      expect(component.isAtOriginal()).toBe(true);
+      expect(component.canRevert()).toBe(false);
+    });
+
+    it('disables canRevert after removeImage when original was empty', () => {
+      selectFile(makeFile('image/jpeg'));
+      lastMockFileReader!.onload!({ target: { result: 'data:image/jpeg;base64,abc' } });
+      triggerLoad();
+      fixture.detectChanges();
+      expect(component.canRevert()).toBe(true);
+
+      component.removeImage();
+
+      expect(component.canRevert()).toBe(false);
+    });
+
+    it('restores original image after removeImage when original had image', () => {
+      loadImage();
+      component.removeImage();
+      expect(component.canRevert()).toBe(true);
+
+      component.revertImage();
+
+      expect(component.hasImage()).toBe(true);
+      expect(component.isAtOriginal()).toBe(true);
+    });
   });
 
   // ── isLoading ─────────────────────────────────────────────────────────────
@@ -643,6 +671,39 @@ describe('AvatarEditorComponent', () => {
       component.revertImage();
 
       expect(component.isLoading()).toBe(false);
+    });
+  });
+
+  // ── loading input ─────────────────────────────────────────────────────────
+
+  describe('loading input', () => {
+    it('shows skeleton instead of dropzone when loading is true and no currentSrc', () => {
+      fixture.componentRef.setInput('loading', true);
+      fixture.detectChanges();
+
+      expect(getDropzone()).toBeNull();
+      expect(fixture.nativeElement.querySelector('ea-skeleton')).toBeTruthy();
+    });
+
+    it('shows dropzone when loading is false and no currentSrc', () => {
+      fixture.componentRef.setInput('loading', false);
+      fixture.detectChanges();
+
+      expect(getDropzone()).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('ea-skeleton')).toBeNull();
+    });
+
+    it('disables all controls when loading is true', () => {
+      fixture.componentRef.setInput('loading', true);
+      loadImage();
+      component.setZoom(2);
+      fixture.detectChanges();
+
+      expect(revertBtn().disabled).toBe(true);
+      expect(zoomOutBtn().disabled).toBe(true);
+      expect(zoomInBtn().disabled).toBe(true);
+      expect(getZoomSlider().disabled).toBe(true);
+      expect(removeBtn().disabled).toBe(true);
     });
   });
 
@@ -846,12 +907,12 @@ describe('AvatarEditorComponent', () => {
       expect(revertBtn().disabled).toBe(false);
     });
 
-    it('revert button is disabled after removeImage', () => {
+    it('revert button is enabled after removeImage when original had image', () => {
       loadImage();
       component.removeImage();
       fixture.detectChanges();
 
-      expect(revertBtn().disabled).toBe(true);
+      expect(revertBtn().disabled).toBe(false);
     });
 
     it('revert button is disabled after revertImage is called', () => {
