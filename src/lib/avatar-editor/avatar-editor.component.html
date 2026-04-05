@@ -64,7 +64,7 @@
       class="ea-avatar-editor__icon-btn"
       [eaTooltip]="'Revert to original'"
       aria-label="Revert to original"
-      [disabled]="!canRevert()"
+      [disabled]="!canRevert() || isLoading()"
       (click)="revertImage()">
       <ea-icon-rotate-ccw />
     </button>
@@ -74,7 +74,7 @@
       class="ea-avatar-editor__icon-btn"
       [eaTooltip]="'Zoom out'"
       aria-label="Zoom out"
-      [disabled]="!hasImage() || zoom() <= minZoom()"
+      [disabled]="!hasImage() || isLoading() || zoom() <= minZoom()"
       (click)="setZoom(zoom() - 0.1)">
       <ea-icon-minus />
     </button>
@@ -86,7 +86,7 @@
       [max]="maxZoom()"
       step="0.01"
       [value]="zoom()"
-      [disabled]="!hasImage()"
+      [disabled]="!hasImage() || isLoading()"
       aria-label="Zoom"
       (input)="onZoomInput($event)" />
 
@@ -95,7 +95,7 @@
       class="ea-avatar-editor__icon-btn"
       [eaTooltip]="'Zoom in'"
       aria-label="Zoom in"
-      [disabled]="!hasImage() || zoom() >= maxZoom()"
+      [disabled]="!hasImage() || isLoading() || zoom() >= maxZoom()"
       (click)="setZoom(zoom() + 0.1)">
       <ea-icon-plus />
     </button>
@@ -105,7 +105,7 @@
       class="ea-avatar-editor__icon-btn ea-avatar-editor__icon-btn--danger"
       [eaTooltip]="'Remove image'"
       aria-label="Remove image"
-      [disabled]="!hasImage()"
+      [disabled]="!hasImage() || isLoading()"
       (click)="removeImage()">
       <ea-icon-trash />
     </button>

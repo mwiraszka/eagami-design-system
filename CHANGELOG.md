@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.4] - 2026-04-04
+
+### Added
+
+- Add `loading` input to `AvatarEditorComponent` for showing a skeleton placeholder while avatar data is fetched externally
+
+### Fixed
+
+- Fix `AvatarEditorComponent` revert button being enabled on initial load before any changes are made
+- Restore exact original zoom/pan crop state when reverting, instead of resetting to defaults
+- Preserve the original image in memory so reverting after file uploads restores it instantly without a network request
+- Support reverting to an empty state when the component started with no image
+- Remove unused `revertSrc` input from `AvatarEditorComponent` (revert now always uses the stored original from initial load)
+
 ## [0.7.3] - 2026-04-04
 
 ### Added
@@ -154,6 +168,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Global SCSS design tokens for colors, typography, spacing, elevation, motion, and shape
 - CSS custom property theming support
 
+[0.7.4]: https://github.com/mwiraszka/eagami-design-system/compare/v0.7.3...v0.7.4
 [0.7.3]: https://github.com/mwiraszka/eagami-design-system/compare/v0.7.2...v0.7.3
 [0.7.2]: https://github.com/mwiraszka/eagami-design-system/compare/v0.7.1...v0.7.2
 [0.7.1]: https://github.com/mwiraszka/eagami-design-system/compare/v0.7.0...v0.7.1
