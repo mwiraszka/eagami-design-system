@@ -415,17 +415,14 @@ describe('AvatarEditorComponent', () => {
       expect(spy).toHaveBeenCalled();
     });
 
-    it('does not emit during revertImage load', () => {
+    it('does not emit cropStateChange during revertImage', () => {
       loadImage();
+      component.setZoom(1.5);
 
       const spy = jest.fn();
       component.cropStateChange.subscribe(spy);
 
       component.revertImage();
-      fixture.detectChanges(); // _suppressCropStateEmit = true
-      triggerLoad(); // afterNextRender registered but not yet run
-
-      component.setZoom(1.5); // still suppressed
 
       expect(spy).not.toHaveBeenCalled();
     });
@@ -475,6 +472,7 @@ describe('AvatarEditorComponent', () => {
     });
 
     it('sets canRevert to false', () => {
+      component.setZoom(2);
       expect(component.canRevert()).toBe(true);
 
       component.removeImage();
@@ -486,38 +484,53 @@ describe('AvatarEditorComponent', () => {
   // ── revertImage ───────────────────────────────────────────────────────────
 
   describe('revertImage', () => {
-    it('does nothing when currentSrc is not set', () => {
+    it('does nothing when no original image exists', () => {
       component.revertImage();
 
       expect(component.hasImage()).toBe(false);
     });
 
-    it('reloads the image from currentSrc', () => {
-      fixture.componentRef.setInput('currentSrc', 'https://example.com/photo.jpg');
-      fixture.detectChanges();
+    it('restores the original image without a network request', () => {
+      loadImage();
+      const imageCountBefore = mockImageInstances.length;
+
+      selectFile(makeFile('image/jpeg'));
+      lastMockFileReader!.onload!({ target: { result: 'data:image/jpeg;base64,abc' } });
       triggerLoad();
       fixture.detectChanges();
 
-      mockImageInstances.length = 0; // reset tracker
-
       component.revertImage();
 
-      expect(lastImage()?.src).toBe('https://example.com/photo.jpg');
+      expect(mockImageInstances.length).toBe(imageCountBefore + 1);
+      expect(component.hasImage()).toBe(true);
     });
 
-    it('resets zoom to 1 (no cropState)', () => {
+    it('restores zoom to original value (no cropState)', () => {
       loadImage();
       component.setZoom(2);
 
       component.revertImage();
-      fixture.detectChanges();
-      triggerLoad();
 
       expect(component.zoom()).toBe(1);
     });
 
+    it('restores zoom to original cropState value', () => {
+      fixture.componentRef.setInput('cropState', {
+        zoom: 1.5,
+        offsetX: -10,
+        offsetY: -20,
+      } satisfies AvatarEditorCropState);
+      loadImage();
+      component.setZoom(2.5);
+
+      component.revertImage();
+
+      expect(component.zoom()).toBe(1.5);
+    });
+
     it('sets isAtOriginal to true', () => {
       loadImage();
+      component.setZoom(2);
 
       component.revertImage();
 
@@ -526,61 +539,52 @@ describe('AvatarEditorComponent', () => {
 
     it('re-enables canRevert after zooming post-revert', () => {
       loadImage();
+      component.setZoom(1.5);
       component.revertImage();
 
       component.setZoom(2);
 
       expect(component.canRevert()).toBe(true);
     });
-  });
 
-  // ── revertSrc ─────────────────────────────────────────────────────────────
-
-  describe('revertSrc', () => {
-    it('revertImage loads from revertSrc instead of currentSrc when provided', () => {
-      fixture.componentRef.setInput('revertSrc', 'https://example.com/clerk-avatar.jpg');
-      loadImage('https://example.com/full-size.jpg');
-      mockImageInstances.length = 0;
-
-      component.revertImage();
-
-      expect(lastImage()?.src).toBe('https://example.com/clerk-avatar.jpg');
-    });
-
-    it('revertImage falls back to currentSrc when revertSrc is not set', () => {
-      loadImage('https://example.com/full-size.jpg');
-      mockImageInstances.length = 0;
-
-      component.revertImage();
-
-      expect(lastImage()?.src).toBe('https://example.com/full-size.jpg');
-    });
-
-    it('canRevert is true when revertSrc is set even without currentSrc', () => {
-      fixture.componentRef.setInput('revertSrc', 'https://example.com/clerk-avatar.jpg');
-      fixture.detectChanges();
+    it('restores original image after uploading a new file', () => {
+      loadImage();
 
       selectFile(makeFile('image/jpeg'));
       lastMockFileReader!.onload!({ target: { result: 'data:image/jpeg;base64,abc' } });
       triggerLoad();
       fixture.detectChanges();
 
-      expect(component.canRevert()).toBe(true);
+      component.revertImage();
+
+      expect(component.isAtOriginal()).toBe(true);
+      expect(component.hasImage()).toBe(true);
     });
 
-    it('revertImage uses revertSrc when currentSrc is undefined', () => {
-      fixture.componentRef.setInput('revertSrc', 'https://example.com/clerk-avatar.jpg');
+    it('restores original image after uploading multiple files', () => {
+      fixture.componentRef.setInput('cropState', {
+        zoom: 1.8,
+        offsetX: -5,
+        offsetY: -10,
+      } satisfies AvatarEditorCropState);
+      loadImage();
+
+      selectFile(makeFile('image/jpeg'));
+      lastMockFileReader!.onload!({ target: { result: 'data:image/jpeg;base64,first' } });
+      triggerLoad();
       fixture.detectChanges();
 
       selectFile(makeFile('image/jpeg'));
-      lastMockFileReader!.onload!({ target: { result: 'data:image/jpeg;base64,abc' } });
+      lastMockFileReader!.onload!({
+        target: { result: 'data:image/jpeg;base64,second' },
+      });
       triggerLoad();
       fixture.detectChanges();
-      mockImageInstances.length = 0;
 
       component.revertImage();
 
-      expect(lastImage()?.src).toBe('https://example.com/clerk-avatar.jpg');
+      expect(component.isAtOriginal()).toBe(true);
+      expect(component.zoom()).toBe(1.8);
     });
   });
 
@@ -632,21 +636,11 @@ describe('AvatarEditorComponent', () => {
       expect(component.isLoading()).toBe(false);
     });
 
-    it('is true during revertImage load', () => {
+    it('is false during revertImage (restores synchronously)', () => {
       loadImage();
+      component.setZoom(2);
 
       component.revertImage();
-
-      expect(component.isLoading()).toBe(true);
-    });
-
-    it('is false after revertImage load completes', () => {
-      loadImage();
-
-      component.revertImage();
-      fixture.detectChanges();
-      triggerLoad();
-      fixture.detectChanges();
 
       expect(component.isLoading()).toBe(false);
     });
@@ -837,8 +831,16 @@ describe('AvatarEditorComponent', () => {
       expect(revertBtn().disabled).toBe(true);
     });
 
-    it('revert button is enabled after image loads with currentSrc', () => {
+    it('revert button is disabled on initial load', () => {
       loadImage();
+      fixture.detectChanges();
+
+      expect(revertBtn().disabled).toBe(true);
+    });
+
+    it('revert button is enabled after zooming', () => {
+      loadImage();
+      component.setZoom(2);
       fixture.detectChanges();
 
       expect(revertBtn().disabled).toBe(false);
@@ -854,6 +856,7 @@ describe('AvatarEditorComponent', () => {
 
     it('revert button is disabled after revertImage is called', () => {
       loadImage();
+      component.setZoom(2);
 
       component.revertImage();
       fixture.detectChanges();
@@ -863,6 +866,7 @@ describe('AvatarEditorComponent', () => {
 
     it('revert button is re-enabled after zooming post-revert', () => {
       loadImage();
+      component.setZoom(1.5);
       component.revertImage();
 
       component.setZoom(2);

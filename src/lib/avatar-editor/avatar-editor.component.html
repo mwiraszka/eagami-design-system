@@ -64,7 +64,7 @@
       class="ea-avatar-editor__icon-btn"
       [eaTooltip]="'Revert to original'"
       aria-label="Revert to original"
-      [disabled]="!canRevert()"
+      [disabled]="!canRevert() || isLoading()"
       (click)="revertImage()">
       <ea-icon-rotate-ccw />
     </button>

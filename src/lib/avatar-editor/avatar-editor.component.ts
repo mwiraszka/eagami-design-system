@@ -64,7 +64,6 @@ export class AvatarEditorComponent implements OnDestroy {
   readonly shape = input<AvatarEditorShape>('circle');
   readonly canvasSize = input<number>(200);
   readonly currentSrc = input<string | undefined>(undefined);
-  readonly revertSrc = input<string | undefined>(undefined);
   readonly accept = input<string>('image/*');
   readonly maxFileSize = input<number>(5 * 1024 * 1024); // 5 MB
   readonly minZoom = input<number>(1);
@@ -86,10 +85,7 @@ export class AvatarEditorComponent implements OnDestroy {
   readonly isLoading = signal(false);
   readonly zoom = signal(1);
   readonly canRevert = computed(
-    () =>
-      this.hasImage() &&
-      !!(this.revertSrc() || this.currentSrc()) &&
-      !this.isAtOriginal(),
+    () => this.hasImage() && !this.isAtOriginal() && !!this.originalImage,
   );
 
   private image: HTMLImageElement | null = null;
@@ -102,6 +98,9 @@ export class AvatarEditorComponent implements OnDestroy {
   private initialOffsetX = 0;
   private initialOffsetY = 0;
   private _suppressCropStateEmit = false;
+  private originalImage: HTMLImageElement | null = null;
+  private originalCropState: { zoom: number; offsetX: number; offsetY: number } | null =
+    null;
 
   readonly hostClasses = computed(() => ({
     [`ea-avatar-editor--${this.shape()}`]: true,
@@ -119,6 +118,8 @@ export class AvatarEditorComponent implements OnDestroy {
         this.isLoading.set(false);
         return;
       }
+      this.originalImage = null;
+      this.originalCropState = null;
       this.loadFromUrl(src, untracked(() => this.cropState()) ?? null, true);
     });
   }
@@ -272,10 +273,24 @@ export class AvatarEditorComponent implements OnDestroy {
   }
 
   revertImage(): void {
-    const src = this.revertSrc() || this.currentSrc();
-    if (!src) return;
+    if (!this.originalImage) return;
+
+    this.image = this.originalImage;
+    this.hasImage.set(true);
+
+    const crop = this.originalCropState;
+    if (crop) {
+      this.zoom.set(Math.min(this.maxZoom(), Math.max(this.minZoom(), crop.zoom)));
+      this.offsetX = crop.offsetX;
+      this.offsetY = crop.offsetY;
+      this.clampOffset();
+    } else {
+      this.zoom.set(1);
+      this.centerImage();
+    }
+
     this.isAtOriginal.set(true);
-    this.loadFromUrl(src, null, true);
+    this.scheduleDrawAfterRender();
   }
 
   exportCrop(): Promise<Blob> {
@@ -344,6 +359,13 @@ export class AvatarEditorComponent implements OnDestroy {
       } else {
         this.zoom.set(1);
         this.centerImage();
+      }
+      if (suppressEmit) {
+        this.originalImage = img;
+        this.originalCropState = cropState
+          ? { ...cropState }
+          : { zoom: this.zoom(), offsetX: this.offsetX, offsetY: this.offsetY };
+        this.isAtOriginal.set(true);
       }
       this.scheduleDrawAfterRender();
     };
