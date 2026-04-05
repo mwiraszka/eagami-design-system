@@ -389,17 +389,19 @@
     shape="square"
     [canvasSize]="180" />
 
-  <h2>Avatar Editor — circle with existing image</h2>
+  <h2>Avatar Editor — circle with existing image + crop state</h2>
   <ea-avatar-editor
     shape="circle"
     [canvasSize]="180"
-    currentSrc="assets/sample-avatar.jpg" />
+    currentSrc="assets/sample-avatar.jpg"
+    [cropState]="{ zoom: 1.4, offsetX: -30, offsetY: -20 }" />
 
-  <h2>Avatar Editor — square with existing image</h2>
+  <h2>Avatar Editor — square with existing image + crop state</h2>
   <ea-avatar-editor
     shape="square"
     [canvasSize]="180"
-    currentSrc="assets/sample-avatar.jpg" />
+    currentSrc="assets/sample-avatar.jpg"
+    [cropState]="{ zoom: 1.4, offsetX: -30, offsetY: -20 }" />
 </section>
 
 <!-- ─── Progress Bar ──────────────────────────────────────────────────── -->

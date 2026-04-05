@@ -21,7 +21,9 @@ const meta: Meta<AvatarEditorComponent> = {
     maxZoom: { control: 'number' },
     cropped: { action: 'cropped' },
     removed: { action: 'removed' },
+    fileSelected: { action: 'fileSelected' },
     fileError: { action: 'fileError' },
+    cropStateChange: { action: 'cropStateChange' },
   },
   args: {
     shape: 'circle',
@@ -52,17 +54,32 @@ export const SquareWithExistingImage: Story = {
   args: { shape: 'square', currentSrc: 'assets/sample-avatar.jpg' },
 };
 
+export const WithCropState: Story = {
+  args: {
+    currentSrc: 'assets/sample-avatar.jpg',
+    cropState: { zoom: 1.4, offsetX: -30, offsetY: -20 },
+  },
+};
+
+export const SquareWithCropState: Story = {
+  args: {
+    shape: 'square',
+    currentSrc: 'assets/sample-avatar.jpg',
+    cropState: { zoom: 1.4, offsetX: -30, offsetY: -20 },
+  },
+};
+
 export const BothShapes: Story = {
   render: () => ({
     template: `
       <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
         <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
           <span style="font-size: 0.875rem; color: var(--color-text-secondary);">Circle</span>
-          <ea-avatar-editor shape="circle" [canvasSize]="180"></ea-avatar-editor>
+          <ea-avatar-editor shape="circle" [canvasSize]="180" currentSrc="assets/sample-avatar.jpg"></ea-avatar-editor>
         </div>
         <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
           <span style="font-size: 0.875rem; color: var(--color-text-secondary);">Square</span>
-          <ea-avatar-editor shape="square" [canvasSize]="180"></ea-avatar-editor>
+          <ea-avatar-editor shape="square" [canvasSize]="180" currentSrc="assets/sample-avatar.jpg"></ea-avatar-editor>
         </div>
       </div>
     `,

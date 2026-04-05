@@ -7,11 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.7.4] - 2026-04-04
 
+### Added
+
+- Add `loading` input to `AvatarEditorComponent` for showing a skeleton placeholder while avatar data is fetched externally
+
 ### Fixed
 
 - Fix `AvatarEditorComponent` revert button being enabled on initial load before any changes are made
 - Restore exact original zoom/pan crop state when reverting, instead of resetting to defaults
 - Preserve the original image in memory so reverting after file uploads restores it instantly without a network request
+- Support reverting to an empty state when the component started with no image
 - Remove unused `revertSrc` input from `AvatarEditorComponent` (revert now always uses the stored original from initial load)
 
 ## [0.7.3] - 2026-04-04
