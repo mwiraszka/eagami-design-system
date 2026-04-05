@@ -8,7 +8,7 @@
     [accept]="accept()"
     (change)="onFileSelected($event)" />
 
-  @if (!hasImage() && !isLoading() && !loading()) {
+  @if (!hasImage() && !isLoading()) {
     <button
       type="button"
       class="ea-avatar-editor__dropzone"
@@ -21,13 +21,6 @@
       <ea-icon-upload class="ea-avatar-editor__upload-icon" />
       <span class="ea-avatar-editor__dropzone-text"> Drop image or click to upload </span>
     </button>
-  }
-
-  @if (!hasImage() && !isLoading() && loading()) {
-    <ea-skeleton
-      [variant]="shape() === 'circle' ? 'circle' : 'rect'"
-      [width]="canvasSize() + 'px'"
-      [height]="canvasSize() + 'px'" />
   }
 
   @if (hasImage() || isLoading()) {
@@ -71,7 +64,7 @@
       class="ea-avatar-editor__icon-btn"
       [eaTooltip]="'Revert to original'"
       aria-label="Revert to original"
-      [disabled]="!canRevert() || isLoading() || loading()"
+      [disabled]="!canRevert() || isLoading()"
       (click)="revertImage()">
       <ea-icon-rotate-ccw />
     </button>
@@ -81,7 +74,7 @@
       class="ea-avatar-editor__icon-btn"
       [eaTooltip]="'Zoom out'"
       aria-label="Zoom out"
-      [disabled]="!hasImage() || loading() || zoom() <= minZoom()"
+      [disabled]="!hasImage() || isLoading() || zoom() <= minZoom()"
       (click)="setZoom(zoom() - 0.1)">
       <ea-icon-minus />
     </button>
@@ -93,7 +86,7 @@
       [max]="maxZoom()"
       step="0.01"
       [value]="zoom()"
-      [disabled]="!hasImage() || loading()"
+      [disabled]="!hasImage() || isLoading()"
       aria-label="Zoom"
       (input)="onZoomInput($event)" />
 
@@ -102,7 +95,7 @@
       class="ea-avatar-editor__icon-btn"
       [eaTooltip]="'Zoom in'"
       aria-label="Zoom in"
-      [disabled]="!hasImage() || loading() || zoom() >= maxZoom()"
+      [disabled]="!hasImage() || isLoading() || zoom() >= maxZoom()"
       (click)="setZoom(zoom() + 0.1)">
       <ea-icon-plus />
     </button>
@@ -112,7 +105,7 @@
       class="ea-avatar-editor__icon-btn ea-avatar-editor__icon-btn--danger"
       [eaTooltip]="'Remove image'"
       aria-label="Remove image"
-      [disabled]="!hasImage() || loading()"
+      [disabled]="!hasImage() || isLoading()"
       (click)="removeImage()">
       <ea-icon-trash />
     </button>

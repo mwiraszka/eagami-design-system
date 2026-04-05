@@ -83,7 +83,7 @@ export class AvatarEditorComponent implements OnDestroy {
   readonly hasImage = signal(false);
   readonly isDragOver = signal(false);
   readonly isAtOriginal = signal(false);
-  readonly isLoading = signal(false);
+  readonly isLoading = computed(() => this.isFetching() || this.loading());
   readonly zoom = signal(1);
   readonly canRevert = computed(() => !this.isAtOriginal() && this.originalCaptured);
 
@@ -97,6 +97,7 @@ export class AvatarEditorComponent implements OnDestroy {
   private initialOffsetX = 0;
   private initialOffsetY = 0;
   private _suppressCropStateEmit = false;
+  private readonly isFetching = signal(false);
   private originalCaptured = false;
   private originalImage: HTMLImageElement | null = null;
   private originalCropState: { zoom: number; offsetX: number; offsetY: number } | null =
@@ -115,7 +116,7 @@ export class AvatarEditorComponent implements OnDestroy {
     effect(() => {
       const src = this.currentSrc();
       if (!src) {
-        this.isLoading.set(false);
+        this.isFetching.set(false);
         if (!this.originalCaptured) {
           this.originalCaptured = true;
           this.originalImage = null;
@@ -271,7 +272,7 @@ export class AvatarEditorComponent implements OnDestroy {
   removeImage(): void {
     this.image = null;
     this.hasImage.set(false);
-    this.isLoading.set(false);
+    this.isFetching.set(false);
     this.zoom.set(1);
     this.offsetX = 0;
     this.offsetY = 0;
@@ -358,12 +359,12 @@ export class AvatarEditorComponent implements OnDestroy {
     cropState: AvatarEditorCropState | null = null,
     suppressEmit = false,
   ): void {
-    this.isLoading.set(true);
+    this.isFetching.set(true);
     this._suppressCropStateEmit = suppressEmit;
     const img = new Image();
     img.crossOrigin = 'anonymous';
     img.onerror = () => {
-      this.isLoading.set(false);
+      this.isFetching.set(false);
       this._suppressCropStateEmit = false;
     };
     img.onload = () => {
@@ -424,7 +425,7 @@ export class AvatarEditorComponent implements OnDestroy {
     afterNextRender(
       () => {
         this.draw();
-        this.isLoading.set(false);
+        this.isFetching.set(false);
         this._suppressCropStateEmit = false;
         const canvas = this.canvasEl()?.nativeElement;
         canvas?.removeEventListener('wheel', this.boundWheel);
