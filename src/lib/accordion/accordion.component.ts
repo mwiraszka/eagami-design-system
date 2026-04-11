@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core
 
 @Component({
   selector: 'ea-accordion',
-  template: `<div class="ea-accordion"><ng-content /></div>`,
+  template: ` <div class="ea-accordion"><ng-content /></div> `,
   styleUrl: './accordion.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
