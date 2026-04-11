@@ -616,6 +616,67 @@ describe('AvatarEditorComponent', () => {
     });
   });
 
+  // ── captureOriginal ────────────────────────────────────────────────────
+
+  describe('captureOriginal', () => {
+    it('snapshots current state so revert returns to it', () => {
+      loadImage();
+      component.setZoom(2);
+
+      component.captureOriginal();
+      component.setZoom(1.5);
+
+      component.revertImage();
+
+      expect(component.zoom()).toBe(2);
+      expect(component.isAtOriginal()).toBe(true);
+    });
+
+    it('sets isAtOriginal to true immediately', () => {
+      loadImage();
+      component.setZoom(2);
+      expect(component.isAtOriginal()).toBe(false);
+
+      component.captureOriginal();
+
+      expect(component.isAtOriginal()).toBe(true);
+    });
+
+    it('disables canRevert right after capture', () => {
+      loadImage();
+      component.setZoom(2);
+      expect(component.canRevert()).toBe(true);
+
+      component.captureOriginal();
+
+      expect(component.canRevert()).toBe(false);
+    });
+
+    it('re-enables canRevert after zooming post-capture', () => {
+      loadImage();
+      component.captureOriginal();
+
+      component.setZoom(1.5);
+
+      expect(component.canRevert()).toBe(true);
+    });
+
+    it('snapshots empty state when no image is loaded', () => {
+      component.captureOriginal();
+
+      selectFile(makeFile('image/jpeg'));
+      lastMockFileReader!.onload!({ target: { result: 'data:image/jpeg;base64,abc' } });
+      triggerLoad();
+      fixture.detectChanges();
+      expect(component.hasImage()).toBe(true);
+
+      component.revertImage();
+
+      expect(component.hasImage()).toBe(false);
+      expect(component.isAtOriginal()).toBe(true);
+    });
+  });
+
   // ── isLoading ─────────────────────────────────────────────────────────────
 
   describe('isLoading', () => {
