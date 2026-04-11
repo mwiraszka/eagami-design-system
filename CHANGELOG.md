@@ -17,10 +17,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add 5 brand logo icon components with official brand colors: `apple`, `facebook`, `github`, `microsoft`, `x-twitter`
 - Add Storybook stories for Avatar, Badge, Divider, Spinner, Switch, Toast, and Tooltip components
 
-### Fixed
-
-- Confine scrollbar to data rows in sticky header data tables instead of spanning the full table height
-
 ## [0.7.4] - 2026-04-04
 
 ### Added
