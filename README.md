@@ -81,9 +81,85 @@ No modules to register, no providers to configure. Every component works the sam
 
 ## Components
 
-### Button
+<details>
+<summary><strong>Accordion</strong> — expandable content sections</summary>
 
-Variants: `primary` | `secondary` | `ghost` | `danger`. Sizes: `sm` | `md` | `lg`. Supports `loading`, `disabled`, and `fullWidth` states.
+Supports single or `multi` expand mode. Built-in chevron animation and disabled state.
+
+```html
+<ea-accordion>
+  <ea-accordion-item label="Section 1">Content for section 1</ea-accordion-item>
+  <ea-accordion-item label="Section 2">Content for section 2</ea-accordion-item>
+</ea-accordion>
+```
+
+<img src="docs/images/accordion.png" alt="Accordion component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Alert</strong> — semantic alert banners with optional dismiss</summary>
+
+Variants: `default` | `success` | `warning` | `error` | `info`. Two-way `visible` binding.
+
+```html
+<ea-alert variant="success">Changes saved successfully.</ea-alert>
+<ea-alert variant="error" [dismissible]="true">Something went wrong.</ea-alert>
+```
+
+<img src="docs/images/alert.png" alt="Alert component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Avatar</strong> — image with initials or icon fallback</summary>
+
+Sizes: `xs` | `sm` | `md` | `lg` | `xl`. Shapes: `circle` | `square`.
+
+```html
+<ea-avatar src="/photo.jpg" alt="User" size="lg" />
+<ea-avatar initials="MW" shape="square" />
+<ea-avatar />  <!-- shows fallback user icon -->
+```
+
+<img src="docs/images/avatar.png" alt="Avatar component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Avatar Editor</strong> — canvas-based image editor with pan, zoom, and crop</summary>
+
+Drag-and-drop upload, zoom via slider or scroll wheel. Outputs a `Blob` and data URL.
+
+```html
+<ea-avatar-editor
+  shape="circle"
+  [canvasSize]="200"
+  (cropped)="onCropped($event)" />
+```
+
+<img src="docs/images/avatar-editor.png" alt="Avatar editor component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Badge</strong> — semantic status indicators</summary>
+
+Variants: `default` | `success` | `warning` | `error` | `info`. Sizes: `sm` | `md` | `lg`.
+
+```html
+<ea-badge variant="success">Active</ea-badge>
+<ea-badge variant="error">Failed</ea-badge>
+```
+
+<img src="docs/images/badge.png" alt="Badge component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Button</strong> — primary, secondary, ghost, danger variants with loading state</summary>
+
+Sizes: `sm` | `md` | `lg`. Supports `loading`, `disabled`, and `fullWidth` states.
 
 ```html
 <ea-button variant="primary" size="md" [loading]="isSaving" (clicked)="save()">
@@ -93,101 +169,12 @@ Variants: `primary` | `secondary` | `ghost` | `danger`. Sizes: `sm` | `md` | `lg
 
 <img src="docs/images/button.png" alt="Button component" width="560" />
 
----
+</details>
 
-### Input
+<details>
+<summary><strong>Card</strong> — content container with elevated, outlined, and filled variants</summary>
 
-Full `ControlValueAccessor` support. Types: `text` | `email` | `password` | `number` | `search` | `tel` | `url`. Built-in password visibility toggle.
-
-```html
-<ea-input
-  label="Email"
-  type="email"
-  placeholder="you@example.com"
-  hint="We'll never share your email"
-  [(value)]="email" />
-```
-
-<img src="docs/images/input.png" alt="Input component" width="560" />
-
----
-
-### Textarea
-
-Mirrors the Input API with `ControlValueAccessor`. Configurable `rows`, `resize` (`none` | `vertical` | `horizontal` | `both`), and `maxlength`.
-
-```html
-<ea-textarea
-  label="Message"
-  placeholder="Enter your message…"
-  hint="Maximum 500 characters"
-  [rows]="4"
-  [(value)]="message" />
-```
-
-<img src="docs/images/textarea.png" alt="Textarea component" width="560" />
-
----
-
-### Checkbox
-
-`ControlValueAccessor` with `indeterminate` state support. Sizes: `sm` | `md` | `lg`.
-
-```html
-<ea-checkbox label="Accept terms and conditions" [(checked)]="accepted" />
-```
-
-<img src="docs/images/checkbox.png" alt="Checkbox component" width="560" />
-
----
-
-### Switch
-
-Toggle switch with `ControlValueAccessor`. Sizes: `sm` | `md` | `lg`.
-
-```html
-<ea-switch label="Enable notifications" [(checked)]="notificationsOn" />
-```
-
-<img src="docs/images/switch.png" alt="Switch component" width="560" />
-
----
-
-### Radio Group
-
-Composite pattern with `ControlValueAccessor`. Supports `vertical` and `horizontal` orientation.
-
-```html
-<ea-radio-group [(value)]="plan">
-  <ea-radio value="free" label="Free" />
-  <ea-radio value="pro" label="Pro" />
-  <ea-radio value="enterprise" label="Enterprise" />
-</ea-radio-group>
-```
-
-<img src="docs/images/radio.png" alt="Radio group component" width="560" />
-
----
-
-### Dropdown
-
-Select dropdown with `ControlValueAccessor` and keyboard navigation (Arrow keys, Enter/Space, Escape).
-
-```html
-<ea-dropdown
-  label="Country"
-  placeholder="Select a country…"
-  [options]="countries"
-  [(value)]="selectedCountry" />
-```
-
-<img src="docs/images/dropdown.png" alt="Dropdown component" width="560" />
-
----
-
-### Card
-
-Content container with variants: `elevated` | `outlined` | `filled`. Padding: `none` | `sm` | `md` | `lg` | `xl`. Customizable shadow via `--ea-card-shadow`.
+Padding: `none` | `sm` | `md` | `lg` | `xl`. Customizable shadow via `--ea-card-shadow`.
 
 ```html
 <ea-card variant="elevated">
@@ -202,40 +189,38 @@ Content container with variants: `elevated` | `outlined` | `filled`. Padding: `n
 
 <img src="docs/images/card.png" alt="Card component" width="560" />
 
----
+</details>
 
-### Avatar
+<details>
+<summary><strong>Checkbox</strong> — with indeterminate state and ControlValueAccessor</summary>
 
-Image with initials or icon fallback. Sizes: `xs` | `sm` | `md` | `lg` | `xl`. Shapes: `circle` | `square`.
-
-```html
-<ea-avatar src="/photo.jpg" alt="User" size="lg" />
-<ea-avatar initials="MW" shape="square" />
-<ea-avatar />  <!-- shows fallback user icon -->
-```
-
-<img src="docs/images/avatar.png" alt="Avatar component" width="560" />
-
----
-
-### Avatar Editor
-
-Canvas-based image editor with drag-and-drop upload, pan, zoom (slider + scroll wheel), and crop export. Outputs a `Blob` and data URL for use with the Avatar component.
+Sizes: `sm` | `md` | `lg`.
 
 ```html
-<ea-avatar-editor
-  shape="circle"
-  [canvasSize]="200"
-  (cropped)="onCropped($event)" />
+<ea-checkbox label="Accept terms and conditions" [(checked)]="accepted" />
 ```
 
-<img src="docs/images/avatar-editor.png" alt="Avatar editor component" width="560" />
+<img src="docs/images/checkbox.png" alt="Checkbox component" width="560" />
 
----
+</details>
 
-### Data Table
+<details>
+<summary><strong>Code Input</strong> — verification code entry with auto-advance and paste support</summary>
 
-Full-featured data table with sortable columns, sticky headers, striped/bordered/hoverable rows, and custom cell templates. Density: `compact` | `comfortable` | `spacious`. Supports two-way `sort` binding.
+Configurable `length` (default 6). Full `ControlValueAccessor` support.
+
+```html
+<ea-code-input [(value)]="code" [length]="6" (completed)="verify()" />
+```
+
+<img src="docs/images/code-input.png" alt="Code input component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Data Table</strong> — sortable columns, sticky headers, density modes</summary>
+
+Striped, bordered, and hoverable rows. Custom cell templates via `ng-template`. Density: `compact` | `comfortable` | `spacious`. Two-way `sort` binding.
 
 ```html
 <ea-data-table
@@ -249,64 +234,12 @@ Full-featured data table with sortable columns, sticky headers, striped/bordered
 
 <img src="docs/images/data-table.png" alt="Data table component" width="560" />
 
----
+</details>
 
-### Paginator
+<details>
+<summary><strong>Dialog</strong> — native dialog element with focus trapping</summary>
 
-Page navigation with configurable page sizes. Supports `placement` (`left` | `center` | `right`). Emits `pageChange` events with current page, page size, and total.
-
-```html
-<ea-paginator
-  [total]="100"
-  [pageSize]="10"
-  placement="center"
-  (pageChange)="onPageChange($event)" />
-```
-
----
-
-### Badge
-
-Semantic status indicators. Variants: `default` | `success` | `warning` | `error` | `info`. Sizes: `sm` | `md` | `lg`.
-
-```html
-<ea-badge variant="success">Active</ea-badge>
-<ea-badge variant="error">Failed</ea-badge>
-```
-
-<img src="docs/images/badge.png" alt="Badge component" width="560" />
-
----
-
-### Spinner
-
-SVG loading indicator with `role="status"` for accessibility. Sizes: `sm` | `md` | `lg`.
-
-```html
-<ea-spinner size="md" label="Loading data" />
-```
-
-<img src="docs/images/spinner.png" alt="Spinner component" width="560" />
-
----
-
-### Divider
-
-Visual separator with optional label. Orientation: `horizontal` | `vertical`.
-
-```html
-<ea-divider />
-<ea-divider label="or" />
-<ea-divider orientation="vertical" />
-```
-
-<img src="docs/images/divider.png" alt="Divider component" width="560" />
-
----
-
-### Dialog
-
-Built on the native `<dialog>` element for built-in focus trapping. Sizes: `sm` | `md` | `lg` | `full`. Two-way `open` binding.
+Sizes: `sm` | `md` | `lg` | `full`. Two-way `open` binding.
 
 ```html
 <ea-button (clicked)="dialogOpen.set(true)">Open</ea-button>
@@ -321,21 +254,198 @@ Built on the native `<dialog>` element for built-in focus trapping. Sizes: `sm` 
 </ea-dialog>
 ```
 
----
+</details>
 
-### Tooltip
+<details>
+<summary><strong>Divider</strong> — visual separator with optional label</summary>
 
-Directive that shows a positioned tooltip on hover and focus. Positions: `top` | `bottom` | `left` | `right`.
+Orientation: `horizontal` | `vertical`.
 
 ```html
-<ea-button eaTooltip="Save your changes" tooltipPosition="top">Save</ea-button>
+<ea-divider />
+<ea-divider label="or" />
+<ea-divider orientation="vertical" />
 ```
 
----
+<img src="docs/images/divider.png" alt="Divider component" width="560" />
 
-### Toast
+</details>
 
-Notification system via injectable `ToastService`. Variants: `default` | `success` | `warning` | `error` | `info`. Auto-dismiss with configurable duration. Full-width on mobile, independent widths on desktop.
+<details>
+<summary><strong>Dropdown</strong> — select with ControlValueAccessor and keyboard navigation</summary>
+
+Arrow keys, Enter/Space to select, Escape to close. Sizes: `sm` | `md` | `lg`.
+
+```html
+<ea-dropdown
+  label="Country"
+  placeholder="Select a country…"
+  [options]="countries"
+  [(value)]="selectedCountry" />
+```
+
+<img src="docs/images/dropdown.png" alt="Dropdown component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Input</strong> — text field with ControlValueAccessor and password toggle</summary>
+
+Types: `text` | `email` | `password` | `number` | `search` | `tel` | `url`. Sizes: `sm` | `md` | `lg`.
+
+```html
+<ea-input
+  label="Email"
+  type="email"
+  placeholder="you@example.com"
+  hint="We'll never share your email"
+  [(value)]="email" />
+```
+
+<img src="docs/images/input.png" alt="Input component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Paginator</strong> — page navigation with configurable page sizes</summary>
+
+Placement: `left` | `center` | `right`. Emits `pageChange` events with current page, page size, and total.
+
+```html
+<ea-paginator
+  [total]="100"
+  [pageSize]="10"
+  placement="center"
+  (pageChange)="onPageChange($event)" />
+```
+
+</details>
+
+<details>
+<summary><strong>Progress Bar</strong> — determinate and indeterminate linear indicator</summary>
+
+Variants: `default` | `success` | `warning` | `error` | `info`. Sizes: `sm` | `md` | `lg`. Optional `label` and `showValue` display.
+
+```html
+<ea-progress-bar [value]="72" label="Uploading" [showValue]="true" />
+<ea-progress-bar variant="success" [value]="100" />
+<ea-progress-bar [indeterminate]="true" label="Processing…" />
+```
+
+<img src="docs/images/progress-bar.png" alt="Progress bar component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Radio Group</strong> — composite pattern with ControlValueAccessor</summary>
+
+Supports `vertical` and `horizontal` orientation. Sizes: `sm` | `md` | `lg`.
+
+```html
+<ea-radio-group [(value)]="plan">
+  <ea-radio value="free" label="Free" />
+  <ea-radio value="pro" label="Pro" />
+  <ea-radio value="enterprise" label="Enterprise" />
+</ea-radio-group>
+```
+
+<img src="docs/images/radio.png" alt="Radio group component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Skeleton</strong> — loading placeholder with animated pulse</summary>
+
+Variants: `text` | `circle` | `rect`. Custom `width` and `height`. Respects `prefers-reduced-motion`.
+
+```html
+<ea-skeleton variant="text" width="200px" />
+<ea-skeleton variant="circle" width="48px" height="48px" />
+<ea-skeleton variant="rect" width="100%" height="120px" />
+```
+
+<img src="docs/images/skeleton.png" alt="Skeleton component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Spinner</strong> — SVG loading indicator with accessible role</summary>
+
+Sizes: `sm` | `md` | `lg`.
+
+```html
+<ea-spinner size="md" label="Loading data" />
+```
+
+<img src="docs/images/spinner.png" alt="Spinner component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Switch</strong> — toggle with ControlValueAccessor</summary>
+
+Sizes: `sm` | `md` | `lg`.
+
+```html
+<ea-switch label="Enable notifications" [(checked)]="notificationsOn" />
+```
+
+<img src="docs/images/switch.png" alt="Switch component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Tabs</strong> — tab navigation with keyboard support</summary>
+
+Variants: `underline` | `filled`. Sizes: `sm` | `md` | `lg`.
+
+```html
+<ea-tabs activeTab="account" variant="underline">
+  <ea-tab value="account" label="Account">Account content</ea-tab>
+  <ea-tab value="security" label="Security">Security content</ea-tab>
+</ea-tabs>
+```
+
+<img src="docs/images/tabs.png" alt="Tabs component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Tag</strong> — inline label with optional remove button</summary>
+
+Variants: `default` | `primary` | `success` | `warning` | `error` | `info`. Sizes: `sm` | `md` | `lg`.
+
+```html
+<ea-tag variant="primary">TypeScript</ea-tag>
+<ea-tag variant="success" [removable]="true" (removed)="onRemove()">Active</ea-tag>
+```
+
+<img src="docs/images/tag.png" alt="Tag component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Textarea</strong> — multiline text with ControlValueAccessor</summary>
+
+Mirrors the Input API. Configurable `rows`, `resize` (`none` | `vertical` | `horizontal` | `both`), and `maxlength`.
+
+```html
+<ea-textarea
+  label="Message"
+  placeholder="Enter your message…"
+  hint="Maximum 500 characters"
+  [rows]="4"
+  [(value)]="message" />
+```
+
+<img src="docs/images/textarea.png" alt="Textarea component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Toast</strong> — notification system via injectable ToastService</summary>
+
+Variants: `default` | `success` | `warning` | `error` | `info`. Auto-dismiss with configurable duration. Full-width on mobile, independent widths on desktop.
 
 ```typescript
 import { ToastService } from '@eagami/ui';
@@ -361,105 +471,23 @@ Add the toast outlet once in your root template:
 
 <img src="docs/images/toast.png" alt="Toast component" width="560" />
 
----
+</details>
 
-### Code Input
+<details>
+<summary><strong>Tooltip</strong> — positioned tooltip on hover and focus</summary>
 
-Verification code input with auto-advance, paste support, and arrow key navigation. Configurable `length` (default 6). Full `ControlValueAccessor` support.
-
-```html
-<ea-code-input [(value)]="code" [length]="6" (completed)="verify()" />
-```
-
-<img src="docs/images/code-input.png" alt="Code input component" width="560" />
-
----
-
-### Tabs
-
-Tab navigation with keyboard support (Arrow keys, Home/End). Variants: `underline` | `filled`. Sizes: `sm` | `md` | `lg`.
+Positions: `top` | `bottom` | `left` | `right`.
 
 ```html
-<ea-tabs activeTab="account" variant="underline">
-  <ea-tab value="account" label="Account">Account content</ea-tab>
-  <ea-tab value="security" label="Security">Security content</ea-tab>
-</ea-tabs>
+<ea-button eaTooltip="Save your changes" tooltipPosition="top">Save</ea-button>
 ```
 
-<img src="docs/images/tabs.png" alt="Tabs component" width="560" />
-
----
-
-### Alert
-
-Semantic alert banners. Variants: `default` | `success` | `warning` | `error` | `info`. Optional `dismissible` close button with two-way `visible` binding.
-
-```html
-<ea-alert variant="success">Changes saved successfully.</ea-alert>
-<ea-alert variant="error" [dismissible]="true">Something went wrong.</ea-alert>
-```
-
-<img src="docs/images/alert.png" alt="Alert component" width="560" />
-
----
-
-### Skeleton
-
-Loading placeholder with animated pulse. Variants: `text` | `circle` | `rect`. Custom `width` and `height`. Respects `prefers-reduced-motion`.
-
-```html
-<ea-skeleton variant="text" width="200px" />
-<ea-skeleton variant="circle" width="48px" height="48px" />
-<ea-skeleton variant="rect" width="100%" height="120px" />
-```
-
-<img src="docs/images/skeleton.png" alt="Skeleton component" width="560" />
-
----
-
-### Accordion
-
-Expandable content sections. Supports single or `multi` expand mode. Built-in chevron animation and disabled state.
-
-```html
-<ea-accordion>
-  <ea-accordion-item label="Section 1">Content for section 1</ea-accordion-item>
-  <ea-accordion-item label="Section 2">Content for section 2</ea-accordion-item>
-</ea-accordion>
-```
-
-<img src="docs/images/accordion.png" alt="Accordion component" width="560" />
-
-### Progress Bar
-
-Linear progress indicator with determinate and indeterminate modes. Variants: `default` | `success` | `warning` | `error` | `info`. Sizes: `sm` | `md` | `lg`. Optional `label` and `showValue` display.
-
-```html
-<ea-progress-bar [value]="72" label="Uploading" [showValue]="true" />
-<ea-progress-bar variant="success" [value]="100" />
-<ea-progress-bar [indeterminate]="true" label="Processing…" />
-```
-
-<img src="docs/images/progress-bar.png" alt="Progress bar component" width="560" />
-
----
-
-### Tag
-
-Inline label with optional remove button. Variants: `default` | `primary` | `success` | `warning` | `error` | `info`. Sizes: `sm` | `md` | `lg`.
-
-```html
-<ea-tag variant="primary">TypeScript</ea-tag>
-<ea-tag variant="success" [removable]="true" (removed)="onRemove()">Active</ea-tag>
-```
-
-<img src="docs/images/tag.png" alt="Tag component" width="560" />
-
----
+</details>
 
 ## Icons
 
-Built-in SVG icon components following the Feather icon style (24x24 viewBox, stroke-based, inherits `currentColor`):
+<details>
+<summary><strong>51 built-in SVG icon components</strong> — Feather-style (24x24, stroke-based, inherits <code>currentColor</code>)</summary>
 
 | Tag | Preview |
 |---|---|
@@ -514,6 +542,8 @@ Built-in SVG icon components following the Feather icon style (24x24 viewBox, st
 | `<ea-icon-x />` | <img src="docs/images/icons/x.png" width="48" height="48" alt="x" /> |
 | `<ea-icon-x-circle />` | <img src="docs/images/icons/x-circle.png" width="48" height="48" alt="x-circle" /> |
 | `<ea-icon-x-twitter />` | <img src="docs/images/icons/x-twitter.png" width="48" height="48" alt="x-twitter" /> |
+
+</details>
 
 ## Theming
 
