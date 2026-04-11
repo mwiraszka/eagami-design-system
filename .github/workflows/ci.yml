@@ -18,6 +18,16 @@ jobs:
           node-version: 22
           cache: pnpm
 
+      - name: Check version matches branch
+        if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'v')
+        run: |
+          BRANCH_VERSION="${GITHUB_HEAD_REF#v}"
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          if [ "$BRANCH_VERSION" != "$PKG_VERSION" ]; then
+            echo "::error::Version mismatch: branch is v$BRANCH_VERSION but package.json is $PKG_VERSION"
+            exit 1
+          fi
+
       - run: pnpm install --frozen-lockfile
 
       - run: pnpm lint

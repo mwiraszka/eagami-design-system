@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.1] - 2026-04-11
+
+### Fixed
+
+- Ensure package.json version matches branch version before merge to prevent failed npm publishes
+
 ## [0.8.0] - 2026-04-11
 
 ### Added
@@ -16,10 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add 25 utility icon components: `alert-triangle`, `arrow-left`, `arrow-right`, `bell`, `calendar`, `check-circle`, `chevron-up`, `clock`, `copy`, `download`, `external-link`, `file`, `filter`, `heart`, `image`, `link`, `log-out`, `mail`, `menu`, `more-horizontal`, `pencil`, `search`, `settings`, `star`, `x-circle`
 - Add 5 brand logo icon components with official brand colors: `apple`, `facebook`, `github`, `microsoft`, `x-twitter`
 - Add Storybook stories for Avatar, Badge, Divider, Spinner, Switch, Toast, and Tooltip components
-
-### Fixed
-
-- Confine scrollbar to data rows in sticky header data tables instead of spanning the full table height
 
 ## [0.7.4] - 2026-04-04
 
@@ -184,6 +186,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Global SCSS design tokens for colors, typography, spacing, elevation, motion, and shape
 - CSS custom property theming support
 
+[0.8.1]: https://github.com/mwiraszka/eagami-design-system/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/mwiraszka/eagami-design-system/compare/v0.7.4...v0.8.0
 [0.7.4]: https://github.com/mwiraszka/eagami-design-system/compare/v0.7.3...v0.7.4
 [0.7.3]: https://github.com/mwiraszka/eagami-design-system/compare/v0.7.2...v0.7.3
