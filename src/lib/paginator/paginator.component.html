@@ -1,5 +1,7 @@
 <div
   class="ea-paginator"
+  [class.ea-paginator--left]="placement() === 'left'"
+  [class.ea-paginator--center]="placement() === 'center'"
   [class.ea-paginator--disabled]="disabled()"
   role="navigation"
   aria-label="Pagination">
@@ -33,35 +35,39 @@
   }
 
   <div class="ea-paginator__controls">
-    <button
-      class="ea-paginator__btn"
+    <ea-button
+      variant="ghost"
+      size="sm"
       [disabled]="disabled() || !canGoPrev()"
       aria-label="Previous page"
-      (click)="prevPage()">
+      (clicked)="prevPage()">
       <ea-icon-chevron-left />
-    </button>
+    </ea-button>
 
     @for (p of visiblePages(); track $index) {
       @if (p === 'ellipsis') {
         <span class="ea-paginator__ellipsis">…</span>
       } @else {
-        <button
+        <ea-button
           class="ea-paginator__page-btn"
           [class.ea-paginator__page-btn--active]="p === page()"
+          variant="ghost"
+          size="sm"
           [disabled]="disabled()"
-          [attr.aria-current]="p === page() ? 'page' : null"
-          (click)="goToPage(p)">
+          [aria-current]="p === page() ? 'page' : undefined"
+          (clicked)="goToPage(p)">
           {{ p }}
-        </button>
+        </ea-button>
       }
     }
 
-    <button
-      class="ea-paginator__btn"
+    <ea-button
+      variant="ghost"
+      size="sm"
       [disabled]="disabled() || !canGoNext()"
       aria-label="Next page"
-      (click)="nextPage()">
+      (clicked)="nextPage()">
       <ea-icon-chevron-right />
-    </button>
+    </ea-button>
   </div>
 </div>

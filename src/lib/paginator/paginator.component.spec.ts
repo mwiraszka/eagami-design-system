@@ -7,19 +7,27 @@ describe('PaginatorComponent', () => {
   let component: PaginatorComponent;
 
   function getPrevBtn(): HTMLButtonElement {
-    return fixture.nativeElement.querySelector('[aria-label="Previous page"]')!;
+    return fixture.nativeElement.querySelector('button[aria-label="Previous page"]')!;
   }
 
   function getNextBtn(): HTMLButtonElement {
-    return fixture.nativeElement.querySelector('[aria-label="Next page"]')!;
+    return fixture.nativeElement.querySelector('button[aria-label="Next page"]')!;
   }
 
-  function getPageButtons(): HTMLButtonElement[] {
+  function getPageButtonHosts(): HTMLElement[] {
     return Array.from(fixture.nativeElement.querySelectorAll('.ea-paginator__page-btn'));
   }
 
-  function getActivePageButton(): HTMLButtonElement | null {
+  function getPageButtons(): HTMLButtonElement[] {
+    return getPageButtonHosts().map(h => h.querySelector('button')!);
+  }
+
+  function getActivePageHost(): HTMLElement | null {
     return fixture.nativeElement.querySelector('.ea-paginator__page-btn--active');
+  }
+
+  function getActivePageButton(): HTMLButtonElement | null {
+    return getActivePageHost()?.querySelector('button') ?? null;
   }
 
   function getRangeLabel(): string {
@@ -44,6 +52,35 @@ describe('PaginatorComponent', () => {
     component = fixture.componentInstance;
     fixture.componentRef.setInput('totalItems', 100);
     fixture.detectChanges();
+  });
+
+  // ── Placement ────────────────────────────────────────────────────────────
+
+  describe('Placement', () => {
+    it('defaults to right (no modifier class)', () => {
+      const host = fixture.nativeElement.querySelector('.ea-paginator');
+
+      expect(host.classList).not.toContain('ea-paginator--left');
+      expect(host.classList).not.toContain('ea-paginator--center');
+    });
+
+    it('applies left placement class', () => {
+      fixture.componentRef.setInput('placement', 'left');
+      fixture.detectChanges();
+
+      const host = fixture.nativeElement.querySelector('.ea-paginator');
+
+      expect(host.classList).toContain('ea-paginator--left');
+    });
+
+    it('applies center placement class', () => {
+      fixture.componentRef.setInput('placement', 'center');
+      fixture.detectChanges();
+
+      const host = fixture.nativeElement.querySelector('.ea-paginator');
+
+      expect(host.classList).toContain('ea-paginator--center');
+    });
   });
 
   // ── Rendering ────────────────────────────────────────────────────────────

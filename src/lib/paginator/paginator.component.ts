@@ -8,8 +8,11 @@ import {
   output,
 } from '@angular/core';
 
+import { ButtonComponent } from '../button/button.component';
 import { ChevronLeftIconComponent } from '../icons/chevron-left.component';
 import { ChevronRightIconComponent } from '../icons/chevron-right.component';
+
+export type PaginatorPlacement = 'left' | 'center' | 'right';
 
 export interface PaginatorState {
   page: number;
@@ -18,7 +21,7 @@ export interface PaginatorState {
 
 @Component({
   selector: 'ea-paginator',
-  imports: [ChevronLeftIconComponent, ChevronRightIconComponent],
+  imports: [ButtonComponent, ChevronLeftIconComponent, ChevronRightIconComponent],
   templateUrl: './paginator.component.html',
   styleUrl: './paginator.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,6 +32,7 @@ export class PaginatorComponent {
   readonly pageSizeOptions = input<number[]>([10, 25, 50, 100]);
   readonly showPageSizeSelector = input<boolean>(true);
   readonly showRangeLabel = input<boolean>(true);
+  readonly placement = input<PaginatorPlacement>('right');
   readonly disabled = input<boolean>(false);
 
   readonly page = model<number>(1);
