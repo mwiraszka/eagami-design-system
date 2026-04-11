@@ -251,9 +251,9 @@
     <span eaCardFooter>
       <ea-button
         variant="secondary"
-        size="sm"
-        >Cancel</ea-button
-      >
+        size="sm">
+        Cancel
+      </ea-button>
       <ea-button size="sm">Save</ea-button>
     </span>
   </ea-card>
@@ -313,16 +313,16 @@
 
   <ea-dialog [(open)]="dialogOpen">
     <span slot="header">Dialog Title</span>
-    <p
-      >This is the dialog body. It supports any content including forms, text, and other
-      components.</p
-    >
+    <p>
+      This is the dialog body. It supports any content including forms, text, and other
+      components.
+    </p>
     <span slot="footer">
       <ea-button
         variant="secondary"
-        (clicked)="dialogOpen.set(false)"
-        >Cancel</ea-button
-      >
+        (clicked)="dialogOpen.set(false)">
+        Cancel
+      </ea-button>
       <ea-button (clicked)="dialogOpen.set(false)">Confirm</ea-button>
     </span>
   </ea-dialog>
@@ -360,8 +360,7 @@
     <ea-avatar shape="circle"></ea-avatar>
     <ea-avatar
       src="assets/sample-avatar.jpg"
-      alt="User photo">
-    </ea-avatar>
+      alt="User photo"></ea-avatar>
   </div>
 </section>
 
@@ -374,8 +373,7 @@
       [canvasSize]="180"
       (cropped)="onAvatarCropped($event)" />
     @if (croppedAvatarUrl()) {
-      <div
-        style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem">
+      <div class="sandbox-avatar-result">
         <span class="sandbox-preview">Result:</span>
         <ea-avatar
           [src]="croppedAvatarUrl()"
@@ -404,10 +402,57 @@
     [cropState]="{ zoom: 1.4, offsetX: -30, offsetY: -20 }" />
 </section>
 
+<!-- ─── Data Table ────────────────────────────────────────────────────── -->
+<section class="sandbox-section">
+  <h2>Data Table — default</h2>
+  <ea-data-table
+    [columns]="tableColumns"
+    [data]="tableData" />
+
+  <h2>Data Table — striped &amp; bordered</h2>
+  <ea-data-table
+    [columns]="tableColumns"
+    [data]="tableData"
+    [striped]="true"
+    [bordered]="true" />
+
+  <h2>Data Table — compact density</h2>
+  <ea-data-table
+    [columns]="tableColumns"
+    [data]="tableData"
+    density="compact"
+    [striped]="true" />
+
+  <h2>Data Table — sticky header</h2>
+  <ea-data-table
+    class="sandbox-sticky-table"
+    [columns]="tableColumns"
+    [data]="tableData"
+    [stickyHeader]="true" />
+
+  <h2>Data Table — with paginator</h2>
+  <ea-data-table
+    [columns]="tableColumns"
+    [data]="pagedTableData"
+    [striped]="true">
+    <ea-paginator
+      [totalItems]="tableData.length"
+      [(page)]="tablePage"
+      [(pageSize)]="tablePageSize"
+      [pageSizeOptions]="[5, 10, 12]"
+      (changed)="onTablePageChange($event)" />
+  </ea-data-table>
+
+  <h2>Data Table — empty state</h2>
+  <ea-data-table
+    [columns]="tableColumns"
+    [data]="[]" />
+</section>
+
 <!-- ─── Progress Bar ──────────────────────────────────────────────────── -->
 <section class="sandbox-section">
   <h2>Progress Bar — variants</h2>
-  <div style="display: flex; flex-direction: column; gap: 1rem">
+  <div class="sandbox-stack">
     <ea-progress-bar
       variant="default"
       [value]="60"
@@ -436,7 +481,7 @@
   </div>
 
   <h2>Progress Bar — sizes</h2>
-  <div style="display: flex; flex-direction: column; gap: 1rem">
+  <div class="sandbox-stack">
     <ea-progress-bar
       size="sm"
       [value]="60"
@@ -480,49 +525,49 @@
   <div class="sandbox-row">
     <ea-tag
       variant="default"
-      [removable]="true"
-      >Default</ea-tag
-    >
+      [removable]="true">
+      Default
+    </ea-tag>
     <ea-tag
       variant="primary"
-      [removable]="true"
-      >Primary</ea-tag
-    >
+      [removable]="true">
+      Primary
+    </ea-tag>
     <ea-tag
       variant="success"
-      [removable]="true"
-      >Success</ea-tag
-    >
+      [removable]="true">
+      Success
+    </ea-tag>
     <ea-tag
       variant="warning"
-      [removable]="true"
-      >Warning</ea-tag
-    >
+      [removable]="true">
+      Warning
+    </ea-tag>
     <ea-tag
       variant="error"
-      [removable]="true"
-      >Error</ea-tag
-    >
+      [removable]="true">
+      Error
+    </ea-tag>
     <ea-tag
       variant="info"
-      [removable]="true"
-      >Info</ea-tag
-    >
+      [removable]="true">
+      Info
+    </ea-tag>
   </div>
 
   <h2>Tag — disabled</h2>
   <div class="sandbox-row">
     <ea-tag
       [removable]="true"
-      [disabled]="true"
-      >Disabled</ea-tag
-    >
+      [disabled]="true">
+      Disabled
+    </ea-tag>
     <ea-tag
       variant="primary"
       [removable]="true"
-      [disabled]="true"
-      >Disabled primary</ea-tag
-    >
+      [disabled]="true">
+      Disabled primary
+    </ea-tag>
   </div>
 </section>
 
@@ -646,9 +691,7 @@
   <ea-divider label="Section" />
 
   <h2>Divider — vertical</h2>
-  <div
-    class="sandbox-row"
-    style="height: 48px">
+  <div class="sandbox-row sandbox-divider-row">
     <span>Left</span>
     <ea-divider orientation="vertical" />
     <span>Right</span>
@@ -661,31 +704,31 @@
   <div class="sandbox-row">
     <ea-button
       eaTooltip="Top tooltip"
-      tooltipPosition="top"
-      >Top</ea-button
-    >
+      tooltipPosition="top">
+      Top
+    </ea-button>
     <ea-button
       eaTooltip="Bottom tooltip"
-      tooltipPosition="bottom"
-      >Bottom</ea-button
-    >
+      tooltipPosition="bottom">
+      Bottom
+    </ea-button>
     <ea-button
       eaTooltip="Left tooltip"
-      tooltipPosition="left"
-      >Left</ea-button
-    >
+      tooltipPosition="left">
+      Left
+    </ea-button>
     <ea-button
       eaTooltip="Right tooltip"
-      tooltipPosition="right"
-      >Right</ea-button
-    >
+      tooltipPosition="right">
+      Right
+    </ea-button>
   </div>
 </section>
 
 <!-- ─── Alert ─────────────────────────────────────────────────────────── -->
 <section class="sandbox-section">
   <h2>Alert — variants</h2>
-  <div style="display: flex; flex-direction: column; gap: 0.75rem">
+  <div class="sandbox-stack sandbox-stack--md">
     <ea-alert variant="default">This is a default alert</ea-alert>
     <ea-alert variant="success">Your changes have been saved</ea-alert>
     <ea-alert variant="warning">Your trial expires in 3 days</ea-alert>
@@ -696,17 +739,17 @@
   <h2>Alert — dismissible</h2>
   <ea-alert
     variant="info"
-    [dismissible]="true"
-    >This alert can be dismissed</ea-alert
-  >
+    [dismissible]="true">
+    This alert can be dismissed
+  </ea-alert>
 </section>
 
 <!-- ─── Skeleton ──────────────────────────────────────────────────────── -->
 <section class="sandbox-section">
   <h2>Skeleton — variants</h2>
-  <div style="display: flex; align-items: center; gap: 0.75rem">
+  <div class="sandbox-skeleton-row">
     <ea-skeleton variant="circle" />
-    <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem">
+    <div class="sandbox-skeleton-lines">
       <ea-skeleton width="60%" />
       <ea-skeleton
         width="40%"
@@ -726,19 +769,19 @@
   <ea-tabs activeTab="account">
     <ea-tab
       value="account"
-      label="Account"
-      >Account settings content</ea-tab
-    >
+      label="Account">
+      Account settings content
+    </ea-tab>
     <ea-tab
       value="security"
-      label="Security"
-      >Security settings content</ea-tab
-    >
+      label="Security">
+      Security settings content
+    </ea-tab>
     <ea-tab
       value="notifications"
-      label="Notifications"
-      >Notification preferences</ea-tab
-    >
+      label="Notifications">
+      Notification preferences
+    </ea-tab>
   </ea-tabs>
 
   <h2>Tabs — filled</h2>
@@ -747,39 +790,39 @@
     activeTab="overview">
     <ea-tab
       value="overview"
-      label="Overview"
-      >Overview content</ea-tab
-    >
+      label="Overview">
+      Overview content
+    </ea-tab>
     <ea-tab
       value="analytics"
-      label="Analytics"
-      >Analytics content</ea-tab
-    >
+      label="Analytics">
+      Analytics content
+    </ea-tab>
     <ea-tab
       value="reports"
-      label="Reports"
-      >Reports content</ea-tab
-    >
+      label="Reports">
+      Reports content
+    </ea-tab>
   </ea-tabs>
 
   <h2>Tabs — with disabled tab</h2>
   <ea-tabs activeTab="general">
     <ea-tab
       value="general"
-      label="General"
-      >General settings</ea-tab
-    >
+      label="General">
+      General settings
+    </ea-tab>
     <ea-tab
       value="billing"
-      label="Billing"
-      >Billing details</ea-tab
-    >
+      label="Billing">
+      Billing details
+    </ea-tab>
     <ea-tab
       value="admin"
       label="Admin"
-      [disabled]="true"
-      >Admin panel</ea-tab
-    >
+      [disabled]="true">
+      Admin panel
+    </ea-tab>
   </ea-tabs>
 </section>
 
@@ -853,29 +896,29 @@
   <div class="sandbox-row">
     <ea-button
       variant="secondary"
-      (clicked)="showToast('default')"
-      >Default</ea-button
-    >
+      (clicked)="showToast('default')">
+      Default
+    </ea-button>
     <ea-button
       variant="secondary"
-      (clicked)="showToast('success')"
-      >Success</ea-button
-    >
+      (clicked)="showToast('success')">
+      Success
+    </ea-button>
     <ea-button
       variant="secondary"
-      (clicked)="showToast('warning')"
-      >Warning</ea-button
-    >
+      (clicked)="showToast('warning')">
+      Warning
+    </ea-button>
     <ea-button
       variant="secondary"
-      (clicked)="showToast('error')"
-      >Error</ea-button
-    >
+      (clicked)="showToast('error')">
+      Error
+    </ea-button>
     <ea-button
       variant="secondary"
-      (clicked)="showToast('info')"
-      >Info</ea-button
-    >
+      (clicked)="showToast('info')">
+      Info
+    </ea-button>
   </div>
 </section>
 

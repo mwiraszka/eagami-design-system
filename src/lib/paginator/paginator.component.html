@@ -1,0 +1,67 @@
+<div
+  class="ea-paginator"
+  [class.ea-paginator--disabled]="disabled()"
+  role="navigation"
+  aria-label="Pagination">
+  @if (showPageSizeSelector()) {
+    <div class="ea-paginator__page-size">
+      <label
+        class="ea-paginator__label"
+        for="ea-paginator-size">
+        Rows per page:
+      </label>
+      <select
+        class="ea-paginator__select"
+        id="ea-paginator-size"
+        [disabled]="disabled()"
+        (change)="onPageSizeChange($event)">
+        @for (size of pageSizeOptions(); track size) {
+          <option
+            [value]="size"
+            [selected]="size === pageSize()">
+            {{ size }}
+          </option>
+        }
+      </select>
+    </div>
+  }
+
+  @if (showRangeLabel()) {
+    <span class="ea-paginator__range">
+      {{ rangeStart() }}–{{ rangeEnd() }} of {{ totalItems() }}
+    </span>
+  }
+
+  <div class="ea-paginator__controls">
+    <button
+      class="ea-paginator__btn"
+      [disabled]="disabled() || !canGoPrev()"
+      aria-label="Previous page"
+      (click)="prevPage()">
+      <ea-icon-chevron-left />
+    </button>
+
+    @for (p of visiblePages(); track $index) {
+      @if (p === 'ellipsis') {
+        <span class="ea-paginator__ellipsis">…</span>
+      } @else {
+        <button
+          class="ea-paginator__page-btn"
+          [class.ea-paginator__page-btn--active]="p === page()"
+          [disabled]="disabled()"
+          [attr.aria-current]="p === page() ? 'page' : null"
+          (click)="goToPage(p)">
+          {{ p }}
+        </button>
+      }
+    }
+
+    <button
+      class="ea-paginator__btn"
+      [disabled]="disabled() || !canGoNext()"
+      aria-label="Next page"
+      (click)="nextPage()">
+      <ea-icon-chevron-right />
+    </button>
+  </div>
+</div>

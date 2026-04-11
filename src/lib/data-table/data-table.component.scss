@@ -1,0 +1,177 @@
+// =============================================================================
+// DATA TABLE COMPONENT
+// =============================================================================
+
+.ea-data-table {
+  overflow-x: auto;
+  width: 100%;
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-base);
+
+  // ---------------------------------------------------------------------------
+  // Table
+  // ---------------------------------------------------------------------------
+  &__table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-primary);
+    table-layout: auto;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Header
+  // ---------------------------------------------------------------------------
+  &__head {
+    background-color: var(--color-bg-subtle);
+  }
+
+  &__cell--header {
+    position: relative;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--text-label-sm-size);
+    line-height: var(--text-label-sm-lh);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    text-align: left;
+    white-space: nowrap;
+    color: var(--color-text-secondary);
+    border-bottom: var(--border-width-thin) solid var(--color-border-default);
+    user-select: none;
+  }
+
+  &__cell--sortable {
+    cursor: pointer;
+    transition: var(--transition-colors);
+
+    &:hover {
+      color: var(--color-text-primary);
+      background-color: var(--color-bg-muted);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-focus-ring);
+    }
+  }
+
+  &__cell--sorted {
+    color: var(--color-brand-default);
+  }
+
+  &__header-text {
+    display: inline;
+    vertical-align: middle;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Sort icon
+  // ---------------------------------------------------------------------------
+  &__sort-icon {
+    display: inline-flex;
+    vertical-align: middle;
+    width: 1em;
+    height: 1em;
+    margin-left: var(--space-1);
+    opacity: 0.5;
+    transition: var(--transition-opacity);
+  }
+
+  &__cell--sortable:hover &__sort-icon,
+  &__cell--sorted &__sort-icon {
+    opacity: 1;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Body rows
+  // ---------------------------------------------------------------------------
+  &__row {
+    border-bottom: var(--border-width-thin) solid var(--color-border-default);
+    transition: var(--transition-colors);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Body cells
+  // ---------------------------------------------------------------------------
+  &__cell {
+    text-align: left;
+    vertical-align: middle;
+
+    &--align-center {
+      text-align: center;
+    }
+
+    &--align-right {
+      text-align: right;
+    }
+
+    &--empty {
+      text-align: center;
+      color: var(--color-text-tertiary);
+      font-style: italic;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Density variants
+  // ---------------------------------------------------------------------------
+  &--compact &__cell {
+    padding: var(--space-1-5) var(--space-3);
+  }
+
+  &--comfortable &__cell {
+    padding: var(--space-2-5) var(--space-4);
+  }
+
+  &--spacious &__cell {
+    padding: var(--space-4) var(--space-6);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Sticky header
+  // ---------------------------------------------------------------------------
+  &--sticky {
+    overflow-y: auto;
+    max-height: inherit;
+    height: inherit;
+  }
+
+  &--sticky &__head &__cell--header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-index-sticky);
+    background-color: var(--color-bg-subtle);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Striped rows
+  // ---------------------------------------------------------------------------
+  &--striped &__body &__row:nth-child(even) {
+    background-color: var(--color-bg-subtle);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Hoverable rows
+  // ---------------------------------------------------------------------------
+  &--hoverable &__body &__row:not(&__row--empty):hover {
+    background-color: var(--color-bg-muted);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Bordered
+  // ---------------------------------------------------------------------------
+  &--bordered &__cell {
+    border-right: var(--border-width-thin) solid var(--color-border-default);
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
