@@ -72,13 +72,13 @@ export const SquareWithCropState: Story = {
 export const BothShapes: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
-        <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
-          <span style="font-size: 0.875rem; color: var(--color-text-secondary);">Circle</span>
+      <div class="story-shapes-row">
+        <div class="story-shape-item">
+          <span class="story-shape-label">Circle</span>
           <ea-avatar-editor shape="circle" [canvasSize]="180" currentSrc="assets/sample-avatar.jpg"></ea-avatar-editor>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
-          <span style="font-size: 0.875rem; color: var(--color-text-secondary);">Square</span>
+        <div class="story-shape-item">
+          <span class="story-shape-label">Square</span>
           <ea-avatar-editor shape="square" [canvasSize]="180" currentSrc="assets/sample-avatar.jpg"></ea-avatar-editor>
         </div>
       </div>

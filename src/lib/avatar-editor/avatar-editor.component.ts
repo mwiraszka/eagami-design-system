@@ -281,6 +281,15 @@ export class AvatarEditorComponent implements OnDestroy {
     this.removed.emit();
   }
 
+  captureOriginal(): void {
+    this.originalCaptured = true;
+    this.originalImage = this.image;
+    this.originalCropState = this.image
+      ? { zoom: this.zoom(), offsetX: this.offsetX, offsetY: this.offsetY }
+      : null;
+    this.isAtOriginal.set(true);
+  }
+
   revertImage(): void {
     if (!this.originalCaptured) return;
 

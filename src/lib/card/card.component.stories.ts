@@ -9,7 +9,7 @@ const meta: Meta<CardComponent> = {
   render: args => ({
     props: args,
     template: `
-      <ea-card ${argsToTemplate(args)} style="max-width: 360px;">
+      <ea-card ${argsToTemplate(args)} class="story-narrow">
         <span eaCardHeader>Card Title</span>
         This is the card body content. It can contain any text or elements.
         <span eaCardFooter>Footer</span>
@@ -67,7 +67,7 @@ export const BodyOnly: Story = {
   render: args => ({
     props: args,
     template: `
-      <ea-card ${argsToTemplate(args)} style="max-width: 360px;">
+      <ea-card ${argsToTemplate(args)} class="story-narrow">
         Simple card with body content only — no header or footer.
       </ea-card>
     `,
@@ -77,16 +77,16 @@ export const BodyOnly: Story = {
 export const AllVariants: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <ea-card variant="elevated" style="max-width: 240px;">
+      <div class="story-card-grid">
+        <ea-card variant="elevated">
           <span eaCardHeader>Elevated</span>
           Card with shadow elevation.
         </ea-card>
-        <ea-card variant="outlined" style="max-width: 240px;">
+        <ea-card variant="outlined">
           <span eaCardHeader>Outlined</span>
           Card with border outline.
         </ea-card>
-        <ea-card variant="filled" style="max-width: 240px;">
+        <ea-card variant="filled">
           <span eaCardHeader>Filled</span>
           Card with subtle background.
         </ea-card>

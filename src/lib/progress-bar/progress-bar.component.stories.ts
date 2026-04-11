@@ -49,7 +49,7 @@ export const Indeterminate: Story = {
 export const AllVariants: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 480px;">
+      <div class="story-stack story-medium">
         <ea-progress-bar variant="default" [value]="60" label="Default" [showValue]="true" />
         <ea-progress-bar variant="success" [value]="100" label="Success" [showValue]="true" />
         <ea-progress-bar variant="warning" [value]="45" label="Warning" [showValue]="true" />
@@ -63,7 +63,7 @@ export const AllVariants: Story = {
 export const AllSizes: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 480px;">
+      <div class="story-stack story-medium">
         <ea-progress-bar size="sm" [value]="60" label="Small" />
         <ea-progress-bar size="md" [value]="60" label="Medium" />
         <ea-progress-bar size="lg" [value]="60" label="Large" />

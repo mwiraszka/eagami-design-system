@@ -90,7 +90,7 @@ export const Prefilled: Story = {
 export const AllSizes: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <div class="story-stack story-stack--lg">
         <ea-code-input size="sm" label="Small"></ea-code-input>
         <ea-code-input size="md" label="Medium"></ea-code-input>
         <ea-code-input size="lg" label="Large"></ea-code-input>

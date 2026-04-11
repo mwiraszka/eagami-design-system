@@ -23,7 +23,7 @@ export const Default: Story = {
   render: args => ({
     props: args,
     template: `
-      <ea-accordion [multi]="multi" style="max-width: 480px; display: block;">
+      <ea-accordion [multi]="multi" class="story-medium">
         <ea-accordion-item value="what" label="What is @eagami/ui?">
           A lightweight, accessible Angular component library built on CSS custom properties.
         </ea-accordion-item>
@@ -43,7 +43,7 @@ export const MultiExpand: Story = {
   render: args => ({
     props: args,
     template: `
-      <ea-accordion [multi]="multi" style="max-width: 480px; display: block;">
+      <ea-accordion [multi]="multi" class="story-medium">
         <ea-accordion-item value="one" label="Section One">
           Content for section one. Multiple sections can be open at once.
         </ea-accordion-item>
@@ -61,7 +61,7 @@ export const MultiExpand: Story = {
 export const WithDisabledItem: Story = {
   render: () => ({
     template: `
-      <ea-accordion style="max-width: 480px; display: block;">
+      <ea-accordion class="story-medium">
         <ea-accordion-item value="active" label="Active Section">
           This section can be toggled.
         </ea-accordion-item>

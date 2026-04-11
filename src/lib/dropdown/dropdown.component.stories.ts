@@ -16,7 +16,7 @@ const meta: Meta<DropdownComponent> = {
   tags: ['autodocs'],
   render: args => ({
     props: args,
-    template: `<ea-dropdown ${argsToTemplate(args)} style="max-width: 360px; display: block;"></ea-dropdown>`,
+    template: `<ea-dropdown ${argsToTemplate(args)} class="story-narrow"></ea-dropdown>`,
   }),
   argTypes: {
     size: {
@@ -77,7 +77,7 @@ export const WithDisabledOption: Story = {
 export const AllSizes: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 360px;">
+      <div class="story-stack story-narrow">
         <ea-dropdown size="sm" label="Small" [options]="options" placeholder="Select…"></ea-dropdown>
         <ea-dropdown size="md" label="Medium" [options]="options" placeholder="Select…"></ea-dropdown>
         <ea-dropdown size="lg" label="Large" [options]="options" placeholder="Select…"></ea-dropdown>

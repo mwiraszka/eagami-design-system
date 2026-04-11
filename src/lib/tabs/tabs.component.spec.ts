@@ -10,20 +10,20 @@ import { TabsComponent } from './tabs.component';
     <ea-tabs [(activeTab)]="activeTab">
       <ea-tab
         value="one"
-        label="Tab One"
-        >Content one</ea-tab
-      >
+        label="Tab One">
+        Content one
+      </ea-tab>
       <ea-tab
         value="two"
-        label="Tab Two"
-        >Content two</ea-tab
-      >
+        label="Tab Two">
+        Content two
+      </ea-tab>
       <ea-tab
         value="three"
         label="Tab Three"
-        [disabled]="true"
-        >Content three</ea-tab
-      >
+        [disabled]="true">
+        Content three
+      </ea-tab>
     </ea-tabs>
   `,
 })

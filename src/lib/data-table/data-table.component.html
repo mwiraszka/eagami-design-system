@@ -1,0 +1,98 @@
+<div
+  class="ea-data-table"
+  [ngClass]="hostClasses()"
+  role="grid">
+  <table class="ea-data-table__table">
+    <thead class="ea-data-table__head">
+      <tr class="ea-data-table__row ea-data-table__row--header">
+        @for (col of columns(); track col.key) {
+          <th
+            class="ea-data-table__cell ea-data-table__cell--header"
+            [class.ea-data-table__cell--sortable]="col.sortable"
+            [class.ea-data-table__cell--sorted]="
+              sort().column === col.key && sort().direction
+            "
+            [class.ea-data-table__cell--align-center]="col.align === 'center'"
+            [class.ea-data-table__cell--align-right]="col.align === 'right'"
+            [style.width]="col.width ?? null"
+            [attr.aria-sort]="
+              sort().column === col.key && sort().direction === 'asc'
+                ? 'ascending'
+                : sort().column === col.key && sort().direction === 'desc'
+                  ? 'descending'
+                  : col.sortable
+                    ? 'none'
+                    : null
+            "
+            (click)="onHeaderClick(col)"
+            (keydown.enter)="onHeaderClick(col)"
+            (keydown.space)="$event.preventDefault(); onHeaderClick(col)"
+            [attr.tabindex]="col.sortable ? 0 : null"
+            [attr.role]="col.sortable ? 'columnheader button' : 'columnheader'">
+            @if (col.headerTemplate) {
+              <ng-container
+                [ngTemplateOutlet]="col.headerTemplate"
+                [ngTemplateOutletContext]="{ $implicit: col }" />
+            } @else {
+              <span class="ea-data-table__header-text">{{ col.label }}</span>
+            }
+            @if (col.sortable) {
+              <span class="ea-data-table__sort-icon">
+                @if (sort().column === col.key && sort().direction === 'asc') {
+                  <ea-icon-arrow-up />
+                } @else if (sort().column === col.key && sort().direction === 'desc') {
+                  <ea-icon-arrow-down />
+                } @else {
+                  <ea-icon-chevrons-up-down />
+                }
+              </span>
+            }
+          </th>
+        }
+      </tr>
+    </thead>
+    <tbody class="ea-data-table__body">
+      @if (sortedData().length === 0) {
+        <tr class="ea-data-table__row ea-data-table__row--empty">
+          <td
+            class="ea-data-table__cell ea-data-table__cell--empty"
+            [attr.colspan]="columns().length">
+            @if (noDataTemplate()) {
+              <ng-container [ngTemplateOutlet]="noDataTemplate()!" />
+            } @else {
+              {{ noDataText() }}
+            }
+          </td>
+        </tr>
+      } @else {
+        @for (row of sortedData(); track trackByFn($index, row)) {
+          <tr
+            class="ea-data-table__row"
+            role="row">
+            @for (col of columns(); track col.key) {
+              <td
+                class="ea-data-table__cell"
+                [class.ea-data-table__cell--align-center]="col.align === 'center'"
+                [class.ea-data-table__cell--align-right]="col.align === 'right'"
+                role="gridcell">
+                @if (col.cellTemplate) {
+                  <ng-container
+                    [ngTemplateOutlet]="col.cellTemplate"
+                    [ngTemplateOutletContext]="{
+                      $implicit: row,
+                      value: getCellValue(row, col.key),
+                    }" />
+                } @else if (col.format) {
+                  {{ col.format(getCellValue(row, col.key)) }}
+                } @else {
+                  {{ getCellValue(row, col.key) }}
+                }
+              </td>
+            }
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+  <ng-content select="ea-paginator" />
+</div>

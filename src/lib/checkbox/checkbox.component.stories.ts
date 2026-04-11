@@ -59,7 +59,7 @@ export const DisabledChecked: Story = {
 export const AllSizes: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+      <div class="story-stack story-stack--md">
         <ea-checkbox size="sm" label="Small checkbox"></ea-checkbox>
         <ea-checkbox size="md" label="Medium checkbox"></ea-checkbox>
         <ea-checkbox size="lg" label="Large checkbox"></ea-checkbox>

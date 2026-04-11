@@ -1,0 +1,129 @@
+// =============================================================================
+// PAGINATOR COMPONENT
+// =============================================================================
+
+.ea-paginator {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  border-top: var(--border-width-thin) solid var(--color-border-default);
+
+  // ---------------------------------------------------------------------------
+  // Placement
+  // ---------------------------------------------------------------------------
+  &--left {
+    justify-content: flex-start;
+  }
+
+  &--center {
+    justify-content: center;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Page size selector
+  // ---------------------------------------------------------------------------
+  &__page-size {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  &__label {
+    white-space: nowrap;
+    color: var(--color-text-secondary);
+  }
+
+  &__select {
+    padding: var(--space-1) calc(var(--space-2) + 1rem) var(--space-1) var(--space-2);
+    font-size: var(--font-size-sm);
+    font-family: var(--font-family-sans);
+    border: var(--border-width-thin) solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg-base);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    appearance: none;
+    transition: var(--transition-colors), var(--transition-shadow);
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-focus-ring);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Range label
+  // ---------------------------------------------------------------------------
+  &__range {
+    white-space: nowrap;
+    color: var(--color-text-secondary);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Controls
+  // ---------------------------------------------------------------------------
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+
+    ea-icon-chevron-left,
+    ea-icon-chevron-right {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Page number buttons — active state override for ea-button
+  // ---------------------------------------------------------------------------
+  &__page-btn--active .ea-button {
+    font-weight: var(--font-weight-medium);
+    border-color: var(--color-brand-default);
+    background-color: var(--color-brand-subtle);
+    color: var(--color-brand-default);
+
+    &:hover:not(.ea-button--disabled) {
+      background-color: var(--color-brand-muted);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Ellipsis
+  // ---------------------------------------------------------------------------
+  &__ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    color: var(--color-text-tertiary);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Disabled state
+  // ---------------------------------------------------------------------------
+  &--disabled {
+    pointer-events: none;
+
+    .ea-paginator__range,
+    .ea-paginator__label {
+      opacity: 0.5;
+    }
+  }
+}

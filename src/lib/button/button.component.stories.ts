@@ -75,7 +75,7 @@ export const FullWidth: Story = {
 export const AllVariants: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+      <div class="story-row">
         <ea-button variant="primary">Primary</ea-button>
         <ea-button variant="secondary">Secondary</ea-button>
         <ea-button variant="ghost">Ghost</ea-button>
@@ -88,7 +88,7 @@ export const AllVariants: Story = {
 export const AllSizes: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; gap: 0.75rem; align-items: center;">
+      <div class="story-row">
         <ea-button size="sm">Small</ea-button>
         <ea-button size="md">Medium</ea-button>
         <ea-button size="lg">Large</ea-button>

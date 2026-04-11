@@ -10,14 +10,14 @@ import { AccordionComponent } from './accordion.component';
     <ea-accordion [multi]="multi">
       <ea-accordion-item
         value="one"
-        label="Section One"
-        >Content one</ea-accordion-item
-      >
+        label="Section One">
+        Content one
+      </ea-accordion-item>
       <ea-accordion-item
         value="two"
-        label="Section Two"
-        >Content two</ea-accordion-item
-      >
+        label="Section Two">
+        Content two
+      </ea-accordion-item>
       <ea-accordion-item
         value="three"
         label="Section Three"

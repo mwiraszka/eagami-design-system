@@ -30,6 +30,7 @@ export class ButtonComponent {
   readonly loading = input<boolean>(false);
   readonly fullWidth = input<boolean>(false);
   readonly ariaLabel = input<string | undefined>(undefined, { alias: 'aria-label' });
+  readonly ariaCurrent = input<string | undefined>(undefined, { alias: 'aria-current' });
 
   // Output
   readonly clicked = output<MouseEvent>();

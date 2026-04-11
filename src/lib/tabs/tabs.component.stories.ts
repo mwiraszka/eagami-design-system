@@ -93,7 +93,7 @@ export const Large: Story = {
 export const AllSizes: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <div class="story-stack story-stack--lg">
         <ea-tabs size="sm" activeTab="a">
           <ea-tab value="a" label="Small A">Small A content</ea-tab>
           <ea-tab value="b" label="Small B">Small B content</ea-tab>

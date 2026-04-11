@@ -8,7 +8,7 @@ const meta: Meta<InputComponent> = {
   tags: ['autodocs'],
   render: args => ({
     props: args,
-    template: `<ea-input ${argsToTemplate(args)} style="max-width: 360px; display: block;"></ea-input>`,
+    template: `<ea-input ${argsToTemplate(args)} class="story-narrow"></ea-input>`,
   }),
   argTypes: {
     size: {
@@ -123,7 +123,7 @@ export const Required: Story = {
 export const AllSizes: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 360px;">
+      <div class="story-stack story-narrow">
         <ea-input size="sm" label="Small" placeholder="Small input"></ea-input>
         <ea-input size="md" label="Medium" placeholder="Medium input"></ea-input>
         <ea-input size="lg" label="Large" placeholder="Large input"></ea-input>
