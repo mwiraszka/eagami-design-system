@@ -580,7 +580,7 @@ See [`src/styles/tokens/`](src/styles/tokens/) for the full token reference.
 
 ```bash
 pnpm install       # Install dependencies
-pnpm start         # Run sandbox dev app
+pnpm sandbox       # Run sandbox dev app
 pnpm storybook     # Run Storybook
 pnpm test          # Run tests
 pnpm build         # Build the library

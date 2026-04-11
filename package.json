@@ -22,7 +22,6 @@
   "sideEffects": false,
   "scripts": {
     "ng": "ng",
-    "start": "ng serve sandbox -o",
     "sandbox": "ng serve sandbox -o",
     "build": "ng build eagami-ui && node scripts/clean-dist-package.mjs",
     "watch": "ng build eagami-ui --watch --configuration development",
