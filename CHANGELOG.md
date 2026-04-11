@@ -10,14 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add `DataTableComponent` (`ea-data-table`) with sortable columns, sticky header, density modes, striped/bordered/hoverable options, column formatting via `format` callback, and empty state
-- Add `PaginatorComponent` (`ea-paginator`) with page size selector, range label, and smart page number ellipsis
-- Add `placement` input to `PaginatorComponent` for left, center, or right alignment (defaults to right)
+- Add `PaginatorComponent` (`ea-paginator`) with page size selector, range label, placement option, and smart page number ellipsis
 - Add `aria-current` input to `ButtonComponent` for active page indication in pagination
 - Add `captureOriginal()` method to `AvatarEditorComponent` for snapshotting the current image and crop state as the new original after a save
-
-### Changed
-
-- Refactor `PaginatorComponent` to use `ea-button` for all navigation controls
+- Add 25 utility icon components: `alert-triangle`, `arrow-left`, `arrow-right`, `bell`, `calendar`, `check-circle`, `chevron-up`, `clock`, `copy`, `download`, `external-link`, `file`, `filter`, `heart`, `image`, `link`, `log-out`, `mail`, `menu`, `more-horizontal`, `pencil`, `search`, `settings`, `star`, `x-circle`
+- Add 5 brand logo icon components with official brand colors: `apple`, `facebook`, `github`, `microsoft`, `x-twitter`
 
 ### Fixed
 
