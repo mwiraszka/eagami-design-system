@@ -138,16 +138,39 @@
   // Sticky header
   // ---------------------------------------------------------------------------
   &--sticky {
-    overflow-y: auto;
     max-height: inherit;
     height: inherit;
   }
 
-  &--sticky &__head &__cell--header {
-    position: sticky;
-    top: 0;
-    z-index: var(--z-index-sticky);
-    background-color: var(--color-bg-subtle);
+  &--sticky &__table {
+    display: flex;
+    flex-direction: column;
+    max-height: inherit;
+    height: inherit;
+  }
+
+  &--sticky &__head {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  &--sticky &__head &__row--header {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  &--sticky &__body {
+    display: block;
+    overflow-y: auto;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  &--sticky &__body &__row {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
   }
 
   // ---------------------------------------------------------------------------
