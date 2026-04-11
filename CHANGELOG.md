@@ -20,7 +20,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Confine scrollbar to data rows in sticky header data tables instead of spanning the full table height
-- Ensure package.json version matches branch version before merge to prevent failed npm publishes
 
 ## [0.7.4] - 2026-04-04
 
