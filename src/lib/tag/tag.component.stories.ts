@@ -45,7 +45,7 @@ export const Disabled: Story = {
 export const AllVariants: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <div class="story-row story-row--sm">
         <ea-tag variant="default">Default</ea-tag>
         <ea-tag variant="primary">Primary</ea-tag>
         <ea-tag variant="success">Success</ea-tag>
@@ -60,7 +60,7 @@ export const AllVariants: Story = {
 export const AllSizes: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <div class="story-row story-row--sm">
         <ea-tag size="sm">Small</ea-tag>
         <ea-tag size="md">Medium</ea-tag>
         <ea-tag size="lg">Large</ea-tag>
@@ -72,7 +72,7 @@ export const AllSizes: Story = {
 export const RemovableVariants: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <div class="story-row story-row--sm">
         <ea-tag variant="default" [removable]="true">Default</ea-tag>
         <ea-tag variant="primary" [removable]="true">Primary</ea-tag>
         <ea-tag variant="success" [removable]="true">Success</ea-tag>

@@ -8,7 +8,7 @@ const meta: Meta<TextareaComponent> = {
   tags: ['autodocs'],
   render: args => ({
     props: args,
-    template: `<ea-textarea ${argsToTemplate(args)} style="max-width: 360px; display: block;"></ea-textarea>`,
+    template: `<ea-textarea ${argsToTemplate(args)} class="story-narrow"></ea-textarea>`,
   }),
   argTypes: {
     size: {
@@ -98,7 +98,7 @@ export const WithMaxlength: Story = {
 export const AllSizes: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 360px;">
+      <div class="story-stack story-narrow">
         <ea-textarea size="sm" label="Small" placeholder="Small textarea"></ea-textarea>
         <ea-textarea size="md" label="Medium" placeholder="Medium textarea"></ea-textarea>
         <ea-textarea size="lg" label="Large" placeholder="Large textarea"></ea-textarea>

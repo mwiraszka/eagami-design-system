@@ -87,7 +87,7 @@ export const AllSizes: Story = {
   render: () => ({
     moduleMetadata: { imports: [RadioGroupComponent, RadioComponent] },
     template: `
-      <div style="display: flex; gap: 2rem;">
+      <div class="story-row story-row--xl">
         <ea-radio-group size="sm" value="a">
           <ea-radio value="a" label="Small A"></ea-radio>
           <ea-radio value="b" label="Small B"></ea-radio>

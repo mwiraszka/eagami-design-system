@@ -71,7 +71,7 @@ export const Dismissible: Story = {
 export const AllVariants: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; flex-direction: column; gap: 0.75rem; max-width: 480px;">
+      <div class="story-stack story-stack--md story-medium">
         <ea-alert variant="default">Default alert message</ea-alert>
         <ea-alert variant="success">Success alert message</ea-alert>
         <ea-alert variant="warning">Warning alert message</ea-alert>

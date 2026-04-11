@@ -48,10 +48,10 @@ export const NotAnimated: Story = {
 export const CardPlaceholder: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; flex-direction: column; gap: 0.75rem; max-width: 320px; padding: 1rem; border: 1px solid var(--color-border-default); border-radius: var(--radius-lg);">
-        <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <div class="story-skeleton-card">
+        <div class="story-skeleton-row">
           <ea-skeleton variant="circle"></ea-skeleton>
-          <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
+          <div class="story-skeleton-lines">
             <ea-skeleton width="60%"></ea-skeleton>
             <ea-skeleton width="40%" height="0.75rem"></ea-skeleton>
           </div>
