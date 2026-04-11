@@ -21,7 +21,8 @@
     "moduleResolution": "bundler",
     "importHelpers": false,
     "target": "ES2022",
-    "module": "ES2022"
+    "module": "ES2022",
+    "types": ["jest"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
