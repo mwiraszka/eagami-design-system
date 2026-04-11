@@ -233,6 +233,38 @@ Canvas-based image editor with drag-and-drop upload, pan, zoom (slider + scroll 
 
 ---
 
+### Data Table
+
+Full-featured data table with sortable columns, sticky headers, striped/bordered/hoverable rows, and custom cell templates. Density: `compact` | `comfortable` | `spacious`. Supports two-way `sort` binding.
+
+```html
+<ea-data-table
+  [columns]="columns"
+  [data]="users"
+  [stickyHeader]="true"
+  [striped]="true"
+  [(sort)]="sortState"
+  trackBy="id" />
+```
+
+<img src="docs/images/data-table.png" alt="Data table component" width="560" />
+
+---
+
+### Paginator
+
+Page navigation with configurable page sizes. Supports `placement` (`left` | `center` | `right`). Emits `pageChange` events with current page, page size, and total.
+
+```html
+<ea-paginator
+  [total]="100"
+  [pageSize]="10"
+  placement="center"
+  (pageChange)="onPageChange($event)" />
+```
+
+---
+
 ### Badge
 
 Semantic status indicators. Variants: `default` | `success` | `warning` | `error` | `info`. Sizes: `sm` | `md` | `lg`.
@@ -432,21 +464,56 @@ Built-in SVG icon components following the Feather icon style (24x24 viewBox, st
 | Tag | Preview |
 |---|---|
 | `<ea-icon-alert-circle />` | <img src="docs/images/icons/alert-circle.png" width="48" height="48" alt="alert-circle" /> |
+| `<ea-icon-alert-triangle />` | <img src="docs/images/icons/alert-triangle.png" width="48" height="48" alt="alert-triangle" /> |
+| `<ea-icon-apple />` | <img src="docs/images/icons/apple.png" width="48" height="48" alt="apple" /> |
+| `<ea-icon-arrow-down />` | <img src="docs/images/icons/arrow-down.png" width="48" height="48" alt="arrow-down" /> |
+| `<ea-icon-arrow-left />` | <img src="docs/images/icons/arrow-left.png" width="48" height="48" alt="arrow-left" /> |
+| `<ea-icon-arrow-right />` | <img src="docs/images/icons/arrow-right.png" width="48" height="48" alt="arrow-right" /> |
+| `<ea-icon-arrow-up />` | <img src="docs/images/icons/arrow-up.png" width="48" height="48" alt="arrow-up" /> |
+| `<ea-icon-bell />` | <img src="docs/images/icons/bell.png" width="48" height="48" alt="bell" /> |
+| `<ea-icon-calendar />` | <img src="docs/images/icons/calendar.png" width="48" height="48" alt="calendar" /> |
 | `<ea-icon-camera />` | <img src="docs/images/icons/camera.png" width="48" height="48" alt="camera" /> |
-| `<ea-icon-chevron-down />` | <img src="docs/images/icons/chevron-down.png" width="48" height="48" alt="chevron-down" /> |
 | `<ea-icon-check />` | <img src="docs/images/icons/check.png" width="48" height="48" alt="check" /> |
+| `<ea-icon-check-circle />` | <img src="docs/images/icons/check-circle.png" width="48" height="48" alt="check-circle" /> |
+| `<ea-icon-chevron-down />` | <img src="docs/images/icons/chevron-down.png" width="48" height="48" alt="chevron-down" /> |
+| `<ea-icon-chevron-left />` | <img src="docs/images/icons/chevron-left.png" width="48" height="48" alt="chevron-left" /> |
+| `<ea-icon-chevron-right />` | <img src="docs/images/icons/chevron-right.png" width="48" height="48" alt="chevron-right" /> |
+| `<ea-icon-chevron-up />` | <img src="docs/images/icons/chevron-up.png" width="48" height="48" alt="chevron-up" /> |
+| `<ea-icon-chevrons-up-down />` | <img src="docs/images/icons/chevrons-up-down.png" width="48" height="48" alt="chevrons-up-down" /> |
+| `<ea-icon-clock />` | <img src="docs/images/icons/clock.png" width="48" height="48" alt="clock" /> |
+| `<ea-icon-copy />` | <img src="docs/images/icons/copy.png" width="48" height="48" alt="copy" /> |
+| `<ea-icon-download />` | <img src="docs/images/icons/download.png" width="48" height="48" alt="download" /> |
+| `<ea-icon-external-link />` | <img src="docs/images/icons/external-link.png" width="48" height="48" alt="external-link" /> |
 | `<ea-icon-eye />` | <img src="docs/images/icons/eye.png" width="48" height="48" alt="eye" /> |
 | `<ea-icon-eye-off />` | <img src="docs/images/icons/eye-off.png" width="48" height="48" alt="eye-off" /> |
+| `<ea-icon-facebook />` | <img src="docs/images/icons/facebook.png" width="48" height="48" alt="facebook" /> |
+| `<ea-icon-file />` | <img src="docs/images/icons/file.png" width="48" height="48" alt="file" /> |
+| `<ea-icon-filter />` | <img src="docs/images/icons/filter.png" width="48" height="48" alt="filter" /> |
+| `<ea-icon-github />` | <img src="docs/images/icons/github.png" width="48" height="48" alt="github" /> |
 | `<ea-icon-google />` | <img src="docs/images/icons/google.png" width="48" height="48" alt="google" /> |
+| `<ea-icon-heart />` | <img src="docs/images/icons/heart.png" width="48" height="48" alt="heart" /> |
+| `<ea-icon-image />` | <img src="docs/images/icons/image.png" width="48" height="48" alt="image" /> |
 | `<ea-icon-info />` | <img src="docs/images/icons/info.png" width="48" height="48" alt="info" /> |
+| `<ea-icon-link />` | <img src="docs/images/icons/link.png" width="48" height="48" alt="link" /> |
 | `<ea-icon-loader />` | <img src="docs/images/icons/loader.png" width="48" height="48" alt="loader" /> |
+| `<ea-icon-log-out />` | <img src="docs/images/icons/log-out.png" width="48" height="48" alt="log-out" /> |
+| `<ea-icon-mail />` | <img src="docs/images/icons/mail.png" width="48" height="48" alt="mail" /> |
+| `<ea-icon-menu />` | <img src="docs/images/icons/menu.png" width="48" height="48" alt="menu" /> |
+| `<ea-icon-microsoft />` | <img src="docs/images/icons/microsoft.png" width="48" height="48" alt="microsoft" /> |
 | `<ea-icon-minus />` | <img src="docs/images/icons/minus.png" width="48" height="48" alt="minus" /> |
+| `<ea-icon-more-horizontal />` | <img src="docs/images/icons/more-horizontal.png" width="48" height="48" alt="more-horizontal" /> |
+| `<ea-icon-pencil />` | <img src="docs/images/icons/pencil.png" width="48" height="48" alt="pencil" /> |
 | `<ea-icon-plus />` | <img src="docs/images/icons/plus.png" width="48" height="48" alt="plus" /> |
 | `<ea-icon-rotate-ccw />` | <img src="docs/images/icons/rotate-ccw.png" width="48" height="48" alt="rotate-ccw" /> |
+| `<ea-icon-search />` | <img src="docs/images/icons/search.png" width="48" height="48" alt="search" /> |
+| `<ea-icon-settings />` | <img src="docs/images/icons/settings.png" width="48" height="48" alt="settings" /> |
+| `<ea-icon-star />` | <img src="docs/images/icons/star.png" width="48" height="48" alt="star" /> |
 | `<ea-icon-trash />` | <img src="docs/images/icons/trash.png" width="48" height="48" alt="trash" /> |
 | `<ea-icon-upload />` | <img src="docs/images/icons/upload.png" width="48" height="48" alt="upload" /> |
 | `<ea-icon-user />` | <img src="docs/images/icons/user.png" width="48" height="48" alt="user" /> |
 | `<ea-icon-x />` | <img src="docs/images/icons/x.png" width="48" height="48" alt="x" /> |
+| `<ea-icon-x-circle />` | <img src="docs/images/icons/x-circle.png" width="48" height="48" alt="x-circle" /> |
+| `<ea-icon-x-twitter />` | <img src="docs/images/icons/x-twitter.png" width="48" height="48" alt="x-twitter" /> |
 
 ## Theming
 
