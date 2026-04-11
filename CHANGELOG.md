@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `captureOriginal()` method to `AvatarEditorComponent` for snapshotting the current image and crop state as the new original after a save
 - Add 25 utility icon components: `alert-triangle`, `arrow-left`, `arrow-right`, `bell`, `calendar`, `check-circle`, `chevron-up`, `clock`, `copy`, `download`, `external-link`, `file`, `filter`, `heart`, `image`, `link`, `log-out`, `mail`, `menu`, `more-horizontal`, `pencil`, `search`, `settings`, `star`, `x-circle`
 - Add 5 brand logo icon components with official brand colors: `apple`, `facebook`, `github`, `microsoft`, `x-twitter`
+- Add Storybook stories for Avatar, Badge, Divider, Spinner, Switch, Toast, and Tooltip components
 
 ### Fixed
 
