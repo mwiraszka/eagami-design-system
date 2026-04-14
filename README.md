@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/eagami-header.png" alt="eagami design system — elegant web design." width="800" />
+  <img src="docs/images/eagami-header.png" alt="eagami design system — elegant web design" width="800" />
 </p>
 
 A lightweight, accessible Angular component library built on CSS custom properties. Ready to use out of the box — install, import, and start building.
@@ -350,6 +350,19 @@ Arrow keys, Enter/Space to select, Escape to close. Sizes: `sm` | `md` | `lg`.
 </details>
 
 <details>
+<summary><strong>Eagami Wordmark</strong> — branded logo wordmark linking to eagami.com</summary>
+
+Variants: `logo` (icon only) | `signature` (handcrafted by eagami) | `brand` (eagami with tagline). Three discrete sizes (`sm`, `md`, `lg`) scale both the logo and the text proportionally.
+
+```html
+<ea-eagami-wordmark variant="brand" size="md" />
+```
+
+<img src="docs/images/eagami-wordmark.png" alt="Eagami Wordmark component" width="560" />
+
+</details>
+
+<details>
 <summary><strong>Input</strong> — text field with ControlValueAccessor and password toggle</summary>
 
 Types: `text` | `email` | `password` | `number` | `search` | `tel` | `url`. Sizes: `sm` | `md` | `lg`.
@@ -575,7 +588,7 @@ Positions: `top` | `bottom` | `left` | `right`.
 ## Icons
 
 <details>
-<summary><strong>51 built-in SVG icon components</strong> — Feather-style (24x24, stroke-based, inherits <code>currentColor</code>)</summary>
+<summary><strong>52 built-in SVG icon components</strong> — Feather-style (24x24, stroke-based, inherits <code>currentColor</code>)</summary>
 
 | Tag | Preview |
 |---|---|
@@ -599,6 +612,7 @@ Positions: `top` | `bottom` | `left` | `right`.
 | `<ea-icon-clock />` | <img src="docs/images/icons/clock.png" width="48" height="48" alt="clock" /> |
 | `<ea-icon-copy />` | <img src="docs/images/icons/copy.png" width="48" height="48" alt="copy" /> |
 | `<ea-icon-download />` | <img src="docs/images/icons/download.png" width="48" height="48" alt="download" /> |
+| `<ea-icon-eagami />` | <img src="docs/images/icons/eagami.png" width="48" height="48" alt="eagami" /> |
 | `<ea-icon-external-link />` | <img src="docs/images/icons/external-link.png" width="48" height="48" alt="external-link" /> |
 | `<ea-icon-eye />` | <img src="docs/images/icons/eye.png" width="48" height="48" alt="eye" /> |
 | `<ea-icon-eye-off />` | <img src="docs/images/icons/eye-off.png" width="48" height="48" alt="eye-off" /> |

@@ -12,7 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `AutocompleteComponent` (`ea-autocomplete`) — text input with filtered suggestion dropdown, keyboard navigation, configurable `minLength` and `maxResults`, and `ControlValueAccessor` integration
 - Add `BreadcrumbsComponent` (`ea-breadcrumbs`) — navigation trail with chevron or slash separators, link/button/disabled item rendering, and automatic current-page handling for the last item
 - Add `DrawerComponent` (`ea-drawer`) — side panel built on native `<dialog>` with four positions (left/right/top/bottom), sizes, focus trapping, backdrop/escape close, and header/footer content slots
+- Add `EagamiWordmarkComponent` (`ea-eagami-wordmark`) — branded wordmark linking to eagami.com with `logo`, `signature`, and `brand` variants and `sm`/`md`/`lg` sizes that scale the logo and text proportionally
 - Add `MenuComponent` (`ea-menu`) and `MenuItemComponent` (`ea-menu-item`) — popup action menu with trigger slot, four placements, keyboard navigation, icon support, disabled items, and `danger` variant
+- Add `ea-icon-eagami` brand logo icon used by `EagamiWordmarkComponent`
 
 ### Fixed
 

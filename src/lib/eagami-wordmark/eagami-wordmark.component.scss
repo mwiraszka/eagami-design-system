@@ -1,0 +1,107 @@
+// =============================================================================
+// EAGAMI WORDMARK COMPONENT
+// =============================================================================
+
+:host {
+  display: inline-block;
+  line-height: var(--line-height-none);
+}
+
+.ea-eagami-wordmark {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: var(--transition-opacity);
+
+  &:hover {
+    opacity: 0.75;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus-ring);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Logo — size is driven by `font-size` so `ea-icon-eagami`'s inline
+  // `1em × 1em` dimensions resolve to the intended pixel values per variant
+  // ---------------------------------------------------------------------------
+  &__logo {
+    flex-shrink: 0;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Text stack
+  // ---------------------------------------------------------------------------
+  &__text {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: var(--line-height-tight);
+  }
+
+  &__overline,
+  &__brand,
+  &__tagline {
+    text-transform: lowercase;
+  }
+
+  &__overline,
+  &__tagline {
+    font-weight: var(--font-weight-regular);
+    letter-spacing: var(--letter-spacing-widest);
+    font-family: var(--font-family-sans);
+    color: var(--color-text-secondary);
+  }
+
+  &__brand {
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--letter-spacing-wide);
+    font-family: var(--font-family-brand);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Size variants
+  // ---------------------------------------------------------------------------
+  &--sm &__logo {
+    font-size: 48px;
+  }
+
+  &--md &__logo {
+    font-size: 64px;
+  }
+
+  &--lg &__logo {
+    font-size: 96px;
+  }
+
+  &--sm &__brand {
+    font-size: var(--font-size-2xl);
+  }
+
+  &--md &__brand {
+    font-size: var(--font-size-4xl);
+  }
+
+  &--lg &__brand {
+    font-size: var(--font-size-5xl);
+  }
+
+  &--sm &__overline,
+  &--sm &__tagline {
+    font-size: var(--font-size-2xs);
+  }
+
+  &--md &__overline,
+  &--md &__tagline {
+    font-size: var(--font-size-sm);
+  }
+
+  &--lg &__overline,
+  &--lg &__tagline {
+    font-size: var(--font-size-xl);
+  }
+}
