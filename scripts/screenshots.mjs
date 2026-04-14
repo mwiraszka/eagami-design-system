@@ -57,7 +57,7 @@ const SECTIONS = [
   { name: 'drawer', heading: 'Drawer' },
   { name: 'dropdown', heading: 'Dropdown' },
   { name: 'input', heading: 'Input' },
-  { name: 'menu', heading: 'Menu' },
+  { name: 'menu', heading: 'Menu', prepare: openMenusInline },
   { name: 'paginator', heading: 'Paginator' },
   { name: 'progress-bar', heading: 'Progress Bar' },
   { name: 'radio', heading: 'Radio' },
@@ -70,6 +70,42 @@ const SECTIONS = [
   { name: 'toast', heading: 'Toast' },
   { name: 'tooltip', heading: 'Tooltip' },
 ];
+
+/**
+ * Menu screenshots are more useful when each variant shows both the trigger
+ * button AND the opened menu list. We override the list's absolute positioning
+ * so lists flow inline below their triggers (otherwise adjacent menus overlap),
+ * then open every menu via the Angular debug API.
+ */
+async function openMenusInline(page) {
+  await page.addStyleTag({
+    content: `
+      .sandbox-section .ea-menu__list {
+        position: static !important;
+        max-height: none !important;
+        margin-top: 4px !important;
+      }
+    `,
+  });
+
+  await page.evaluate(() => {
+    const menus = document.querySelectorAll('.sandbox-section ea-menu');
+    for (const el of menus) {
+      const component = window.ng?.getComponent?.(el);
+      if (component?.open?.set) {
+        component.open.set(true);
+      }
+    }
+    for (const el of menus) {
+      const component = window.ng?.getComponent?.(el);
+      if (component) {
+        window.ng.applyChanges(component);
+      }
+    }
+  });
+
+  await new Promise(r => setTimeout(r, 200));
+}
 
 const args = process.argv.slice(2);
 const forceIdx = args.indexOf('--force');
@@ -198,7 +234,7 @@ async function main() {
 
     let captured = 0;
     let skipped = 0;
-    for (const { name, heading } of SECTIONS) {
+    for (const { name, heading, prepare } of SECTIONS) {
       const outPath = resolve(OUT, `${name}.png`);
       if (!shouldCapture(outPath, name)) {
         skipped++;
@@ -209,6 +245,9 @@ async function main() {
       if (!el) {
         console.warn(`  skip  ${name} (section not found)`);
         continue;
+      }
+      if (prepare) {
+        await prepare(page);
       }
       await el.screenshot({ path: outPath });
       console.log(`  done  ${name}.png`);
