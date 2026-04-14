@@ -52,6 +52,7 @@ const SECTIONS = [
   { name: 'checkbox', heading: 'Checkbox' },
   { name: 'code-input', heading: 'Code Input', prepare: fillCodeInputs },
   { name: 'data-table', heading: 'Data Table' },
+  { name: 'date-picker', heading: 'Date Picker', prepare: openDatePickerCalendar },
   { name: 'dialog', heading: 'Dialog', prepare: showDialogInline },
   { name: 'divider', heading: 'Divider' },
   { name: 'drawer', heading: 'Drawer', prepare: showDrawersInline },
@@ -338,6 +339,50 @@ async function showDrawersInline(page, section) {
 }
 
 /**
+ * Open both the "basic" and "min & max" date-pickers so the screenshot shows a
+ * plain selected-day state on top and a min/max-bounded calendar below with
+ * out-of-range days disabled. Force each popover to flow inline below its
+ * trigger at its natural content width — the default absolute positioning
+ * would either overlap the next field or get clipped by the section's bounds,
+ * and leaving it as a static block would stretch it to the full trigger width
+ * instead of sitting at its natural ~18rem width.
+ */
+async function openDatePickerCalendar(page, section) {
+  await page.addStyleTag({
+    content: `
+      .sandbox-section .ea-date-picker__popover {
+        position: static !important;
+        width: max-content !important;
+        margin-top: 4px !important;
+      }
+    `,
+  });
+
+  await section.evaluate(el => {
+    const pickers = el.querySelectorAll('ea-date-picker');
+    // Order in the section: basic, with-hint, with-error, short, medium, long,
+    // min/max, sm, md, lg, disabled.
+    const basic = window.ng?.getComponent?.(pickers[0]);
+    if (basic?.isOpen?.set) {
+      const selected = new Date(basic.viewYear(), basic.viewMonth(), 15);
+      basic.value.set(selected);
+      basic.focusedDate.set(selected);
+      basic.isOpen.set(true);
+      window.ng.applyChanges(basic);
+    }
+
+    const minMax = window.ng?.getComponent?.(pickers[6]);
+    if (minMax?.isOpen?.set) {
+      minMax.focusedDate.set(new Date());
+      minMax.isOpen.set(true);
+      window.ng.applyChanges(minMax);
+    }
+  });
+
+  await new Promise(r => setTimeout(r, 150));
+}
+
+/**
  * Open only the basic dropdown so its menu is visible. Leave the remaining
  * variants closed to keep the hint/error/size/disabled affordances readable.
  * Also hide the "Selected: {value}" preview text below the basic dropdown,
@@ -509,6 +554,62 @@ async function captureIcons(browser) {
   );
 }
 
+/**
+ * Capture the README header image by screenshotting the large
+ * `ea-eagami-wordmark` instance tagged with `.sandbox-readme-header-wordmark`
+ * inside the Eagami Wordmark sandbox section. Expands the collapsible section
+ * first so the target element is laid out, then screenshots just that element
+ * with a transparent background.
+ */
+async function captureHeader(page) {
+  const outPath = resolve(OUT, 'eagami-header.png');
+  if (!shouldCapture(outPath, 'eagami-header')) {
+    console.log(
+      '\nHeader image already exists (use --force eagami-header to overwrite).',
+    );
+    return;
+  }
+
+  console.log('\nCapturing README header image…');
+
+  // The wordmark at size="lg" with the long "eagami design system" text is
+  // wider than the default sandbox details panel (max-width 600px), so bump
+  // the viewport and lift the panel's width cap for this one section so the
+  // wordmark lays out at its full content width without clipping or wrapping.
+  await page.setViewport({ width: 2000, height: 600, deviceScaleFactor: 2 });
+  await page.addStyleTag({
+    content: `
+      sandbox-root { max-width: none !important; }
+      .sandbox-details:has(.sandbox-readme-header-wordmark) {
+        max-width: none !important;
+      }
+    `,
+  });
+
+  const handle = await page.evaluateHandle(() => {
+    const detailsEls = document.querySelectorAll('.sandbox-details');
+    for (const d of detailsEls) {
+      const summary = d.querySelector('.sandbox-summary');
+      if (summary && summary.textContent.trim() === 'Eagami Wordmark') {
+        d.open = true;
+        return d.querySelector('.sandbox-readme-header-wordmark');
+      }
+    }
+    return null;
+  });
+  const el = handle.asElement();
+  if (!el) {
+    console.warn('  skip  eagami-header (wordmark target not found)');
+    return;
+  }
+
+  await page.evaluate(() => document.fonts.ready);
+  await new Promise(r => setTimeout(r, 200));
+
+  await el.screenshot({ path: outPath, omitBackground: true });
+  console.log('  done  eagami-header.png');
+}
+
 async function main() {
   const puppeteer = await import('puppeteer');
 
@@ -557,6 +658,8 @@ async function main() {
     );
 
     await captureIcons(browser);
+
+    await captureHeader(page);
 
     await browser.close();
   } finally {

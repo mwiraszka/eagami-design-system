@@ -37,7 +37,7 @@ const columns: DataTableColumn<User>[] = [
 ];
 
 const meta: Meta<DataTableComponent<User>> = {
-  title: 'Components/DataTable',
+  title: 'Components/Data table',
   component: DataTableComponent,
   tags: ['autodocs'],
   argTypes: {

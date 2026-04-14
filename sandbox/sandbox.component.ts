@@ -16,6 +16,7 @@ import {
   CodeInputComponent,
   DataTableColumn,
   DataTableComponent,
+  DatePickerComponent,
   DialogComponent,
   DividerComponent,
   DrawerComponent,
@@ -45,7 +46,18 @@ import {
   TrashIconComponent,
 } from '@eagami/ui';
 
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
+
+interface SandboxComponentEntry {
+  key: string;
+  label: string;
+}
 
 @Component({
   selector: 'sandbox-root',
@@ -63,6 +75,7 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
     CheckboxComponent,
     CodeInputComponent,
     DataTableComponent,
+    DatePickerComponent,
     DialogComponent,
     DividerComponent,
     DrawerComponent,
@@ -95,12 +108,79 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 export class SandboxComponent {
   private readonly toastService = inject(ToastService);
 
+  readonly componentList: SandboxComponentEntry[] = [
+    { key: 'accordion', label: 'Accordion' },
+    { key: 'alert', label: 'Alert' },
+    { key: 'autocomplete', label: 'Autocomplete' },
+    { key: 'avatar', label: 'Avatar' },
+    { key: 'avatarEditor', label: 'Avatar Editor' },
+    { key: 'badge', label: 'Badge' },
+    { key: 'breadcrumbs', label: 'Breadcrumbs' },
+    { key: 'button', label: 'Button' },
+    { key: 'card', label: 'Card' },
+    { key: 'checkbox', label: 'Checkbox' },
+    { key: 'codeInput', label: 'Code Input' },
+    { key: 'dataTable', label: 'Data Table' },
+    { key: 'datePicker', label: 'Date Picker' },
+    { key: 'dialog', label: 'Dialog' },
+    { key: 'divider', label: 'Divider' },
+    { key: 'drawer', label: 'Drawer' },
+    { key: 'dropdown', label: 'Dropdown' },
+    { key: 'eagamiWordmark', label: 'Eagami Wordmark' },
+    { key: 'input', label: 'Input' },
+    { key: 'menu', label: 'Menu' },
+    { key: 'paginator', label: 'Paginator' },
+    { key: 'progressBar', label: 'Progress Bar' },
+    { key: 'radio', label: 'Radio' },
+    { key: 'skeleton', label: 'Skeleton' },
+    { key: 'spinner', label: 'Spinner' },
+    { key: 'switch', label: 'Switch' },
+    { key: 'tabs', label: 'Tabs' },
+    { key: 'tag', label: 'Tag' },
+    { key: 'textarea', label: 'Textarea' },
+    { key: 'toast', label: 'Toast' },
+    { key: 'tooltip', label: 'Tooltip' },
+  ];
+
+  readonly visible = signal<Record<string, boolean>>(
+    Object.fromEntries(this.componentList.map(({ key }) => [key, true])),
+  );
+
+  readonly allVisible = computed(() => {
+    const state = this.visible();
+    return this.componentList.every(({ key }) => state[key]);
+  });
+
+  readonly someVisible = computed(() => {
+    const state = this.visible();
+    const checked = this.componentList.filter(({ key }) => state[key]).length;
+    return checked > 0 && checked < this.componentList.length;
+  });
+
+  toggleVisible(key: string, checked: boolean): void {
+    this.visible.update(current => ({ ...current, [key]: checked }));
+  }
+
+  toggleAll(): void {
+    const next = !this.allVisible();
+    this.visible.set(
+      Object.fromEntries(this.componentList.map(({ key }) => [key, next])),
+    );
+  }
+
+  isVisible(key: string): boolean {
+    return this.visible()[key] ?? false;
+  }
+
   isLoading = signal(false);
   codeInputValue = signal('');
   inputValue = signal('');
   checkboxValue = signal(false);
   radioValue = signal('');
   dropdownValue = signal('');
+  datePickerValue = signal<Date | null>(null);
+  datePickerMin = new Date(new Date().setDate(new Date().getDate() - 7));
+  datePickerMax = new Date(new Date().setDate(new Date().getDate() + 21));
   dialogOpen = signal(false);
   drawerOpenRight = signal(false);
   drawerOpenLeft = signal(false);

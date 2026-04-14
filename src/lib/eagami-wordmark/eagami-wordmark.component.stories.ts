@@ -3,7 +3,7 @@ import { Meta, StoryObj, argsToTemplate } from '@storybook/angular';
 import { EagamiWordmarkComponent } from './eagami-wordmark.component';
 
 const meta: Meta<EagamiWordmarkComponent> = {
-  title: 'Components/Eagami Wordmark',
+  title: 'Components/Eagami wordmark',
   component: EagamiWordmarkComponent,
   tags: ['autodocs'],
   render: args => ({
@@ -19,10 +19,15 @@ const meta: Meta<EagamiWordmarkComponent> = {
       control: 'inline-radio',
       options: ['sm', 'md', 'lg'],
     },
+    text: {
+      control: 'inline-radio',
+      options: ['eagami', 'eagami design system'],
+    },
   },
   args: {
     variant: 'brand',
     size: 'md',
+    text: 'eagami',
   },
 };
 
@@ -36,11 +41,19 @@ export const Logo: Story = {
 };
 
 export const Signature: Story = {
-  args: { variant: 'signature', size: 'md' },
+  args: { variant: 'signature', size: 'md', text: 'eagami' },
 };
 
 export const Brand: Story = {
-  args: { variant: 'brand', size: 'md' },
+  args: { variant: 'brand', size: 'md', text: 'eagami' },
+};
+
+export const SignatureSystem: Story = {
+  args: { variant: 'signature', size: 'md', text: 'eagami design system' },
+};
+
+export const BrandSystem: Story = {
+  args: { variant: 'brand', size: 'md', text: 'eagami design system' },
 };
 
 export const Small: Story = {
@@ -48,5 +61,5 @@ export const Small: Story = {
 };
 
 export const Large: Story = {
-  args: { variant: 'brand', size: 'lg' },
+  args: { variant: 'brand', size: 'lg', text: 'eagami design system' },
 };

@@ -10,7 +10,8 @@ import { CardComponent } from './card.component';
     <ea-card
       [variant]="variant"
       [padding]="padding"
-      [fullWidth]="fullWidth">
+      [fullWidth]="fullWidth"
+      [headerDivider]="headerDivider">
       <span eaCardHeader>{{ header }}</span>
       Body content
       <span eaCardFooter>{{ footer }}</span>
@@ -21,6 +22,7 @@ class TestHostComponent {
   variant: 'elevated' | 'outlined' | 'filled' = 'elevated';
   padding: 'none' | 'sm' | 'md' | 'lg' | 'xl' = 'md';
   fullWidth = false;
+  headerDivider = false;
   header = '';
   footer = '';
 }
@@ -116,6 +118,18 @@ describe('CardComponent', () => {
       host.fullWidth = true;
       fixture.detectChanges();
       expect(getCard().classList).toContain('ea-card--full-width');
+    });
+  });
+
+  describe('Header divider', () => {
+    it('does not render a divider by default', () => {
+      expect(fixture.nativeElement.querySelector('.ea-card__divider')).toBeNull();
+    });
+
+    it('renders a divider when enabled', () => {
+      host.headerDivider = true;
+      fixture.detectChanges();
+      expect(fixture.nativeElement.querySelector('.ea-card__divider')).toBeTruthy();
     });
   });
 });

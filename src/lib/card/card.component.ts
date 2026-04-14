@@ -7,13 +7,15 @@ import {
   input,
 } from '@angular/core';
 
+import { DividerComponent } from '../divider/divider.component';
+
 export type CardVariant = 'elevated' | 'outlined' | 'filled';
 export type CardPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
 export type CardHeaderAlign = 'start' | 'center' | 'end';
 
 @Component({
   selector: 'ea-card',
-  imports: [NgClass],
+  imports: [NgClass, DividerComponent],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,6 +27,7 @@ export class CardComponent {
   readonly padding = input<CardPadding>('md');
   readonly fullWidth = input<boolean>(false);
   readonly headerAlign = input<CardHeaderAlign>('center');
+  readonly headerDivider = input<boolean>(false);
 
   // Computed
   readonly hostClasses = computed(() => ({
