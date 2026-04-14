@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add `DatePickerComponent` (`ea-date-picker`) — calendar popover with prev/next month and year navigation, today shortcut, `sm`/`md`/`lg` sizes, `short`/`medium`/`long` locale-aware display formats, configurable week start (Sunday or Monday), `minDate`/`maxDate` bounds, full keyboard navigation (arrows, PageUp/PageDown, Home/End, Enter, Escape), and `ControlValueAccessor` integration
+- Introduce a `text` input on `EagamiWordmarkComponent` to switch the wordmark between "eagami" and "eagami design system"
+- Build out `CardComponent` with a `headerDivider` input that renders an `ea-divider` between the header and the body
 
 ### Changed
 
