@@ -1,0 +1,196 @@
+// =============================================================================
+// AUTOCOMPLETE COMPONENT
+// =============================================================================
+
+.ea-autocomplete {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5);
+
+  // ---------------------------------------------------------------------------
+  // Label
+  // ---------------------------------------------------------------------------
+  &__label {
+    font-size: var(--text-label-md-size);
+    font-weight: var(--text-label-md-weight);
+    line-height: var(--text-label-md-lh);
+    color: var(--color-text-primary);
+
+    &--required::after {
+      content: ' *';
+      color: var(--color-error-default);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Input wrapper
+  // ---------------------------------------------------------------------------
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    width: 100%;
+    border: var(--border-width-thin) solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg-base);
+    transition: var(--transition-colors), var(--transition-shadow);
+
+    // Sizes
+    &--sm {
+      padding: var(--space-1-5) var(--space-2);
+      min-height: 2rem;
+
+      .ea-autocomplete__input {
+        font-size: var(--font-size-sm);
+      }
+    }
+
+    &--md {
+      padding: var(--space-2) var(--space-3);
+      min-height: 2.5rem;
+
+      .ea-autocomplete__input {
+        font-size: var(--font-size-sm);
+      }
+    }
+
+    &--lg {
+      padding: var(--space-2-5) var(--space-4);
+      min-height: 3rem;
+
+      .ea-autocomplete__input {
+        font-size: var(--font-size-md);
+      }
+    }
+
+    // States
+    &--focused {
+      border-color: var(--color-border-focus);
+      box-shadow: var(--shadow-focus-ring);
+    }
+
+    &--error {
+      border-color: var(--color-error-default);
+
+      &.ea-autocomplete__wrapper--focused {
+        box-shadow: var(--shadow-focus-ring-error);
+      }
+    }
+
+    &--disabled {
+      background-color: var(--color-bg-muted);
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Input
+  // ---------------------------------------------------------------------------
+  &__input {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-family: var(--font-family-sans);
+    color: var(--color-text-primary);
+    outline: none;
+
+    &::placeholder {
+      color: var(--color-text-tertiary);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Prefix / suffix
+  // ---------------------------------------------------------------------------
+  &__prefix,
+  &__suffix {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    color: var(--color-text-secondary);
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Listbox
+  // ---------------------------------------------------------------------------
+  &__listbox {
+    position: absolute;
+    z-index: var(--z-index-dropdown);
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 15rem;
+    padding: var(--space-1) 0;
+    margin: var(--space-1) 0 0;
+    overflow-y: auto;
+    list-style: none;
+    border: var(--border-width-thin) solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    background-color: var(--color-bg-base);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Option
+  // ---------------------------------------------------------------------------
+  &__option {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-sm);
+    font-family: var(--font-family-sans);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: var(--transition-colors);
+
+    &--focused {
+      background-color: var(--color-bg-muted);
+    }
+
+    &--disabled {
+      color: var(--color-text-disabled);
+      cursor: not-allowed;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Empty message
+  // ---------------------------------------------------------------------------
+  &__empty {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-sm);
+    font-style: italic;
+    color: var(--color-text-tertiary);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Messages
+  // ---------------------------------------------------------------------------
+  &__message {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin: 0;
+    font-size: var(--text-helper-size);
+    font-weight: var(--text-helper-weight);
+    line-height: var(--text-helper-lh);
+
+    &--hint {
+      color: var(--color-text-secondary);
+    }
+
+    &--error {
+      color: var(--color-error-default);
+    }
+  }
+}

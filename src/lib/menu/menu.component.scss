@@ -1,0 +1,52 @@
+// =============================================================================
+// MENU COMPONENT
+// =============================================================================
+
+.ea-menu {
+  position: relative;
+  display: inline-block;
+
+  // ---------------------------------------------------------------------------
+  // Trigger wrapper
+  // ---------------------------------------------------------------------------
+  &__trigger {
+    display: inline-flex;
+  }
+
+  // ---------------------------------------------------------------------------
+  // List
+  // ---------------------------------------------------------------------------
+  &__list {
+    position: absolute;
+    z-index: var(--z-index-dropdown);
+    min-width: 10rem;
+    max-height: 20rem;
+    padding: var(--space-1) 0;
+    overflow-y: auto;
+    border: var(--border-width-thin) solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    background-color: var(--color-bg-base);
+
+    // ---- Placement variants -------------------------------------------------
+    &--bottom-start {
+      top: calc(100% + var(--space-1));
+      left: 0;
+    }
+
+    &--bottom-end {
+      top: calc(100% + var(--space-1));
+      right: 0;
+    }
+
+    &--top-start {
+      bottom: calc(100% + var(--space-1));
+      left: 0;
+    }
+
+    &--top-end {
+      bottom: calc(100% + var(--space-1));
+      right: 0;
+    }
+  }
+}

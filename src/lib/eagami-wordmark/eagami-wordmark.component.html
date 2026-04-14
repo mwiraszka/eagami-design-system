@@ -1,0 +1,25 @@
+<a
+  class="ea-eagami-wordmark"
+  [class.ea-eagami-wordmark--sm]="size() === 'sm'"
+  [class.ea-eagami-wordmark--md]="size() === 'md'"
+  [class.ea-eagami-wordmark--lg]="size() === 'lg'"
+  href="https://eagami.com"
+  target="_blank"
+  rel="noopener"
+  aria-label="eagami — elegant web design">
+  <ea-icon-eagami
+    class="ea-eagami-wordmark__logo"
+    aria-hidden="true" />
+
+  @if (variant() === 'signature') {
+    <span class="ea-eagami-wordmark__text">
+      <span class="ea-eagami-wordmark__overline">handcrafted by</span>
+      <span class="ea-eagami-wordmark__brand">eagami</span>
+    </span>
+  } @else if (variant() === 'brand') {
+    <span class="ea-eagami-wordmark__text">
+      <span class="ea-eagami-wordmark__brand">eagami</span>
+      <span class="ea-eagami-wordmark__tagline">elegant web design</span>
+    </span>
+  }
+</a>

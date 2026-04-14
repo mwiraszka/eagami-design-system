@@ -1,0 +1,49 @@
+<nav
+  class="ea-breadcrumbs"
+  [attr.aria-label]="ariaLabel()">
+  <ol class="ea-breadcrumbs__list">
+    @for (item of items(); track $index; let i = $index; let last = $last) {
+      <li class="ea-breadcrumbs__item">
+        @if (last) {
+          <span
+            class="ea-breadcrumbs__current"
+            aria-current="page">
+            {{ item.label }}
+          </span>
+        } @else if (item.disabled) {
+          <span class="ea-breadcrumbs__link ea-breadcrumbs__link--disabled">
+            {{ item.label }}
+          </span>
+        } @else if (item.href) {
+          <a
+            class="ea-breadcrumbs__link"
+            [href]="item.href"
+            (click)="handleClick(item, i, $event)">
+            {{ item.label }}
+          </a>
+        } @else {
+          <button
+            type="button"
+            class="ea-breadcrumbs__link ea-breadcrumbs__link--button"
+            (click)="handleClick(item, i, $event)">
+            {{ item.label }}
+          </button>
+        }
+
+        @if (!last) {
+          @if (separator() === 'chevron') {
+            <ea-icon-chevron-right
+              class="ea-breadcrumbs__separator"
+              aria-hidden="true" />
+          } @else {
+            <span
+              class="ea-breadcrumbs__separator ea-breadcrumbs__separator--slash"
+              aria-hidden="true">
+              /
+            </span>
+          }
+        }
+      </li>
+    }
+  </ol>
+</nav>

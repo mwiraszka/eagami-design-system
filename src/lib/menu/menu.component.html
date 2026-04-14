@@ -1,0 +1,22 @@
+<div class="ea-menu">
+  <div
+    class="ea-menu__trigger"
+    [attr.aria-haspopup]="'menu'"
+    [attr.aria-expanded]="open()"
+    [attr.aria-controls]="menuId()"
+    (click)="toggle()"
+    (keydown)="handleTriggerKeydown($event)">
+    <ng-content select="[slot=trigger]" />
+  </div>
+
+  @if (open()) {
+    <div
+      class="ea-menu__list"
+      role="menu"
+      [id]="menuId()"
+      [ngClass]="menuClasses()"
+      [attr.aria-label]="ariaLabel()">
+      <ng-content />
+    </div>
+  }
+</div>

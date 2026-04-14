@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] - 2026-04-13
+
+### Added
+
+- Add `AutocompleteComponent` (`ea-autocomplete`) — text input with filtered suggestion dropdown, keyboard navigation, configurable `minLength` and `maxResults`, and `ControlValueAccessor` integration
+- Add `BreadcrumbsComponent` (`ea-breadcrumbs`) — navigation trail with chevron or slash separators, link/button/disabled item rendering, and automatic current-page handling for the last item
+- Add `DrawerComponent` (`ea-drawer`) — side panel built on native `<dialog>` with four positions (left/right/top/bottom), sizes, focus trapping, backdrop/escape close, and header/footer content slots
+- Add `EagamiWordmarkComponent` (`ea-eagami-wordmark`) — branded wordmark linking to eagami.com with `logo`, `signature`, and `brand` variants and `sm`/`md`/`lg` sizes that scale the logo and text proportionally
+- Add `MenuComponent` (`ea-menu`) and `MenuItemComponent` (`ea-menu-item`) — popup action menu with trigger slot, four placements, keyboard navigation, icon support, disabled items, and `danger` variant
+- Add `ea-icon-eagami` brand logo icon used by `EagamiWordmarkComponent`
+
+### Fixed
+
+- Set default `1em × 1em` sizing on all icon components so icons render at the inherited font size when placed inside buttons without explicit sizing
+- Allow `PaginatorComponent` controls to wrap onto multiple lines in narrow containers instead of overflowing horizontally
+- Resolve strict type checking error in Storybook build for the autocomplete story
+
 ## [0.8.1] - 2026-04-11
 
 ### Fixed
@@ -186,6 +203,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Global SCSS design tokens for colors, typography, spacing, elevation, motion, and shape
 - CSS custom property theming support
 
+[0.9.0]: https://github.com/mwiraszka/eagami-design-system/compare/v0.8.1...v0.9.0
 [0.8.1]: https://github.com/mwiraszka/eagami-design-system/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/mwiraszka/eagami-design-system/compare/v0.7.4...v0.8.0
 [0.7.4]: https://github.com/mwiraszka/eagami-design-system/compare/v0.7.3...v0.7.4
