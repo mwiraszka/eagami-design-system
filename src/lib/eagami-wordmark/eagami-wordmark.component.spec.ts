@@ -56,8 +56,22 @@ describe('EagamiWordmarkComponent', () => {
       expect(getLogo()).toBeTruthy();
     });
 
-    it('sets an accessible label on the link', () => {
+    it('sets an accessible label matching the visible text', () => {
+      fixture.componentRef.setInput('variant', 'brand');
+      fixture.detectChanges();
+
       expect(getAnchor().getAttribute('aria-label')).toBe('eagami — elegant web design');
+    });
+
+    it('labels the link with the "handcrafted by" prefix for the signature variant', () => {
+      fixture.componentRef.setInput('variant', 'signature');
+      fixture.detectChanges();
+
+      expect(getAnchor().getAttribute('aria-label')).toBe('handcrafted by eagami');
+    });
+
+    it('labels the logo variant with the bare text', () => {
+      expect(getAnchor().getAttribute('aria-label')).toBe('eagami');
     });
   });
 
@@ -89,6 +103,38 @@ describe('EagamiWordmarkComponent', () => {
       expect(getBrand()?.textContent?.trim()).toBe('eagami');
       expect(getTagline()?.textContent?.trim()).toBe('elegant web design');
       expect(getOverline()).toBeNull();
+    });
+  });
+
+  // ── Text ─────────────────────────────────────────────────────────────────────
+
+  describe('Text', () => {
+    it('renders "eagami design system" in the brand variant when text is set', () => {
+      fixture.componentRef.setInput('variant', 'brand');
+      fixture.componentRef.setInput('text', 'eagami design system');
+      fixture.detectChanges();
+
+      expect(getBrand()?.textContent?.trim()).toBe('eagami design system');
+      expect(getTagline()?.textContent?.trim()).toBe('elegant web design');
+    });
+
+    it('renders "eagami design system" in the signature variant when text is set', () => {
+      fixture.componentRef.setInput('variant', 'signature');
+      fixture.componentRef.setInput('text', 'eagami design system');
+      fixture.detectChanges();
+
+      expect(getOverline()?.textContent?.trim()).toBe('handcrafted by');
+      expect(getBrand()?.textContent?.trim()).toBe('eagami design system');
+    });
+
+    it('reflects the text input in the accessible label', () => {
+      fixture.componentRef.setInput('variant', 'brand');
+      fixture.componentRef.setInput('text', 'eagami design system');
+      fixture.detectChanges();
+
+      expect(getAnchor().getAttribute('aria-label')).toBe(
+        'eagami design system — elegant web design',
+      );
     });
   });
 
