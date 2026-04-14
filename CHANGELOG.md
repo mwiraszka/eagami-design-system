@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Set default `1em × 1em` sizing on all icon components so icons render at the inherited font size when placed inside buttons without explicit sizing
+- Allow `PaginatorComponent` controls to wrap onto multiple lines in narrow containers instead of overflowing horizontally
 - Resolve strict type checking error in Storybook build for the autocomplete story
 
 ## [0.8.1] - 2026-04-11
