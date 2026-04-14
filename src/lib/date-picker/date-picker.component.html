@@ -1,0 +1,164 @@
+<div
+  #hostEl
+  class="ea-date-picker-field">
+  @if (label()) {
+    <label
+      class="ea-date-picker-field__label"
+      [for]="id()"
+      [class.ea-date-picker-field__label--required]="required()">
+      {{ label() }}
+    </label>
+  }
+
+  <div class="ea-date-picker">
+    <button
+      #triggerEl
+      type="button"
+      class="ea-date-picker__trigger"
+      [ngClass]="triggerClasses()"
+      [id]="id()"
+      [disabled]="isDisabled()"
+      [attr.aria-expanded]="isOpen()"
+      [attr.aria-haspopup]="'dialog'"
+      [attr.aria-invalid]="resolvedStatus() === 'error' || null"
+      [attr.aria-describedby]="
+        showError() ? id() + '-error' : showHint() ? id() + '-hint' : null
+      "
+      (click)="toggle()"
+      (keydown)="handleTriggerKeydown($event)">
+      <ea-icon-calendar
+        class="ea-date-picker__trigger-icon"
+        aria-hidden="true" />
+      <span
+        class="ea-date-picker__trigger-value"
+        [class.ea-date-picker__trigger-value--placeholder]="!displayValue()">
+        {{ displayValue() || placeholder() }}
+      </span>
+      @if (value() && !isDisabled()) {
+        <button
+          type="button"
+          class="ea-date-picker__clear"
+          aria-label="Clear date"
+          tabindex="-1"
+          (click)="clear($event)">
+          <span aria-hidden="true">×</span>
+        </button>
+      }
+    </button>
+
+    @if (isOpen()) {
+      <div
+        class="ea-date-picker__popover"
+        role="dialog"
+        aria-modal="false"
+        [attr.aria-labelledby]="id() + '-label'"
+        (keydown)="handleGridKeydown($event)">
+        <div class="ea-date-picker__header">
+          <button
+            type="button"
+            class="ea-date-picker__nav-btn"
+            aria-label="Previous year"
+            (click)="goToPrevYear()">
+            <ea-icon-chevron-left aria-hidden="true" />
+            <ea-icon-chevron-left aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            class="ea-date-picker__nav-btn"
+            aria-label="Previous month"
+            (click)="goToPrevMonth()">
+            <ea-icon-chevron-left aria-hidden="true" />
+          </button>
+          <span
+            class="ea-date-picker__month-label"
+            [id]="id() + '-label'"
+            aria-live="polite">
+            {{ monthYearLabel() }}
+          </span>
+          <button
+            type="button"
+            class="ea-date-picker__nav-btn"
+            aria-label="Next month"
+            (click)="goToNextMonth()">
+            <ea-icon-chevron-right aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            class="ea-date-picker__nav-btn"
+            aria-label="Next year"
+            (click)="goToNextYear()">
+            <ea-icon-chevron-right aria-hidden="true" />
+            <ea-icon-chevron-right aria-hidden="true" />
+          </button>
+        </div>
+
+        <div
+          class="ea-date-picker__grid"
+          role="grid">
+          <div
+            class="ea-date-picker__weekday-row"
+            role="row">
+            @for (label of weekdayLabels(); track label) {
+              <div
+                class="ea-date-picker__weekday"
+                role="columnheader">
+                {{ label }}
+              </div>
+            }
+          </div>
+          @for (week of weeks(); track $index) {
+            <div
+              class="ea-date-picker__week"
+              role="row">
+              @for (day of week; track day.date.getTime()) {
+                <button
+                  type="button"
+                  class="ea-date-picker__day"
+                  role="gridcell"
+                  [class.ea-date-picker__day--outside]="!day.isCurrentMonth"
+                  [class.ea-date-picker__day--today]="day.isToday"
+                  [class.ea-date-picker__day--selected]="day.isSelected"
+                  [class.ea-date-picker__day--focused]="day.isFocused"
+                  [class.ea-date-picker__day--disabled]="day.isDisabled"
+                  [disabled]="day.isDisabled"
+                  [attr.aria-selected]="day.isSelected"
+                  [attr.aria-current]="day.isToday ? 'date' : null"
+                  [attr.tabindex]="day.isFocused ? 0 : -1"
+                  (click)="selectDay(day)">
+                  {{ day.day }}
+                </button>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="ea-date-picker__footer">
+          <button
+            type="button"
+            class="ea-date-picker__today-btn"
+            (click)="goToToday()">
+            Today
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (showError()) {
+    <p
+      class="ea-date-picker-field__message ea-date-picker-field__message--error"
+      [id]="id() + '-error'"
+      role="alert">
+      <ea-icon-alert-circle class="ea-date-picker-field__message-icon" />
+      {{ errorMsg() }}
+    </p>
+  }
+
+  @if (showHint()) {
+    <p
+      class="ea-date-picker-field__message ea-date-picker-field__message--hint"
+      [id]="id() + '-hint'">
+      {{ hint() }}
+    </p>
+  }
+</div>

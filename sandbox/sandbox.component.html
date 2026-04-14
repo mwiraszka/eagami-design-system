@@ -454,6 +454,74 @@
       </section>
     </details>
 
+    <!-- ─── Date Picker ───────────────────────────────────────────────────── -->
+    <details class="sandbox-details">
+      <summary class="sandbox-summary">Date Picker</summary>
+      <section class="sandbox-section">
+        <h2>basic</h2>
+        <ea-date-picker
+          label="Appointment"
+          placeholder="Pick a date…"
+          [(value)]="datePickerValue" />
+
+        <h2>hint &amp; error</h2>
+        <div class="sandbox-stack">
+          <ea-date-picker
+            label="With hint"
+            hint="Select any future date"
+            placeholder="Pick a date…" />
+          <ea-date-picker
+            label="With error"
+            error="This field is required"
+            placeholder="Pick a date…" />
+        </div>
+
+        <h2>format variants</h2>
+        <div class="sandbox-stack">
+          <ea-date-picker
+            label="Short"
+            format="short"
+            [value]="datePickerValue()" />
+          <ea-date-picker
+            label="Medium"
+            format="medium"
+            [value]="datePickerValue()" />
+          <ea-date-picker
+            label="Long"
+            format="long"
+            [value]="datePickerValue()" />
+        </div>
+
+        <h2>min &amp; max</h2>
+        <ea-date-picker
+          label="Within next 3 weeks"
+          [minDate]="datePickerMin"
+          [maxDate]="datePickerMax"
+          hint="±1 week / +3 weeks from today"
+          placeholder="Pick a date…" />
+
+        <h2>sizes</h2>
+        <ea-date-picker
+          size="sm"
+          label="Small"
+          placeholder="sm" />
+        <ea-date-picker
+          size="md"
+          label="Medium"
+          placeholder="md" />
+        <ea-date-picker
+          size="lg"
+          label="Large"
+          placeholder="lg" />
+
+        <h2>disabled</h2>
+        <ea-date-picker
+          label="Disabled"
+          [disabled]="true"
+          placeholder="Pick a date…" />
+      </section>
+    </details>
+
     <!-- ─── Dialog ────────────────────────────────────────────────────────── -->
     <details class="sandbox-details">
       <summary class="sandbox-summary">Dialog</summary>

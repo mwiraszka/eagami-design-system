@@ -16,6 +16,7 @@ import {
   CodeInputComponent,
   DataTableColumn,
   DataTableComponent,
+  DatePickerComponent,
   DialogComponent,
   DividerComponent,
   DrawerComponent,
@@ -63,6 +64,7 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
     CheckboxComponent,
     CodeInputComponent,
     DataTableComponent,
+    DatePickerComponent,
     DialogComponent,
     DividerComponent,
     DrawerComponent,
@@ -101,6 +103,9 @@ export class SandboxComponent {
   checkboxValue = signal(false);
   radioValue = signal('');
   dropdownValue = signal('');
+  datePickerValue = signal<Date | null>(null);
+  datePickerMin = new Date(new Date().setDate(new Date().getDate() - 7));
+  datePickerMax = new Date(new Date().setDate(new Date().getDate() + 21));
   dialogOpen = signal(false);
   drawerOpenRight = signal(false);
   drawerOpenLeft = signal(false);

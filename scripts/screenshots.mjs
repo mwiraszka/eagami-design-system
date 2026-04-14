@@ -52,6 +52,7 @@ const SECTIONS = [
   { name: 'checkbox', heading: 'Checkbox' },
   { name: 'code-input', heading: 'Code Input', prepare: fillCodeInputs },
   { name: 'data-table', heading: 'Data Table' },
+  { name: 'date-picker', heading: 'Date Picker', prepare: openDatePickerCalendar },
   { name: 'dialog', heading: 'Dialog', prepare: showDialogInline },
   { name: 'divider', heading: 'Divider' },
   { name: 'drawer', heading: 'Drawer', prepare: showDrawersInline },
@@ -335,6 +336,50 @@ async function showDrawersInline(page, section) {
   });
 
   await new Promise(r => setTimeout(r, 200));
+}
+
+/**
+ * Open both the "basic" and "min & max" date-pickers so the screenshot shows a
+ * plain selected-day state on top and a min/max-bounded calendar below with
+ * out-of-range days disabled. Force each popover to flow inline below its
+ * trigger at its natural content width — the default absolute positioning
+ * would either overlap the next field or get clipped by the section's bounds,
+ * and leaving it as a static block would stretch it to the full trigger width
+ * instead of sitting at its natural ~18rem width.
+ */
+async function openDatePickerCalendar(page, section) {
+  await page.addStyleTag({
+    content: `
+      .sandbox-section .ea-date-picker__popover {
+        position: static !important;
+        width: max-content !important;
+        margin-top: 4px !important;
+      }
+    `,
+  });
+
+  await section.evaluate(el => {
+    const pickers = el.querySelectorAll('ea-date-picker');
+    // Order in the section: basic, with-hint, with-error, short, medium, long,
+    // min/max, sm, md, lg, disabled.
+    const basic = window.ng?.getComponent?.(pickers[0]);
+    if (basic?.isOpen?.set) {
+      const selected = new Date(basic.viewYear(), basic.viewMonth(), 15);
+      basic.value.set(selected);
+      basic.focusedDate.set(selected);
+      basic.isOpen.set(true);
+      window.ng.applyChanges(basic);
+    }
+
+    const minMax = window.ng?.getComponent?.(pickers[6]);
+    if (minMax?.isOpen?.set) {
+      minMax.focusedDate.set(new Date());
+      minMax.isOpen.set(true);
+      window.ng.applyChanges(minMax);
+    }
+  });
+
+  await new Promise(r => setTimeout(r, 150));
 }
 
 /**

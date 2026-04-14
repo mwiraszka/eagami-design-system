@@ -274,6 +274,24 @@ Striped, bordered, and hoverable rows. Custom cell templates via `ng-template`. 
 </details>
 
 <details>
+<summary><strong>Date picker</strong> — calendar popover with keyboard navigation and min/max bounds</summary>
+
+Sizes: `sm` | `md` | `lg`. Formats: `short` | `medium` | `long` (locale-aware via `Intl.DateTimeFormat`). Configurable week start (Sunday or Monday). Full keyboard navigation (arrows, PageUp/PageDown, Home/End, Enter, Escape) and `ControlValueAccessor` integration.
+
+```html
+<ea-date-picker
+  label="Appointment"
+  placeholder="Pick a date…"
+  format="medium"
+  [minDate]="today"
+  [(value)]="appointmentDate" />
+```
+
+<img src="docs/images/date-picker.png" alt="Date picker component" width="560" />
+
+</details>
+
+<details>
 <summary><strong>Dialog</strong> — native dialog element with focus trapping</summary>
 
 Sizes: `sm` | `md` | `lg` | `full`. Two-way `open` binding.
