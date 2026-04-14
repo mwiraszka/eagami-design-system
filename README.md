@@ -370,10 +370,13 @@ Arrow keys, Enter/Space to select, Escape to close. Sizes: `sm` | `md` | `lg`.
 <details>
 <summary><strong>Eagami wordmark</strong> — branded logo wordmark linking to eagami.com</summary>
 
-Variants: `logo` (icon only) | `signature` (handcrafted by eagami) | `brand` (eagami with tagline). Three discrete sizes (`sm`, `md`, `lg`) scale both the logo and the text proportionally.
+Variants: `logo` (icon only) | `signature` (handcrafted by &lt;text&gt;) | `brand` (&lt;text&gt; with tagline). The `text` input switches the main wordmark between `eagami` and `eagami design system` in the `signature` and `brand` variants. Three discrete sizes (`sm`, `md`, `lg`) scale both the logo and the text proportionally.
 
 ```html
-<ea-eagami-wordmark variant="brand" size="md" />
+<ea-eagami-wordmark
+  variant="brand"
+  size="md"
+  text="eagami design system" />
 ```
 
 <img src="docs/images/eagami-wordmark.png" alt="Eagami wordmark component" width="560" />

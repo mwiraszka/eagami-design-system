@@ -554,6 +554,62 @@ async function captureIcons(browser) {
   );
 }
 
+/**
+ * Capture the README header image by screenshotting the large
+ * `ea-eagami-wordmark` instance tagged with `.sandbox-readme-header-wordmark`
+ * inside the Eagami Wordmark sandbox section. Expands the collapsible section
+ * first so the target element is laid out, then screenshots just that element
+ * with a transparent background.
+ */
+async function captureHeader(page) {
+  const outPath = resolve(OUT, 'eagami-header.png');
+  if (!shouldCapture(outPath, 'eagami-header')) {
+    console.log(
+      '\nHeader image already exists (use --force eagami-header to overwrite).',
+    );
+    return;
+  }
+
+  console.log('\nCapturing README header image…');
+
+  // The wordmark at size="lg" with the long "eagami design system" text is
+  // wider than the default sandbox details panel (max-width 600px), so bump
+  // the viewport and lift the panel's width cap for this one section so the
+  // wordmark lays out at its full content width without clipping or wrapping.
+  await page.setViewport({ width: 2000, height: 600, deviceScaleFactor: 2 });
+  await page.addStyleTag({
+    content: `
+      sandbox-root { max-width: none !important; }
+      .sandbox-details:has(.sandbox-readme-header-wordmark) {
+        max-width: none !important;
+      }
+    `,
+  });
+
+  const handle = await page.evaluateHandle(() => {
+    const detailsEls = document.querySelectorAll('.sandbox-details');
+    for (const d of detailsEls) {
+      const summary = d.querySelector('.sandbox-summary');
+      if (summary && summary.textContent.trim() === 'Eagami Wordmark') {
+        d.open = true;
+        return d.querySelector('.sandbox-readme-header-wordmark');
+      }
+    }
+    return null;
+  });
+  const el = handle.asElement();
+  if (!el) {
+    console.warn('  skip  eagami-header (wordmark target not found)');
+    return;
+  }
+
+  await page.evaluate(() => document.fonts.ready);
+  await new Promise(r => setTimeout(r, 200));
+
+  await el.screenshot({ path: outPath, omitBackground: true });
+  console.log('  done  eagami-header.png');
+}
+
 async function main() {
   const puppeteer = await import('puppeteer');
 
@@ -602,6 +658,8 @@ async function main() {
     );
 
     await captureIcons(browser);
+
+    await captureHeader(page);
 
     await browser.close();
   } finally {
