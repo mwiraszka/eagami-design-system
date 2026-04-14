@@ -33,18 +33,6 @@
   min-width: 0;
 }
 
-.sandbox-logo {
-  width: 52px;
-  height: 52px;
-  flex-shrink: 0;
-}
-
-.sandbox-header-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
 .sandbox-header-separator {
   margin-bottom: 3px;
   color: var(--color-text-secondary);
@@ -58,24 +46,6 @@
   text-transform: uppercase;
 }
 
-h1 {
-  font-family: var(--font-family-brand, 'Syne', sans-serif);
-  font-size: 22px;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  margin: 0;
-}
-
-.sandbox-tagline {
-  font-family: var(--font-family-sans, system-ui, sans-serif);
-  font-size: 12px;
-  font-weight: 300;
-  letter-spacing: 0.12em;
-  color: var(--color-text-secondary);
-  text-transform: lowercase;
-  margin: 0;
-}
-
 h2 {
   font-size: 14px;
   font-weight: 600;
@@ -83,10 +53,6 @@ h2 {
   letter-spacing: 0.05em;
   color: var(--color-text-secondary);
   margin: 24px 0 8px;
-
-  &:first-child {
-    margin-top: 0;
-  }
 }
 
 .sandbox-details {
@@ -131,7 +97,11 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 8px 16px 16px;
+  padding: 16px;
+
+  h2:first-child {
+    margin-top: 0;
+  }
 }
 
 .sandbox-row {
@@ -198,4 +168,17 @@ h2 {
 .sandbox-sticky-table {
   display: block;
   height: 240px;
+}
+
+.sandbox-tooltip-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.sandbox-tooltip-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
 }

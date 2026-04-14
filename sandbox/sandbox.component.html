@@ -1,14 +1,9 @@
 <header class="sandbox-header">
-  <img
-    src="assets/logo.svg"
-    alt="eagami logo"
-    class="sandbox-logo" />
-  <div class="sandbox-header-text">
-    <h1>eagami design system</h1>
-    <p class="sandbox-tagline">elegant web design.</p>
-  </div>
+  <ea-eagami-wordmark
+    variant="brand"
+    size="lg" />
   <span class="sandbox-header-separator">—</span>
-  <span class="sandbox-header-label">Sandbox</span>
+  <span class="sandbox-header-label">UI Component Sandbox</span>
 </header>
 
 <div class="sandbox-grid">
@@ -95,7 +90,6 @@
           placeholder="Start typing…"
           [options]="autocompleteOptions"
           [(value)]="autocompleteValue" />
-        <p class="sandbox-preview">Value: {{ autocompleteValue() }}</p>
 
         <h2>hint &amp; error</h2>
         <ea-autocomplete
@@ -285,7 +279,7 @@
         <div class="sandbox-row">
           <ea-button
             [loading]="isLoading()"
-            (clicked)="isLoading.set(!isLoading())">
+            (clicked)="triggerLoading()">
             Toggle loading
           </ea-button>
           <ea-button [disabled]="true">Disabled</ea-button>
@@ -340,7 +334,6 @@
         <ea-checkbox
           label="Accept terms and conditions"
           [(checked)]="checkboxValue" />
-        <p class="sandbox-preview">Checked: {{ checkboxValue() }}</p>
 
         <h2>sizes</h2>
         <div class="sandbox-row">
@@ -380,7 +373,6 @@
           label="Verification code"
           hint="Check your email for the 6-digit code"
           [(value)]="codeInputValue" />
-        <p class="sandbox-preview">Value: {{ codeInputValue() }}</p>
 
         <h2>error</h2>
         <ea-code-input
@@ -503,9 +495,7 @@
         </div>
       </section>
     </details>
-  </div>
 
-  <div class="sandbox-column">
     <!-- ─── Drawer ────────────────────────────────────────────────────────── -->
     <details class="sandbox-details">
       <summary class="sandbox-summary">Drawer</summary>
@@ -564,7 +554,9 @@
         </ea-drawer>
       </section>
     </details>
+  </div>
 
+  <div class="sandbox-column">
     <!-- ─── Dropdown ──────────────────────────────────────────────────────── -->
     <details class="sandbox-details">
       <summary class="sandbox-summary">Dropdown</summary>
@@ -575,19 +567,20 @@
           placeholder="Select a fruit…"
           [options]="dropdownOptions"
           [(value)]="dropdownValue" />
-        <p class="sandbox-preview">Selected: {{ dropdownValue() }}</p>
 
         <h2>hint &amp; error</h2>
-        <ea-dropdown
-          label="With hint"
-          hint="Choose your favourite"
-          [options]="dropdownOptions"
-          placeholder="Select…" />
-        <ea-dropdown
-          label="With error"
-          error="This field is required"
-          [options]="dropdownOptions"
-          placeholder="Select…" />
+        <div class="sandbox-stack">
+          <ea-dropdown
+            label="With hint"
+            hint="Choose your favourite"
+            [options]="dropdownOptions"
+            placeholder="Select…" />
+          <ea-dropdown
+            label="With error"
+            error="This field is required"
+            [options]="dropdownOptions"
+            placeholder="Select…" />
+        </div>
 
         <h2>sizes</h2>
         <ea-dropdown
@@ -615,6 +608,32 @@
       </section>
     </details>
 
+    <!-- ─── Eagami Wordmark ───────────────────────────────────────────────── -->
+    <details class="sandbox-details">
+      <summary class="sandbox-summary">Eagami Wordmark</summary>
+      <section class="sandbox-section">
+        <h2>variants</h2>
+        <div class="sandbox-stack sandbox-stack--md">
+          <ea-eagami-wordmark variant="logo" />
+          <ea-eagami-wordmark variant="signature" />
+          <ea-eagami-wordmark variant="brand" />
+        </div>
+
+        <h2>sizes</h2>
+        <div class="sandbox-stack sandbox-stack--md">
+          <ea-eagami-wordmark
+            variant="brand"
+            size="sm" />
+          <ea-eagami-wordmark
+            variant="brand"
+            size="md" />
+          <ea-eagami-wordmark
+            variant="brand"
+            size="lg" />
+        </div>
+      </section>
+    </details>
+
     <!-- ─── Input ─────────────────────────────────────────────────────────── -->
     <details class="sandbox-details">
       <summary class="sandbox-summary">Input</summary>
@@ -624,7 +643,6 @@
           label="Default"
           placeholder="Enter text…"
           [(value)]="inputValue" />
-        <p class="sandbox-preview">Value: {{ inputValue() }}</p>
 
         <h2>hint &amp; error</h2>
         <ea-input
@@ -857,7 +875,6 @@
             value="cherry"
             label="Cherry" />
         </ea-radio-group>
-        <p class="sandbox-preview">Selected: {{ radioValue() }}</p>
 
         <h2>horizontal</h2>
         <ea-radio-group
@@ -931,7 +948,6 @@
         <ea-switch
           label="Enable notifications"
           [(checked)]="switchValue" />
-        <p class="sandbox-preview">Enabled: {{ switchValue() }}</p>
 
         <h2>sizes</h2>
         <div class="sandbox-row">
@@ -1106,7 +1122,6 @@
           label="Message"
           placeholder="Enter your message…"
           [(value)]="textareaValue" />
-        <p class="sandbox-preview">Value: {{ textareaValue() }}</p>
 
         <h2>hint &amp; error</h2>
         <ea-textarea
@@ -1209,27 +1224,35 @@
       <summary class="sandbox-summary">Tooltip</summary>
       <section class="sandbox-section">
         <h2>positions</h2>
-        <div class="sandbox-row">
-          <ea-button
-            eaTooltip="Top tooltip"
-            tooltipPosition="top">
-            Top
-          </ea-button>
-          <ea-button
-            eaTooltip="Bottom tooltip"
-            tooltipPosition="bottom">
-            Bottom
-          </ea-button>
-          <ea-button
-            eaTooltip="Left tooltip"
-            tooltipPosition="left">
-            Left
-          </ea-button>
-          <ea-button
-            eaTooltip="Right tooltip"
-            tooltipPosition="right">
-            Right
-          </ea-button>
+        <div class="sandbox-tooltip-grid">
+          <div class="sandbox-tooltip-cell">
+            <ea-button
+              eaTooltip="Top tooltip"
+              tooltipPosition="top">
+              Top
+            </ea-button>
+          </div>
+          <div class="sandbox-tooltip-cell">
+            <ea-button
+              eaTooltip="Bottom tooltip"
+              tooltipPosition="bottom">
+              Bottom
+            </ea-button>
+          </div>
+          <div class="sandbox-tooltip-cell">
+            <ea-button
+              eaTooltip="Left tooltip"
+              tooltipPosition="left">
+              Left
+            </ea-button>
+          </div>
+          <div class="sandbox-tooltip-cell">
+            <ea-button
+              eaTooltip="Right tooltip"
+              tooltipPosition="right">
+              Right
+            </ea-button>
+          </div>
         </div>
       </section>
     </details>

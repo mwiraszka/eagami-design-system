@@ -21,6 +21,7 @@ import {
   DrawerComponent,
   DropdownComponent,
   DropdownOption,
+  EagamiWordmarkComponent,
   InputComponent,
   MenuComponent,
   MenuItemComponent,
@@ -66,6 +67,7 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
     DividerComponent,
     DrawerComponent,
     DropdownComponent,
+    EagamiWordmarkComponent,
     InputComponent,
     MenuComponent,
     MenuItemComponent,
@@ -183,6 +185,11 @@ export class SandboxComponent {
   showToast(variant: 'default' | 'success' | 'warning' | 'error' | 'info'): void {
     const article = variant === 'error' || variant === 'info' ? 'an' : 'a';
     this.toastService.show(`This is ${article} ${variant} toast`, { variant });
+  }
+
+  triggerLoading(): void {
+    this.isLoading.set(true);
+    setTimeout(() => this.isLoading.set(false), 3000);
   }
 
   onAvatarCropped(event: AvatarEditorCropEvent): void {
