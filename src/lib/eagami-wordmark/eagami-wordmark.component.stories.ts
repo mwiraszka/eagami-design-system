@@ -3,7 +3,7 @@ import { Meta, StoryObj, argsToTemplate } from '@storybook/angular';
 import { EagamiWordmarkComponent } from './eagami-wordmark.component';
 
 const meta: Meta<EagamiWordmarkComponent> = {
-  title: 'Components/Eagami Wordmark',
+  title: 'Components/Eagami wordmark',
   component: EagamiWordmarkComponent,
   tags: ['autodocs'],
   render: args => ({

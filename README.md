@@ -145,7 +145,7 @@ Sizes: `xs` | `sm` | `md` | `lg` | `xl`. Shapes: `circle` | `square`.
 </details>
 
 <details>
-<summary><strong>Avatar Editor</strong> — canvas-based image editor with pan, zoom, and crop</summary>
+<summary><strong>Avatar editor</strong> — canvas-based image editor with pan, zoom, and crop</summary>
 
 Drag-and-drop upload, zoom via slider or scroll wheel. Outputs a `Blob` and data URL.
 
@@ -242,7 +242,7 @@ Sizes: `sm` | `md` | `lg`.
 </details>
 
 <details>
-<summary><strong>Code Input</strong> — verification code entry with auto-advance and paste support</summary>
+<summary><strong>Code input</strong> — verification code entry with auto-advance and paste support</summary>
 
 Configurable `length` (default 6). Full `ControlValueAccessor` support.
 
@@ -255,7 +255,7 @@ Configurable `length` (default 6). Full `ControlValueAccessor` support.
 </details>
 
 <details>
-<summary><strong>Data Table</strong> — sortable columns, sticky headers, density modes</summary>
+<summary><strong>Data table</strong> — sortable columns, sticky headers, density modes</summary>
 
 Striped, bordered, and hoverable rows. Custom cell templates via `ng-template`. Density: `compact` | `comfortable` | `spacious`. Two-way `sort` binding.
 
@@ -350,7 +350,7 @@ Arrow keys, Enter/Space to select, Escape to close. Sizes: `sm` | `md` | `lg`.
 </details>
 
 <details>
-<summary><strong>Eagami Wordmark</strong> — branded logo wordmark linking to eagami.com</summary>
+<summary><strong>Eagami wordmark</strong> — branded logo wordmark linking to eagami.com</summary>
 
 Variants: `logo` (icon only) | `signature` (handcrafted by eagami) | `brand` (eagami with tagline). Three discrete sizes (`sm`, `md`, `lg`) scale both the logo and the text proportionally.
 
@@ -358,7 +358,7 @@ Variants: `logo` (icon only) | `signature` (handcrafted by eagami) | `brand` (ea
 <ea-eagami-wordmark variant="brand" size="md" />
 ```
 
-<img src="docs/images/eagami-wordmark.png" alt="Eagami Wordmark component" width="560" />
+<img src="docs/images/eagami-wordmark.png" alt="Eagami wordmark component" width="560" />
 
 </details>
 
@@ -421,7 +421,7 @@ Placement: `left` | `center` | `right`. Emits `pageChange` events with current p
 </details>
 
 <details>
-<summary><strong>Progress Bar</strong> — determinate and indeterminate linear indicator</summary>
+<summary><strong>Progress bar</strong> — determinate and indeterminate linear indicator</summary>
 
 Variants: `default` | `success` | `warning` | `error` | `info`. Sizes: `sm` | `md` | `lg`. Optional `label` and `showValue` display.
 
