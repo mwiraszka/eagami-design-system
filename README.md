@@ -291,6 +291,8 @@ Sizes: `sm` | `md` | `lg` | `full`. Two-way `open` binding.
 </ea-dialog>
 ```
 
+<img src="docs/images/dialog.png" alt="Dialog component" width="560" />
+
 </details>
 
 <details>
@@ -400,6 +402,8 @@ Placement: `left` | `center` | `right`. Emits `pageChange` events with current p
   placement="center"
   (pageChange)="onPageChange($event)" />
 ```
+
+<img src="docs/images/paginator.png" alt="Paginator component" width="560" />
 
 </details>
 
@@ -563,6 +567,8 @@ Positions: `top` | `bottom` | `left` | `right`.
 ```html
 <ea-button eaTooltip="Save your changes" tooltipPosition="top">Save</ea-button>
 ```
+
+<img src="docs/images/tooltip.png" alt="Tooltip component" width="560" />
 
 </details>
 
