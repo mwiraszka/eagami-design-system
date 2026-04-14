@@ -7,6 +7,10 @@
     <ng-content select="[eaCardHeader]" />
   </div>
 
+  @if (headerDivider()) {
+    <ea-divider class="ea-card__divider" />
+  }
+
   <div class="ea-card__body">
     <ng-content />
   </div>
