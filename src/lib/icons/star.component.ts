@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
   selector: 'ea-icon-star',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { style: 'display: inline-flex;' },
+  host: { style: 'display: inline-flex; width: 1em; height: 1em;' },
   template: `
     <svg
       viewBox="0 0 24 24"
