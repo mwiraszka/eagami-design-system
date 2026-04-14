@@ -1,0 +1,200 @@
+// =============================================================================
+// DRAWER COMPONENT
+// =============================================================================
+
+.ea-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  max-height: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  overflow: hidden;
+
+  // Backdrop
+  &::backdrop {
+    background-color: var(--color-bg-overlay);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Panel — base
+  // ---------------------------------------------------------------------------
+  &__panel {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg-base);
+    box-shadow: var(--shadow-2xl);
+    overflow: hidden;
+
+    // ---- Position: right ----------------------------------------------------
+    &--right {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+
+      &.ea-drawer__panel--sm {
+        width: 20rem;
+      }
+      &.ea-drawer__panel--md {
+        width: 28rem;
+      }
+      &.ea-drawer__panel--lg {
+        width: 36rem;
+      }
+      &.ea-drawer__panel--full {
+        width: calc(100vw - 3rem);
+      }
+    }
+
+    // ---- Position: left -----------------------------------------------------
+    &--left {
+      top: 0;
+      left: 0;
+      bottom: 0;
+      height: 100%;
+
+      &.ea-drawer__panel--sm {
+        width: 20rem;
+      }
+      &.ea-drawer__panel--md {
+        width: 28rem;
+      }
+      &.ea-drawer__panel--lg {
+        width: 36rem;
+      }
+      &.ea-drawer__panel--full {
+        width: calc(100vw - 3rem);
+      }
+    }
+
+    // ---- Position: top ------------------------------------------------------
+    &--top {
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+
+      &.ea-drawer__panel--sm {
+        height: 12rem;
+      }
+      &.ea-drawer__panel--md {
+        height: 20rem;
+      }
+      &.ea-drawer__panel--lg {
+        height: 28rem;
+      }
+      &.ea-drawer__panel--full {
+        height: calc(100vh - 3rem);
+      }
+    }
+
+    // ---- Position: bottom ---------------------------------------------------
+    &--bottom {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+
+      &.ea-drawer__panel--sm {
+        height: 12rem;
+      }
+      &.ea-drawer__panel--md {
+        height: 20rem;
+      }
+      &.ea-drawer__panel--lg {
+        height: 28rem;
+      }
+      &.ea-drawer__panel--full {
+        height: calc(100vh - 3rem);
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Close button
+  // ---------------------------------------------------------------------------
+  &__close {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: var(--transition-colors);
+
+    &:hover {
+      background-color: var(--color-bg-muted);
+      color: var(--color-text-primary);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-focus-ring);
+    }
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Sections
+  // ---------------------------------------------------------------------------
+  &__header {
+    padding: var(--space-5) var(--space-6) var(--space-3);
+    font-size: var(--text-h4-size);
+    font-weight: var(--text-h4-weight);
+    line-height: var(--text-h4-lh);
+    color: var(--color-text-primary);
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__body {
+    flex: 1;
+    padding: var(--space-3) var(--space-6);
+    overflow-y: auto;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-secondary);
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-6) var(--space-5);
+
+    > * {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    &:empty {
+      display: none;
+    }
+  }
+}

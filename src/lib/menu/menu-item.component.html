@@ -1,0 +1,15 @@
+<button
+  type="button"
+  class="ea-menu-item"
+  role="menuitem"
+  [class.ea-menu-item--disabled]="disabled()"
+  [class.ea-menu-item--danger]="variant() === 'danger'"
+  [disabled]="disabled()"
+  (click)="handleClick($event)">
+  <span class="ea-menu-item__icon">
+    <ng-content select="[slot=icon]" />
+  </span>
+  <span class="ea-menu-item__label">
+    <ng-content />
+  </span>
+</button>

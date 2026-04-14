@@ -85,6 +85,64 @@
       </section>
     </details>
 
+    <!-- ─── Autocomplete ──────────────────────────────────────────────────── -->
+    <details class="sandbox-details">
+      <summary class="sandbox-summary">Autocomplete</summary>
+      <section class="sandbox-section">
+        <h2>basic</h2>
+        <ea-autocomplete
+          label="Framework"
+          placeholder="Start typing…"
+          [options]="autocompleteOptions"
+          [(value)]="autocompleteValue" />
+        <p class="sandbox-preview">Value: {{ autocompleteValue() }}</p>
+
+        <h2>hint &amp; error</h2>
+        <ea-autocomplete
+          label="With hint"
+          hint="Start typing to see matches"
+          [options]="autocompleteOptions"
+          placeholder="Framework…" />
+        <ea-autocomplete
+          label="With error"
+          error="Please select a framework"
+          [options]="autocompleteOptions"
+          placeholder="Framework…" />
+
+        <h2>sizes</h2>
+        <ea-autocomplete
+          size="sm"
+          label="Small"
+          [options]="autocompleteOptions"
+          placeholder="sm" />
+        <ea-autocomplete
+          size="md"
+          label="Medium"
+          [options]="autocompleteOptions"
+          placeholder="md" />
+        <ea-autocomplete
+          size="lg"
+          label="Large"
+          [options]="autocompleteOptions"
+          placeholder="lg" />
+
+        <h2>min length &amp; max results</h2>
+        <ea-autocomplete
+          label="Min 2 chars, max 3 results"
+          [minLength]="2"
+          [maxResults]="3"
+          [options]="autocompleteOptions"
+          placeholder="Type at least 2 characters…" />
+
+        <h2>disabled</h2>
+        <ea-autocomplete
+          label="Disabled"
+          [disabled]="true"
+          [options]="autocompleteOptions"
+          placeholder="Disabled" />
+      </section>
+    </details>
+
     <!-- ─── Avatar ────────────────────────────────────────────────────────── -->
     <details class="sandbox-details">
       <summary class="sandbox-summary">Avatar</summary>
@@ -184,6 +242,23 @@
           <ea-badge size="md">Medium</ea-badge>
           <ea-badge size="lg">Large</ea-badge>
         </div>
+      </section>
+    </details>
+
+    <!-- ─── Breadcrumbs ───────────────────────────────────────────────────── -->
+    <details class="sandbox-details">
+      <summary class="sandbox-summary">Breadcrumbs</summary>
+      <section class="sandbox-section">
+        <h2>chevron separator</h2>
+        <ea-breadcrumbs [items]="breadcrumbItems" />
+
+        <h2>slash separator</h2>
+        <ea-breadcrumbs
+          [items]="breadcrumbItems"
+          separator="slash" />
+
+        <h2>two levels</h2>
+        <ea-breadcrumbs [items]="breadcrumbItemsShort" />
       </section>
     </details>
 
@@ -431,6 +506,65 @@
   </div>
 
   <div class="sandbox-column">
+    <!-- ─── Drawer ────────────────────────────────────────────────────────── -->
+    <details class="sandbox-details">
+      <summary class="sandbox-summary">Drawer</summary>
+      <section class="sandbox-section">
+        <h2>positions</h2>
+        <div class="sandbox-row">
+          <ea-button (clicked)="drawerOpenRight.set(true)">Right</ea-button>
+          <ea-button (clicked)="drawerOpenLeft.set(true)">Left</ea-button>
+          <ea-button (clicked)="drawerOpenTop.set(true)">Top</ea-button>
+          <ea-button (clicked)="drawerOpenBottom.set(true)">Bottom</ea-button>
+        </div>
+
+        <ea-drawer
+          position="right"
+          [(open)]="drawerOpenRight">
+          <span slot="header">Right Drawer</span>
+          <p>Slides in from the right edge — useful for details panels.</p>
+          <span slot="footer">
+            <ea-button
+              variant="secondary"
+              (clicked)="drawerOpenRight.set(false)">
+              Cancel
+            </ea-button>
+            <ea-button (clicked)="drawerOpenRight.set(false)"> Save </ea-button>
+          </span>
+        </ea-drawer>
+
+        <ea-drawer
+          position="left"
+          [(open)]="drawerOpenLeft">
+          <span slot="header">Left Drawer</span>
+          <p>Slides in from the left — useful for navigation menus.</p>
+          <span slot="footer">
+            <ea-button (clicked)="drawerOpenLeft.set(false)"> Close </ea-button>
+          </span>
+        </ea-drawer>
+
+        <ea-drawer
+          position="top"
+          [(open)]="drawerOpenTop">
+          <span slot="header">Top Drawer</span>
+          <p>Slides down from the top — useful for notifications.</p>
+          <span slot="footer">
+            <ea-button (clicked)="drawerOpenTop.set(false)"> Close </ea-button>
+          </span>
+        </ea-drawer>
+
+        <ea-drawer
+          position="bottom"
+          [(open)]="drawerOpenBottom">
+          <span slot="header">Bottom Drawer</span>
+          <p>Slides up from the bottom — common on mobile for action sheets.</p>
+          <span slot="footer">
+            <ea-button (clicked)="drawerOpenBottom.set(false)"> Close </ea-button>
+          </span>
+        </ea-drawer>
+      </section>
+    </details>
+
     <!-- ─── Dropdown ──────────────────────────────────────────────────────── -->
     <details class="sandbox-details">
       <summary class="sandbox-summary">Dropdown</summary>
@@ -550,6 +684,104 @@
           type="email"
           autocomplete="email"
           placeholder="you@example.com" />
+      </section>
+    </details>
+
+    <!-- ─── Menu ──────────────────────────────────────────────────────────── -->
+    <details class="sandbox-details">
+      <summary class="sandbox-summary">Menu</summary>
+      <section class="sandbox-section">
+        <h2>basic</h2>
+        <ea-menu>
+          <ea-button
+            slot="trigger"
+            variant="secondary">
+            Actions
+          </ea-button>
+          <ea-menu-item>Edit</ea-menu-item>
+          <ea-menu-item>Duplicate</ea-menu-item>
+          <ea-menu-item>Archive</ea-menu-item>
+          <ea-menu-item variant="danger">Delete</ea-menu-item>
+        </ea-menu>
+
+        <h2>with icons</h2>
+        <ea-menu>
+          <ea-button
+            slot="trigger"
+            variant="secondary">
+            File
+          </ea-button>
+          <ea-menu-item>
+            <ea-icon-pencil slot="icon" />
+            Edit
+          </ea-menu-item>
+          <ea-menu-item variant="danger">
+            <ea-icon-trash slot="icon" />
+            Delete
+          </ea-menu-item>
+        </ea-menu>
+
+        <h2>icon trigger</h2>
+        <ea-menu>
+          <ea-button
+            slot="trigger"
+            variant="ghost"
+            size="sm"
+            aria-label="More options">
+            <ea-icon-more-horizontal />
+          </ea-button>
+          <ea-menu-item>View</ea-menu-item>
+          <ea-menu-item>Rename</ea-menu-item>
+          <ea-menu-item variant="danger">Delete</ea-menu-item>
+        </ea-menu>
+
+        <h2>with disabled item</h2>
+        <ea-menu>
+          <ea-button
+            slot="trigger"
+            variant="secondary">
+            File
+          </ea-button>
+          <ea-menu-item>New</ea-menu-item>
+          <ea-menu-item>Open</ea-menu-item>
+          <ea-menu-item [disabled]="true">Save (unavailable)</ea-menu-item>
+          <ea-menu-item>Save As</ea-menu-item>
+        </ea-menu>
+      </section>
+    </details>
+
+    <!-- ─── Paginator ─────────────────────────────────────────────────────── -->
+    <details class="sandbox-details">
+      <summary class="sandbox-summary">Paginator</summary>
+      <section class="sandbox-section">
+        <h2>default</h2>
+        <ea-paginator [totalItems]="100" />
+
+        <h2>placement — left</h2>
+        <ea-paginator
+          [totalItems]="100"
+          placement="left" />
+
+        <h2>placement — center</h2>
+        <ea-paginator
+          [totalItems]="100"
+          placement="center" />
+
+        <h2>many pages</h2>
+        <ea-paginator
+          [totalItems]="500"
+          [page]="25" />
+
+        <h2>minimal</h2>
+        <ea-paginator
+          [totalItems]="100"
+          [showPageSizeSelector]="false"
+          [showRangeLabel]="false" />
+
+        <h2>disabled</h2>
+        <ea-paginator
+          [totalItems]="100"
+          [disabled]="true" />
       </section>
     </details>
 

@@ -2,10 +2,14 @@ import {
   AccordionComponent,
   AccordionItemComponent,
   AlertComponent,
+  AutocompleteComponent,
+  AutocompleteOption,
   AvatarComponent,
   AvatarEditorComponent,
   AvatarEditorCropEvent,
   BadgeComponent,
+  BreadcrumbItem,
+  BreadcrumbsComponent,
   ButtonComponent,
   CardComponent,
   CheckboxComponent,
@@ -14,11 +18,16 @@ import {
   DataTableComponent,
   DialogComponent,
   DividerComponent,
+  DrawerComponent,
   DropdownComponent,
   DropdownOption,
   InputComponent,
+  MenuComponent,
+  MenuItemComponent,
+  MoreHorizontalIconComponent,
   PaginatorComponent,
   PaginatorState,
+  PencilIconComponent,
   ProgressBarComponent,
   RadioComponent,
   RadioGroupComponent,
@@ -32,6 +41,7 @@ import {
   ToastComponent,
   ToastService,
   TooltipDirective,
+  TrashIconComponent,
 } from '@eagami/ui';
 
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
@@ -42,9 +52,11 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
     AccordionComponent,
     AccordionItemComponent,
     AlertComponent,
+    AutocompleteComponent,
     AvatarEditorComponent,
     AvatarComponent,
     BadgeComponent,
+    BreadcrumbsComponent,
     ButtonComponent,
     CardComponent,
     CheckboxComponent,
@@ -52,9 +64,14 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
     DataTableComponent,
     DialogComponent,
     DividerComponent,
+    DrawerComponent,
     DropdownComponent,
     InputComponent,
+    MenuComponent,
+    MenuItemComponent,
+    MoreHorizontalIconComponent,
     PaginatorComponent,
+    PencilIconComponent,
     ProgressBarComponent,
     RadioComponent,
     RadioGroupComponent,
@@ -67,6 +84,7 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
     TextareaComponent,
     ToastComponent,
     TooltipDirective,
+    TrashIconComponent,
   ],
   templateUrl: './sandbox.component.html',
   styleUrl: './sandbox.component.scss',
@@ -82,11 +100,39 @@ export class SandboxComponent {
   radioValue = signal('');
   dropdownValue = signal('');
   dialogOpen = signal(false);
+  drawerOpenRight = signal(false);
+  drawerOpenLeft = signal(false);
+  drawerOpenTop = signal(false);
+  drawerOpenBottom = signal(false);
+  autocompleteValue = signal('');
   switchValue = signal(false);
   textareaValue = signal('');
   croppedAvatarUrl = signal('');
   tablePage = signal(1);
   tablePageSize = signal(5);
+
+  autocompleteOptions: AutocompleteOption[] = [
+    { value: 'angular', label: 'Angular' },
+    { value: 'react', label: 'React' },
+    { value: 'vue', label: 'Vue' },
+    { value: 'svelte', label: 'Svelte' },
+    { value: 'solid', label: 'Solid' },
+    { value: 'qwik', label: 'Qwik' },
+    { value: 'preact', label: 'Preact' },
+    { value: 'lit', label: 'Lit' },
+  ];
+
+  breadcrumbItems: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/products' },
+    { label: 'Laptops', href: '/products/laptops' },
+    { label: 'MacBook Pro' },
+  ];
+
+  breadcrumbItemsShort: BreadcrumbItem[] = [
+    { label: 'Dashboard', href: '/' },
+    { label: 'Settings' },
+  ];
 
   dropdownOptions: DropdownOption[] = [
     { value: 'apple', label: 'Apple' },

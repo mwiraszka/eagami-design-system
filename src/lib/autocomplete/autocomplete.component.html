@@ -1,0 +1,96 @@
+<div
+  #hostEl
+  class="ea-autocomplete">
+  @if (label()) {
+    <label
+      class="ea-autocomplete__label"
+      [for]="id()"
+      [class.ea-autocomplete__label--required]="required()">
+      {{ label() }}
+    </label>
+  }
+
+  <div
+    class="ea-autocomplete__wrapper"
+    [ngClass]="wrapperClasses()">
+    <span class="ea-autocomplete__prefix">
+      <ng-content select="[slot=prefix]" />
+    </span>
+
+    <input
+      #inputEl
+      class="ea-autocomplete__input"
+      type="text"
+      autocomplete="off"
+      role="combobox"
+      [id]="id()"
+      [placeholder]="placeholder()"
+      [disabled]="isDisabled()"
+      [readOnly]="readonly()"
+      [required]="required()"
+      [value]="value()"
+      [attr.aria-expanded]="isOpen()"
+      [attr.aria-controls]="id() + '-listbox'"
+      [attr.aria-activedescendant]="
+        focusedIndex() >= 0 ? id() + '-option-' + focusedIndex() : null
+      "
+      [attr.aria-invalid]="resolvedStatus() === 'error' || null"
+      [attr.aria-describedby]="
+        showError() ? id() + '-error' : showHint() ? id() + '-hint' : null
+      "
+      (input)="handleInput($event)"
+      (focus)="handleFocus()"
+      (blur)="handleBlur()"
+      (keydown)="handleKeydown($event)" />
+
+    <span class="ea-autocomplete__suffix">
+      <ng-content select="[slot=suffix]" />
+    </span>
+  </div>
+
+  @if (showList()) {
+    <ul
+      class="ea-autocomplete__listbox"
+      role="listbox"
+      [id]="id() + '-listbox'">
+      @for (option of filteredOptions(); track option.value; let i = $index) {
+        <li
+          class="ea-autocomplete__option"
+          role="option"
+          [id]="id() + '-option-' + i"
+          [class.ea-autocomplete__option--focused]="i === focusedIndex()"
+          [class.ea-autocomplete__option--disabled]="option.disabled"
+          [attr.aria-selected]="i === focusedIndex()"
+          [attr.aria-disabled]="option.disabled || null"
+          (mousedown)="selectOption(option)"
+          (mouseenter)="focusedIndex.set(i)">
+          {{ option.label }}
+        </li>
+      }
+      @if (showEmpty()) {
+        <li
+          class="ea-autocomplete__empty"
+          role="presentation">
+          {{ emptyMessage() }}
+        </li>
+      }
+    </ul>
+  }
+
+  @if (showError()) {
+    <p
+      class="ea-autocomplete__message ea-autocomplete__message--error"
+      [id]="id() + '-error'"
+      role="alert">
+      {{ errorMsg() }}
+    </p>
+  }
+
+  @if (showHint()) {
+    <p
+      class="ea-autocomplete__message ea-autocomplete__message--hint"
+      [id]="id() + '-hint'">
+      {{ hint() }}
+    </p>
+  }
+</div>

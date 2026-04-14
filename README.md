@@ -112,6 +112,24 @@ Variants: `default` | `success` | `warning` | `error` | `info`. Two-way `visible
 </details>
 
 <details>
+<summary><strong>Autocomplete</strong> — text input with filtered suggestion dropdown</summary>
+
+Arrow key navigation, case-insensitive substring matching, configurable `minLength` and `maxResults`. Full `ControlValueAccessor` support.
+
+```html
+<ea-autocomplete
+  label="Country"
+  placeholder="Start typing…"
+  [options]="countries"
+  [(value)]="selectedCountry"
+  (optionSelected)="onSelect($event)" />
+```
+
+<img src="docs/images/autocomplete.png" alt="Autocomplete component" width="560" />
+
+</details>
+
+<details>
 <summary><strong>Avatar</strong> — image with initials or icon fallback</summary>
 
 Sizes: `xs` | `sm` | `md` | `lg` | `xl`. Shapes: `circle` | `square`.
@@ -153,6 +171,25 @@ Variants: `default` | `success` | `warning` | `error` | `info`. Sizes: `sm` | `m
 ```
 
 <img src="docs/images/badge.png" alt="Badge component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Breadcrumbs</strong> — navigation trail with chevron or slash separators</summary>
+
+Separators: `chevron` | `slash`. Items can be links (`href`), buttons (no `href`), or disabled. The last item is automatically rendered as the current page.
+
+```html
+<ea-breadcrumbs
+  [items]="[
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/products' },
+    { label: 'MacBook Pro' }
+  ]"
+  (itemClicked)="navigate($event)" />
+```
+
+<img src="docs/images/breadcrumbs.png" alt="Breadcrumbs component" width="560" />
 
 </details>
 
@@ -272,6 +309,28 @@ Orientation: `horizontal` | `vertical`.
 </details>
 
 <details>
+<summary><strong>Drawer</strong> — side panel using native dialog with focus trapping</summary>
+
+Positions: `left` | `right` | `top` | `bottom`. Sizes: `sm` | `md` | `lg` | `full`. Two-way `open` binding.
+
+```html
+<ea-button (clicked)="drawerOpen.set(true)">Open</ea-button>
+
+<ea-drawer [(open)]="drawerOpen" position="right" size="md">
+  <span slot="header">Details</span>
+  <p>Drawer body content…</p>
+  <span slot="footer">
+    <ea-button variant="secondary" (clicked)="drawerOpen.set(false)">Cancel</ea-button>
+    <ea-button (clicked)="save()">Save</ea-button>
+  </span>
+</ea-drawer>
+```
+
+<img src="docs/images/drawer.png" alt="Drawer component" width="560" />
+
+</details>
+
+<details>
 <summary><strong>Dropdown</strong> — select with ControlValueAccessor and keyboard navigation</summary>
 
 Arrow keys, Enter/Space to select, Escape to close. Sizes: `sm` | `md` | `lg`.
@@ -303,6 +362,29 @@ Types: `text` | `email` | `password` | `number` | `search` | `tel` | `url`. Size
 ```
 
 <img src="docs/images/input.png" alt="Input component" width="560" />
+
+</details>
+
+<details>
+<summary><strong>Menu</strong> — popup action menu with trigger slot and menu items</summary>
+
+Placements: `bottom-start` | `bottom-end` | `top-start` | `top-end`. Menu items support icons, disabled state, and a `danger` variant. Closes on outside click or Escape.
+
+```html
+<ea-menu placement="bottom-end">
+  <ea-button slot="trigger" variant="secondary">Actions</ea-button>
+  <ea-menu-item (itemClicked)="edit()">
+    <ea-icon-pencil slot="icon" />
+    Edit
+  </ea-menu-item>
+  <ea-menu-item variant="danger" (itemClicked)="delete()">
+    <ea-icon-trash slot="icon" />
+    Delete
+  </ea-menu-item>
+</ea-menu>
+```
+
+<img src="docs/images/menu.png" alt="Menu component" width="560" />
 
 </details>
 

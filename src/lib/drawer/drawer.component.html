@@ -1,0 +1,32 @@
+<dialog
+  #drawerEl
+  class="ea-drawer"
+  [attr.aria-label]="ariaLabel()"
+  (click)="handleBackdropClick($event)"
+  (cancel)="handleCancel($event)">
+  <div
+    class="ea-drawer__panel"
+    [ngClass]="panelClasses()">
+    @if (showClose()) {
+      <button
+        type="button"
+        class="ea-drawer__close"
+        aria-label="Close drawer"
+        (click)="handleClose()">
+        <ea-icon-x />
+      </button>
+    }
+
+    <div class="ea-drawer__header">
+      <ng-content select="[slot=header]" />
+    </div>
+
+    <div class="ea-drawer__body">
+      <ng-content />
+    </div>
+
+    <div class="ea-drawer__footer">
+      <ng-content select="[slot=footer]" />
+    </div>
+  </div>
+</dialog>
