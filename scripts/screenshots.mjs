@@ -36,35 +36,39 @@ const URL = `http://localhost:${PORT}`;
 const VIEWPORT = { width: 640, height: 800, deviceScaleFactor: 2 };
 
 /**
- * Each entry maps an output filename to the <h2> text that identifies
- * its `.sandbox-section`. The first section whose <h2> includes the
- * heading string wins.
+ * Each entry maps an output filename to the `<summary>` text of the
+ * collapsible `<details>` sandbox section to capture.
  */
 const SECTIONS = [
-  { name: 'button', heading: 'Button' },
-  { name: 'input', heading: 'Input' },
-  { name: 'textarea', heading: 'Textarea' },
-  { name: 'checkbox', heading: 'Checkbox' },
-  { name: 'switch', heading: 'Switch' },
-  { name: 'radio', heading: 'Radio' },
-  { name: 'dropdown', heading: 'Dropdown' },
-  { name: 'card', heading: 'Card' },
-  { name: 'avatar', heading: 'Avatar —' },
-  { name: 'avatar-editor', heading: 'Avatar Editor' },
-  { name: 'data-table', heading: 'Data Table' },
-  { name: 'progress-bar', heading: 'Progress Bar' },
-  { name: 'tag', heading: 'Tag' },
-  { name: 'badge', heading: 'Badge' },
-  { name: 'spinner', heading: 'Spinner' },
-  { name: 'divider', heading: 'Divider' },
-  { name: 'dialog', heading: 'Dialog' },
-  { name: 'tooltip', heading: 'Tooltip' },
-  { name: 'toast', heading: 'Toast' },
-  { name: 'code-input', heading: 'Code Input' },
-  { name: 'tabs', heading: 'Tabs' },
-  { name: 'alert', heading: 'Alert' },
-  { name: 'skeleton', heading: 'Skeleton' },
   { name: 'accordion', heading: 'Accordion' },
+  { name: 'alert', heading: 'Alert' },
+  { name: 'autocomplete', heading: 'Autocomplete' },
+  { name: 'avatar', heading: 'Avatar' },
+  { name: 'avatar-editor', heading: 'Avatar Editor' },
+  { name: 'badge', heading: 'Badge' },
+  { name: 'breadcrumbs', heading: 'Breadcrumbs' },
+  { name: 'button', heading: 'Button' },
+  { name: 'card', heading: 'Card' },
+  { name: 'checkbox', heading: 'Checkbox' },
+  { name: 'code-input', heading: 'Code Input' },
+  { name: 'data-table', heading: 'Data Table' },
+  { name: 'dialog', heading: 'Dialog' },
+  { name: 'divider', heading: 'Divider' },
+  { name: 'drawer', heading: 'Drawer' },
+  { name: 'dropdown', heading: 'Dropdown' },
+  { name: 'input', heading: 'Input' },
+  { name: 'menu', heading: 'Menu' },
+  { name: 'paginator', heading: 'Paginator' },
+  { name: 'progress-bar', heading: 'Progress Bar' },
+  { name: 'radio', heading: 'Radio' },
+  { name: 'skeleton', heading: 'Skeleton' },
+  { name: 'spinner', heading: 'Spinner' },
+  { name: 'switch', heading: 'Switch' },
+  { name: 'tabs', heading: 'Tabs' },
+  { name: 'tag', heading: 'Tag' },
+  { name: 'textarea', heading: 'Textarea' },
+  { name: 'toast', heading: 'Toast' },
+  { name: 'tooltip', heading: 'Tooltip' },
 ];
 
 const args = process.argv.slice(2);
@@ -95,10 +99,13 @@ async function waitForServer(timeout = 120_000) {
 }
 
 function findSection(heading) {
-  const sections = document.querySelectorAll('.sandbox-section');
-  for (const section of sections) {
-    const h2 = section.querySelector('h2');
-    if (h2 && h2.textContent.includes(heading)) return section;
+  const detailsEls = document.querySelectorAll('.sandbox-details');
+  for (const d of detailsEls) {
+    const summary = d.querySelector('.sandbox-summary');
+    if (summary && summary.textContent.trim() === heading) {
+      d.open = true;
+      return d.querySelector('.sandbox-section');
+    }
   }
   return null;
 }
