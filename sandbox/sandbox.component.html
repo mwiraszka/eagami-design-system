@@ -1,8 +1,8 @@
 <header class="sandbox-header">
   <ea-eagami-wordmark
     class="sandbox-header-wordmark sandbox-header-wordmark--full"
-    [size]="96"
-    text="eagami design system" />
+    [variant]="3"
+    [size]="96" />
   <ea-eagami-wordmark
     class="sandbox-header-wordmark sandbox-header-wordmark--short"
     [size]="96" />
@@ -789,34 +789,34 @@
         [headerDivider]="true">
         <span eaCardHeader>Eagami Wordmark</span>
         <section class="sandbox-section">
-          <h2>text options</h2>
+          <h2>variants</h2>
           <div class="sandbox-stack sandbox-stack--md">
-            <ea-eagami-wordmark />
-            <ea-eagami-wordmark text="handcrafted by eagami" />
-            <ea-eagami-wordmark text="eagami design system" />
-            <ea-eagami-wordmark text="eagami design system &#8212; elegant web design" />
+            <ea-eagami-wordmark [variant]="1" />
+            <ea-eagami-wordmark [variant]="2" />
+            <ea-eagami-wordmark [variant]="3" />
+            <ea-eagami-wordmark [variant]="4" />
           </div>
 
           <h2>sizes</h2>
           <div class="sandbox-stack sandbox-stack--md">
             <ea-eagami-wordmark
-              text="eagami design system"
+              [variant]="3"
               [size]="16" />
             <ea-eagami-wordmark
-              text="eagami design system"
+              [variant]="3"
               [size]="32" />
             <ea-eagami-wordmark
-              text="eagami design system"
+              [variant]="3"
               [size]="64" />
           </div>
 
           <h2>inline layout</h2>
           <div class="sandbox-stack sandbox-stack--md">
             <ea-eagami-wordmark
-              text="handcrafted by eagami"
+              [variant]="2"
               layout="inline" />
             <ea-eagami-wordmark
-              text="eagami design system &#8212; elegant web design"
+              [variant]="4"
               layout="inline" />
           </div>
         </section>
