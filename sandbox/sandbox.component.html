@@ -1,14 +1,11 @@
 <header class="sandbox-header">
   <ea-eagami-wordmark
     class="sandbox-header-wordmark sandbox-header-wordmark--full"
-    variant="brand"
-    size="lg"
-    text="eagami design system" />
+    [variant]="3"
+    [size]="96" />
   <ea-eagami-wordmark
     class="sandbox-header-wordmark sandbox-header-wordmark--short"
-    variant="brand"
-    size="lg"
-    text="eagami" />
+    [size]="96" />
   <span class="sandbox-header-label">UI Component Sandbox</span>
   <ea-divider />
 </header>
@@ -794,40 +791,34 @@
         <section class="sandbox-section">
           <h2>variants</h2>
           <div class="sandbox-stack sandbox-stack--md">
-            <ea-eagami-wordmark variant="logo" />
-            <ea-eagami-wordmark variant="signature" />
-            <ea-eagami-wordmark variant="brand" />
-          </div>
-
-          <h2>variants with "eagami design system" text</h2>
-          <div class="sandbox-stack sandbox-stack--md">
-            <ea-eagami-wordmark
-              variant="signature"
-              text="eagami design system" />
-            <ea-eagami-wordmark
-              variant="brand"
-              text="eagami design system" />
+            <ea-eagami-wordmark [variant]="1" />
+            <ea-eagami-wordmark [variant]="2" />
+            <ea-eagami-wordmark [variant]="3" />
+            <ea-eagami-wordmark [variant]="4" />
           </div>
 
           <h2>sizes</h2>
           <div class="sandbox-stack sandbox-stack--md">
             <ea-eagami-wordmark
-              variant="brand"
-              size="sm" />
+              [variant]="3"
+              [size]="16" />
             <ea-eagami-wordmark
-              variant="brand"
-              size="md" />
+              [variant]="3"
+              [size]="32" />
             <ea-eagami-wordmark
-              variant="brand"
-              size="lg" />
+              [variant]="3"
+              [size]="64" />
           </div>
 
-          <h2>readme header</h2>
-          <ea-eagami-wordmark
-            class="sandbox-readme-header-wordmark"
-            variant="brand"
-            size="lg"
-            text="eagami design system" />
+          <h2>inline layout</h2>
+          <div class="sandbox-stack sandbox-stack--md">
+            <ea-eagami-wordmark
+              [variant]="2"
+              layout="inline" />
+            <ea-eagami-wordmark
+              [variant]="4"
+              layout="inline" />
+          </div>
         </section>
       </ea-card>
     }
@@ -912,7 +903,7 @@
     @if (isVisible('menu')) {
       <ea-card
         variant="elevated"
-        class="sandbox-card"
+        class="sandbox-card sandbox-card--menu"
         [headerDivider]="true">
         <span eaCardHeader>Menu</span>
         <section class="sandbox-section">

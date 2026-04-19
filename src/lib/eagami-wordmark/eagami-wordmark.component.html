@@ -1,8 +1,6 @@
 <a
   class="ea-eagami-wordmark"
-  [class.ea-eagami-wordmark--sm]="size() === 'sm'"
-  [class.ea-eagami-wordmark--md]="size() === 'md'"
-  [class.ea-eagami-wordmark--lg]="size() === 'lg'"
+  [class.ea-eagami-wordmark--inline]="layout() === 'inline'"
   href="https://eagami.com"
   target="_blank"
   rel="noopener"
@@ -11,15 +9,20 @@
     class="ea-eagami-wordmark__logo"
     aria-hidden="true" />
 
-  @if (variant() === 'signature') {
-    <span class="ea-eagami-wordmark__text">
+  <span class="ea-eagami-wordmark__text">
+    @if (showOverline()) {
       <span class="ea-eagami-wordmark__overline">handcrafted by</span>
-      <span class="ea-eagami-wordmark__brand">{{ text() }}</span>
-    </span>
-  } @else if (variant() === 'brand') {
-    <span class="ea-eagami-wordmark__text">
-      <span class="ea-eagami-wordmark__brand">{{ text() }}</span>
+    }
+    <span class="ea-eagami-wordmark__brand">{{ brandText() }}</span>
+    @if (showTagline()) {
+      @if (layout() === 'inline') {
+        <span
+          class="ea-eagami-wordmark__separator"
+          aria-hidden="true">
+          —
+        </span>
+      }
       <span class="ea-eagami-wordmark__tagline">elegant web design</span>
-    </span>
-  }
+    }
+  </span>
 </a>

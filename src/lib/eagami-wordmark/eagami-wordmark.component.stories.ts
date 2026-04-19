@@ -12,22 +12,21 @@ const meta: Meta<EagamiWordmarkComponent> = {
   }),
   argTypes: {
     variant: {
-      control: 'select',
-      options: ['logo', 'signature', 'brand'],
+      control: 'inline-radio',
+      options: [1, 2, 3, 4],
+    },
+    layout: {
+      control: 'inline-radio',
+      options: ['stacked', 'inline'],
     },
     size: {
-      control: 'inline-radio',
-      options: ['sm', 'md', 'lg'],
-    },
-    text: {
-      control: 'inline-radio',
-      options: ['eagami', 'eagami design system'],
+      control: { type: 'number', min: 16, step: 8 },
     },
   },
   args: {
-    variant: 'brand',
-    size: 'md',
-    text: 'eagami',
+    variant: 1,
+    layout: 'stacked',
+    size: 32,
   },
 };
 
@@ -36,30 +35,30 @@ type Story = StoryObj<EagamiWordmarkComponent>;
 
 export const Default: Story = {};
 
-export const Logo: Story = {
-  args: { variant: 'logo', size: 'md' },
+export const HandcraftedBy: Story = {
+  args: { variant: 2 },
 };
 
-export const Signature: Story = {
-  args: { variant: 'signature', size: 'md', text: 'eagami' },
+export const DesignSystem: Story = {
+  args: { variant: 3 },
 };
 
-export const Brand: Story = {
-  args: { variant: 'brand', size: 'md', text: 'eagami' },
-};
-
-export const SignatureSystem: Story = {
-  args: { variant: 'signature', size: 'md', text: 'eagami design system' },
-};
-
-export const BrandSystem: Story = {
-  args: { variant: 'brand', size: 'md', text: 'eagami design system' },
+export const Full: Story = {
+  args: { variant: 4 },
 };
 
 export const Small: Story = {
-  args: { variant: 'brand', size: 'sm' },
+  args: { variant: 3, size: 32 },
 };
 
 export const Large: Story = {
-  args: { variant: 'brand', size: 'lg', text: 'eagami design system' },
+  args: { variant: 4, size: 96 },
+};
+
+export const InlineHandcraftedBy: Story = {
+  args: { variant: 2, layout: 'inline' },
+};
+
+export const InlineFull: Story = {
+  args: { variant: 4, layout: 'inline' },
 };

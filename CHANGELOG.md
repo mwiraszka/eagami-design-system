@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.1] - 2026-04-19
+
+### Changed
+
+- Rework `EagamiWordmarkComponent` API — replace `variant` and `text` inputs with a numeric `variant` (`1`–`4`) that maps to the four text options internally, add `layout` input (`stacked` | `inline`) for single-line rendering with em dash separator, and switch `size` from preset strings to a numeric pixel value for continuous scaling
+
+### Fixed
+
+- Prevent menu dropdown from being clipped by card boundaries in the sandbox
+
 ## [0.10.0] - 2026-04-14
 
 ### Added
@@ -215,6 +225,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Global SCSS design tokens for colors, typography, spacing, elevation, motion, and shape
 - CSS custom property theming support
 
+[0.10.1]: https://github.com/mwiraszka/eagami-design-system/compare/v0.10.0...v0.10.1
 [0.10.0]: https://github.com/mwiraszka/eagami-design-system/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/mwiraszka/eagami-design-system/compare/v0.8.1...v0.9.0
 [0.8.1]: https://github.com/mwiraszka/eagami-design-system/compare/v0.8.0...v0.8.1
