@@ -370,12 +370,10 @@ Arrow keys, Enter/Space to select, Escape to close. Sizes: `sm` | `md` | `lg`.
 <details>
 <summary><strong>Eagami wordmark</strong> — branded logo wordmark linking to eagami.com</summary>
 
-Four text options: `eagami` | `handcrafted by eagami` | `eagami design system` | `eagami design system — elegant web design`. Layout: `stacked` (default, multi-line) | `inline` (single line, uniform font size — adds em dash before tagline). Size is a number (pixels) for continuous scaling; the logo, brand text, and secondary text all scale proportionally.
+Variant: `1` (eagami) | `2` (handcrafted by eagami) | `3` (eagami design system) | `4` (eagami design system — elegant web design). Layout: `stacked` (default, multi-line) | `inline` (single line, uniform font size — adds em dash before tagline). Size is a number (pixels) for continuous scaling; the logo, brand text, and secondary text all scale proportionally.
 
 ```html
-<ea-eagami-wordmark
-  [size]="96"
-  text="eagami design system &#8212; elegant web design" />
+<ea-eagami-wordmark [variant]="4" [size]="96" />
 ```
 
 <img src="docs/images/eagami-wordmark.png" alt="Eagami wordmark component" width="560" />
