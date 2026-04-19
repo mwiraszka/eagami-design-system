@@ -57,17 +57,17 @@ describe('EagamiWordmarkComponent', () => {
     });
   });
 
-  // ── Text ─────────────────────────────────────────────────────────────────────
+  // ── Variant ──────────────────────────────────────────────────────────────────
 
-  describe('Text', () => {
-    it('renders "eagami" by default', () => {
+  describe('Variant', () => {
+    it('renders "eagami" by default (variant 1)', () => {
       expect(getBrand()?.textContent?.trim()).toBe('eagami');
       expect(getOverline()).toBeNull();
       expect(getTagline()).toBeNull();
     });
 
-    it('renders overline and brand for "handcrafted by eagami"', () => {
-      fixture.componentRef.setInput('text', 'handcrafted by eagami');
+    it('renders overline and brand for variant 2', () => {
+      fixture.componentRef.setInput('variant', 2);
       fixture.detectChanges();
 
       expect(getOverline()?.textContent?.trim()).toBe('handcrafted by');
@@ -75,8 +75,8 @@ describe('EagamiWordmarkComponent', () => {
       expect(getTagline()).toBeNull();
     });
 
-    it('renders brand only for "eagami design system"', () => {
-      fixture.componentRef.setInput('text', 'eagami design system');
+    it('renders brand only for variant 3', () => {
+      fixture.componentRef.setInput('variant', 3);
       fixture.detectChanges();
 
       expect(getBrand()?.textContent?.trim()).toBe('eagami design system');
@@ -84,11 +84,8 @@ describe('EagamiWordmarkComponent', () => {
       expect(getTagline()).toBeNull();
     });
 
-    it('renders brand and tagline for the full variant', () => {
-      fixture.componentRef.setInput(
-        'text',
-        'eagami design system \u2014 elegant web design',
-      );
+    it('renders brand and tagline for variant 4', () => {
+      fixture.componentRef.setInput('variant', 4);
       fixture.detectChanges();
 
       expect(getBrand()?.textContent?.trim()).toBe('eagami design system');
@@ -96,15 +93,31 @@ describe('EagamiWordmarkComponent', () => {
       expect(getOverline()).toBeNull();
     });
 
-    it('uses the text input as the aria-label', () => {
-      fixture.componentRef.setInput('text', 'handcrafted by eagami');
+    it('sets aria-label to "eagami" for variant 1', () => {
+      expect(getAnchor().getAttribute('aria-label')).toBe('eagami');
+    });
+
+    it('sets aria-label to "handcrafted by eagami" for variant 2', () => {
+      fixture.componentRef.setInput('variant', 2);
       fixture.detectChanges();
 
       expect(getAnchor().getAttribute('aria-label')).toBe('handcrafted by eagami');
     });
 
-    it('uses the default text as the aria-label', () => {
-      expect(getAnchor().getAttribute('aria-label')).toBe('eagami');
+    it('sets aria-label to "eagami design system" for variant 3', () => {
+      fixture.componentRef.setInput('variant', 3);
+      fixture.detectChanges();
+
+      expect(getAnchor().getAttribute('aria-label')).toBe('eagami design system');
+    });
+
+    it('sets aria-label to the full text for variant 4', () => {
+      fixture.componentRef.setInput('variant', 4);
+      fixture.detectChanges();
+
+      expect(getAnchor().getAttribute('aria-label')).toBe(
+        'eagami design system \u2014 elegant web design',
+      );
     });
   });
 
@@ -137,8 +150,8 @@ describe('EagamiWordmarkComponent', () => {
       expect(getAnchor().classList.contains('ea-eagami-wordmark--inline')).toBe(true);
     });
 
-    it('renders overline and brand inline for "handcrafted by eagami"', () => {
-      fixture.componentRef.setInput('text', 'handcrafted by eagami');
+    it('renders overline and brand inline for variant 2', () => {
+      fixture.componentRef.setInput('variant', 2);
       fixture.componentRef.setInput('layout', 'inline');
       fixture.detectChanges();
 
@@ -146,11 +159,8 @@ describe('EagamiWordmarkComponent', () => {
       expect(getBrand()?.textContent?.trim()).toBe('eagami');
     });
 
-    it('renders brand and tagline inline for the full variant', () => {
-      fixture.componentRef.setInput(
-        'text',
-        'eagami design system \u2014 elegant web design',
-      );
+    it('renders brand and tagline inline for variant 4', () => {
+      fixture.componentRef.setInput('variant', 4);
       fixture.componentRef.setInput('layout', 'inline');
       fixture.detectChanges();
 

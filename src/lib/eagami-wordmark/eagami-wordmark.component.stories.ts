@@ -11,14 +11,9 @@ const meta: Meta<EagamiWordmarkComponent> = {
     template: `<ea-eagami-wordmark ${argsToTemplate(args)}></ea-eagami-wordmark>`,
   }),
   argTypes: {
-    text: {
-      control: 'select',
-      options: [
-        'eagami',
-        'handcrafted by eagami',
-        'eagami design system',
-        'eagami design system \u2014 elegant web design',
-      ],
+    variant: {
+      control: 'inline-radio',
+      options: [1, 2, 3, 4],
     },
     layout: {
       control: 'inline-radio',
@@ -29,7 +24,7 @@ const meta: Meta<EagamiWordmarkComponent> = {
     },
   },
   args: {
-    text: 'eagami',
+    variant: 1,
     layout: 'stacked',
     size: 32,
   },
@@ -41,35 +36,29 @@ type Story = StoryObj<EagamiWordmarkComponent>;
 export const Default: Story = {};
 
 export const HandcraftedBy: Story = {
-  args: { text: 'handcrafted by eagami' },
+  args: { variant: 2 },
 };
 
 export const DesignSystem: Story = {
-  args: { text: 'eagami design system' },
+  args: { variant: 3 },
 };
 
 export const Full: Story = {
-  args: { text: 'eagami design system \u2014 elegant web design' },
+  args: { variant: 4 },
 };
 
 export const Small: Story = {
-  args: { text: 'eagami design system', size: 32 },
+  args: { variant: 3, size: 32 },
 };
 
 export const Large: Story = {
-  args: {
-    text: 'eagami design system \u2014 elegant web design',
-    size: 96,
-  },
+  args: { variant: 4, size: 96 },
 };
 
 export const InlineHandcraftedBy: Story = {
-  args: { text: 'handcrafted by eagami', layout: 'inline' },
+  args: { variant: 2, layout: 'inline' },
 };
 
 export const InlineFull: Story = {
-  args: {
-    text: 'eagami design system \u2014 elegant web design',
-    layout: 'inline',
-  },
+  args: { variant: 4, layout: 'inline' },
 };
