@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Rework `EagamiWordmarkComponent` API — replace `variant` and `text` inputs with a single `text` input offering four options (`eagami`, `handcrafted by eagami`, `eagami design system`, `eagami design system — elegant web design`), add `layout` input (`stacked` | `inline`) for single-line rendering with em dash separator, and switch `size` from preset strings to a numeric pixel value for continuous scaling
+- Rework `EagamiWordmarkComponent` API — replace `variant` and `text` inputs with a numeric `variant` (`1`–`4`) that maps to the four text options internally, add `layout` input (`stacked` | `inline`) for single-line rendering with em dash separator, and switch `size` from preset strings to a numeric pixel value for continuous scaling
 
 ### Fixed
 
