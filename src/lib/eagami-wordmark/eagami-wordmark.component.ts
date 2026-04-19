@@ -2,9 +2,12 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 
 import { EagamiIconComponent } from '../icons/eagami.component';
 
-export type EagamiWordmarkVariant = 'logo' | 'signature' | 'brand';
-export type EagamiWordmarkSize = 'sm' | 'md' | 'lg';
-export type EagamiWordmarkText = 'eagami' | 'eagami design system';
+export type EagamiWordmarkText =
+  | 'eagami'
+  | 'handcrafted by eagami'
+  | 'eagami design system'
+  | 'eagami design system \u2014 elegant web design';
+export type EagamiWordmarkLayout = 'stacked' | 'inline';
 
 @Component({
   selector: 'ea-eagami-wordmark',
@@ -12,17 +15,28 @@ export type EagamiWordmarkText = 'eagami' | 'eagami design system';
   templateUrl: './eagami-wordmark.component.html',
   styleUrl: './eagami-wordmark.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[style.--_size]': 'size()',
+  },
 })
 export class EagamiWordmarkComponent {
-  readonly variant = input<EagamiWordmarkVariant>('logo');
-  readonly size = input<EagamiWordmarkSize>('md');
   readonly text = input<EagamiWordmarkText>('eagami');
+  readonly layout = input<EagamiWordmarkLayout>('stacked');
+  readonly size = input<number>(32);
 
-  protected readonly ariaLabel = computed(() => {
-    const variant = this.variant();
+  protected readonly showOverline = computed(
+    () => this.text() === 'handcrafted by eagami',
+  );
+
+  protected readonly showTagline = computed(
+    () => this.text() === 'eagami design system \u2014 elegant web design',
+  );
+
+  protected readonly brandText = computed(() => {
     const text = this.text();
-    if (variant === 'signature') return `handcrafted by ${text}`;
-    if (variant === 'brand') return `${text} — elegant web design`;
+    if (text === 'handcrafted by eagami') return 'eagami';
+    if (text === 'eagami design system \u2014 elegant web design')
+      return 'eagami design system';
     return text;
   });
 }

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500&display=swap');
+
 // =============================================================================
 // EAGAMI WORDMARK COMPONENT
 // =============================================================================
@@ -26,10 +28,11 @@
 
   // ---------------------------------------------------------------------------
   // Logo — size is driven by `font-size` so `ea-icon-eagami`'s inline
-  // `1em × 1em` dimensions resolve to the intended pixel values per variant
+  // `1em × 1em` dimensions resolve to the value of `--_size`
   // ---------------------------------------------------------------------------
   &__logo {
     flex-shrink: 0;
+    font-size: calc(var(--_size) * 1px);
   }
 
   // ---------------------------------------------------------------------------
@@ -51,7 +54,9 @@
   }
 
   &__overline,
+  &__separator,
   &__tagline {
+    font-size: calc(var(--_size) * 0.2px);
     font-weight: var(--font-weight-regular);
     letter-spacing: var(--letter-spacing-widest);
     font-family: var(--font-family-sans);
@@ -59,50 +64,24 @@
   }
 
   &__brand {
+    font-size: calc(var(--_size) * 0.5px);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--letter-spacing-wide);
     font-family: var(--font-family-brand);
   }
 
   // ---------------------------------------------------------------------------
-  // Size variants
+  // Inline layout — single line, uniform font size
   // ---------------------------------------------------------------------------
-  &--sm &__logo {
-    font-size: 48px;
+  &--inline &__text {
+    flex-direction: row;
+    align-items: baseline;
+    gap: calc(var(--_size) * 0.1px);
   }
 
-  &--md &__logo {
-    font-size: 64px;
-  }
-
-  &--lg &__logo {
-    font-size: 96px;
-  }
-
-  &--sm &__brand {
-    font-size: var(--font-size-2xl);
-  }
-
-  &--md &__brand {
-    font-size: var(--font-size-4xl);
-  }
-
-  &--lg &__brand {
-    font-size: var(--font-size-5xl);
-  }
-
-  &--sm &__overline,
-  &--sm &__tagline {
-    font-size: var(--font-size-2xs);
-  }
-
-  &--md &__overline,
-  &--md &__tagline {
-    font-size: var(--font-size-sm);
-  }
-
-  &--lg &__overline,
-  &--lg &__tagline {
-    font-size: var(--font-size-xl);
+  &--inline &__overline,
+  &--inline &__separator,
+  &--inline &__tagline {
+    font-size: calc(var(--_size) * 0.5px);
   }
 }
