@@ -2,10 +2,13 @@ import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   ElementRef,
   HostListener,
   computed,
+  effect,
   forwardRef,
+  inject,
   input,
   model,
   output,
@@ -40,6 +43,8 @@ export interface DropdownOption {
 })
 export class DropdownComponent implements ControlValueAccessor {
   private readonly elRef = viewChild<ElementRef<HTMLElement>>('triggerEl');
+  private readonly menuEl = viewChild<ElementRef<HTMLElement>>('menuEl');
+  private readonly destroyRef = inject(DestroyRef);
 
   // Inputs
   readonly label = input<string | undefined>(undefined);
@@ -86,6 +91,31 @@ export class DropdownComponent implements ControlValueAccessor {
     'ea-dropdown__trigger--open': this.isOpen(),
     'ea-dropdown__trigger--disabled': this.isDisabled(),
   }));
+
+  constructor() {
+    effect(() => {
+      const menu = this.menuEl()?.nativeElement;
+      const trigger = this.elRef()?.nativeElement;
+      if (!menu || !trigger || !this.isOpen()) return;
+      const rect = trigger.getBoundingClientRect();
+      menu.style.top = `${rect.bottom + 4}px`;
+      menu.style.left = `${rect.left}px`;
+      menu.style.minWidth = `${rect.width}px`;
+    });
+
+    const closeOnViewportChange = (): void => {
+      if (this.isOpen()) this.close();
+    };
+    window.addEventListener('scroll', closeOnViewportChange, {
+      capture: true,
+      passive: true,
+    });
+    window.addEventListener('resize', closeOnViewportChange);
+    this.destroyRef.onDestroy(() => {
+      window.removeEventListener('scroll', closeOnViewportChange, { capture: true });
+      window.removeEventListener('resize', closeOnViewportChange);
+    });
+  }
 
   // ControlValueAccessor
   writeValue(val: string): void {
