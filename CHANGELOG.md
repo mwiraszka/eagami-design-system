@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.11.0] - 2026-04-21
 
+### Added
+
+- Introduce `design-system-flutter.md` and `design-system-react.md` — self-contained framework integration guides covering the full Eagami token set, mandatory design rules, ready-to-paste theme setup, usage patterns, and component API conventions, intended to be copied into consuming Flutter and React projects and written to be readable by both human developers and AI coding agents
+
 ### Fixed
 
 - Allow the `DropdownComponent` menu to grow wider than its trigger so long option labels are no longer clipped or wrapped

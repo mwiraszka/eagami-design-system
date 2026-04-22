@@ -695,6 +695,15 @@ Component-level overrides are available where useful:
 
 See [`src/styles/tokens/`](src/styles/tokens/) for the full token reference.
 
+## Framework integration
+
+@eagami/ui is an Angular library, but its design tokens, rules, and component API conventions are framework-agnostic. For projects that can't consume the Angular package directly yet still want to adhere to the same design system, two self-contained integration guides are provided — each copy-and-paste ready and written to be readable by both human developers and AI coding agents:
+
+- **[design-system-flutter.md](design-system-flutter.md)** — Dart `ThemeExtension`, `MaterialApp` wiring, reduced-motion handling, and widget API conventions for Flutter projects
+- **[design-system-react.md](design-system-react.md)** — CSS custom properties, TypeScript constants, and component prop conventions for React projects (plain CSS, CSS Modules, styled-components, emotion, or Tailwind)
+
+Both files contain the full token set, mandatory design rules, theme setup, usage patterns, component API conventions, and accessibility requirements. Copy the relevant file into the target project and follow it when building UI.
+
 ## Peer dependencies
 
 | Package | Version |
