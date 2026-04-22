@@ -2,7 +2,7 @@
   <img src="docs/images/eagami-header.png" alt="eagami design system — elegant web design" width="800" />
 </p>
 
-A lightweight, accessible Angular component library built on CSS custom properties. Ready to use out of the box — install, import, and start building.
+A lightweight, accessible Angular component library built on CSS custom properties, with portable design system integration guides for Flutter and React ([see more](#framework-integration)). Ready to use out of the box — install, import, and start building.
 
 Every component is standalone, signal-based, and fully themed via design tokens. No wrapping modules, no complex setup, no runtime style conflicts. Designed to be AI-friendly with clear APIs, consistent patterns, and comprehensive documentation that makes it easy for both developers and AI assistants to work with.
 
