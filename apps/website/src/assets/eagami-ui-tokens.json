@@ -1,5 +1,5 @@
 {
-  "$description": "Eagami UI design tokens, generated from @eagami/ui@5.38.1 (packages/ui/src/styles/tokens/*.scss) by scripts/sync-integration-guides.mjs. Aliases use W3C Design Tokens {group.token} syntax. Dark-mode overrides live in $extensions['com.eagami.ui'].dark; tokens without one are identical in both modes. Shadow, ease, and transition tokens carry raw CSS values.",
+  "$description": "Eagami UI design tokens, generated from @eagami/ui@5.39.0 (packages/ui/src/styles/tokens/*.scss) by scripts/sync-integration-guides.mjs. Aliases use W3C Design Tokens {group.token} syntax. Dark-mode overrides live in $extensions['com.eagami.ui'].dark; tokens without one are identical in both modes. Shadow, ease, and transition tokens carry raw CSS values.",
   "color": {
     "primary-50": {
       "$type": "color",

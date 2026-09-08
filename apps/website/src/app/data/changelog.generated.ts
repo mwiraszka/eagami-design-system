@@ -14,6 +14,16 @@ export interface ChangelogRelease {
 
 export const UI_CHANGELOG: readonly ChangelogRelease[] = [
   {
+    version: '5.39.0',
+    date: '2026-09-08',
+    sections: [
+      {
+        heading: 'Added',
+        entries: ['Add image-plus, image-search, microscope, and rows icons.'],
+      },
+    ],
+  },
+  {
     version: '5.38.1',
     date: '2026-09-01',
     sections: [
