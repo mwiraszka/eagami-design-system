@@ -182,6 +182,8 @@ import { HexagonIconComponent } from './hexagon.component';
 import { HistoryIconComponent } from './history.component';
 import { HomeIconComponent } from './home.component';
 import type { IconComponentType } from './icon-category';
+import { ImagePlusIconComponent } from './image-plus.component';
+import { ImageSearchIconComponent } from './image-search.component';
 import { ImageIconComponent } from './image.component';
 import { ImagesIconComponent } from './images.component';
 import { InboxIconComponent } from './inbox.component';
@@ -224,6 +226,7 @@ import { MessageCircleIconComponent } from './message-circle.component';
 import { MessageSquareIconComponent } from './message-square.component';
 import { MicOffIconComponent } from './mic-off.component';
 import { MicIconComponent } from './mic.component';
+import { MicroscopeIconComponent } from './microscope.component';
 import { MicrosoftIconComponent } from './microsoft.component';
 import { Minimize2IconComponent } from './minimize-2.component';
 import { MinimizeIconComponent } from './minimize.component';
@@ -294,6 +297,7 @@ import { RocketIconComponent } from './rocket.component';
 import { RotateCcwSquareIconComponent } from './rotate-ccw-square.component';
 import { RotateCcwIconComponent } from './rotate-ccw.component';
 import { RotateCwIconComponent } from './rotate-cw.component';
+import { RowsIconComponent } from './rows.component';
 import { RssIconComponent } from './rss.component';
 import { SaveIconComponent } from './save.component';
 import { ScanIconComponent } from './scan.component';
@@ -608,6 +612,8 @@ export const ICONS: ReadonlyArray<IconComponentType> = (
     HistoryIconComponent,
     HomeIconComponent,
     ImageIconComponent,
+    ImagePlusIconComponent,
+    ImageSearchIconComponent,
     ImagesIconComponent,
     InboxIconComponent,
     InfoIconComponent,
@@ -649,6 +655,7 @@ export const ICONS: ReadonlyArray<IconComponentType> = (
     MessageSquareIconComponent,
     MicIconComponent,
     MicOffIconComponent,
+    MicroscopeIconComponent,
     MicrosoftIconComponent,
     Minimize2IconComponent,
     MinimizeIconComponent,
@@ -719,6 +726,7 @@ export const ICONS: ReadonlyArray<IconComponentType> = (
     RotateCcwIconComponent,
     RotateCcwSquareIconComponent,
     RotateCwIconComponent,
+    RowsIconComponent,
     RssIconComponent,
     SaveIconComponent,
     ScanIconComponent,
